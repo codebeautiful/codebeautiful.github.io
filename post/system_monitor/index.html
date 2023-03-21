@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+    <meta name="description" content=" who命令 输出信息包括 用户名，终端类型，登录日期，访问IP -H 打印列标题 -b 查看上次启动时间
+who [-H|-b] who [-H|-b] /var/log/wtmp 查看命令历史 每个用户都有一份命令历史记录 查看$HOME/.bash_history 或者在终端输入： history last命令 查看用户登录历史 命令会读取 /var/log/wtmp文件； /var/log/btmp可以显示远程登陆信息。 last默认打印所有用户的登陆信息。 如果想打印某个用户的登陆信息，可以使用 last 用户名 选项：
+（1）-x：显示系统开关机以及执行等级信息 （2）-a：将登陆ip显示在最后一行 （3）-f ：读取特定文件，可以选择 -f /var/log/btmp文件 （4）-d：将IP地址转换为主机名 （5）-n：设置列出名单的显示列数 （6）-t：查看指定时间的用户登录历史 lastlog命令 查看所有用户最近一次登录历史
+命令将读取/var/log/lastlog文件；用户排列顺序按照/etc/passwd中的顺序
+选项：
+（1） -u：查看某个用户的最后一次登陆历史 （2） -t：查看最近几天之内的用户登录历史 （3） -b：查看指定天数之前的用户登录历史 ac命令 根据/var/log/wtmp文件中的登陆和退出时间报告用户连接的时间（小时），默认输出报告总时间
+（1）-p：显示每个用户的连接时间 （2）-d：显示每天的连接时间 （3）-y：显示年份，和-d配合使用 ">
+  
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.111.2">
+  <title>服务器运维监控命令汇总 | 通通不同-博客</title>
+  <link rel="canonical" href="http://ttbt.work/post/system_monitor/">
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+  <link rel="stylesheet" href="/css/base.min.4f231885947d13c748c815d93da49f07ab89afb67629f9970b7c054610e88e0b.css" integrity="sha256-TyMYhZR9E8dIyBXZPaSfB6uJr7Z2KfmXC3wFRhDojgs=" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <h1 class="Banner-heading">
+          <a class="Banner-link u-clickable" href="/">通通不同-博客</a>
+        </h1>
+      </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">全部</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">分类</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">标签</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <article>
+    <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/system_monitor/" rel="bookmark">服务器运维监控命令汇总</a>
+  </h2>
+  
+    <time datetime="2023-03-21T14:25:13&#43;08:00">21 March, 2023</time>
+  
+</header>
+    <h1 id="who命令">
+  <a class="Heading-link u-clickable" href="/post/system_monitor/#who%e5%91%bd%e4%bb%a4">who命令</a>
+</h1>
+<p>输出信息包括 用户名，终端类型，登录日期，访问IP
+-H 打印列标题
+-b 查看上次启动时间</p>
+
+<pre tabindex="0"><code>who [-H|-b]
+who [-H|-b] /var/log/wtmp</code></pre>
+<h1 id="查看命令历史">
+  <a class="Heading-link u-clickable" href="/post/system_monitor/#%e6%9f%a5%e7%9c%8b%e5%91%bd%e4%bb%a4%e5%8e%86%e5%8f%b2">查看命令历史</a>
+</h1>
+<ul>
+<li>每个用户都有一份命令历史记录</li>
+<li>查看$HOME/.bash_history</li>
+<li>或者在终端输入： history</li>
+</ul>
+<h1 id="last命令">
+  <a class="Heading-link u-clickable" href="/post/system_monitor/#last%e5%91%bd%e4%bb%a4">last命令</a>
+</h1>
+<ul>
+<li>查看用户登录历史</li>
+<li>命令会读取 /var/log/wtmp文件；</li>
+<li>/var/log/btmp可以显示远程登陆信息。</li>
+<li>last默认打印所有用户的登陆信息。</li>
+<li>如果想打印某个用户的登陆信息，可以使用</li>
+<li>last 用户名</li>
+</ul>
+<p>选项：</p>
+<ul>
+<li>（1）-x：显示系统开关机以及执行等级信息</li>
+<li>（2）-a：将登陆ip显示在最后一行</li>
+<li>（3）-f ：读取特定文件，可以选择 -f /var/log/btmp文件</li>
+<li>（4）-d：将IP地址转换为主机名</li>
+<li>（5）-n：设置列出名单的显示列数</li>
+<li>（6）-t：查看指定时间的用户登录历史</li>
+</ul>
+<h1 id="lastlog命令">
+  <a class="Heading-link u-clickable" href="/post/system_monitor/#lastlog%e5%91%bd%e4%bb%a4">lastlog命令</a>
+</h1>
+<blockquote>
+<p>查看所有用户最近一次登录历史</p>
+</blockquote>
+<blockquote>
+<p>命令将读取/var/log/lastlog文件；用户排列顺序按照/etc/passwd中的顺序</p>
+</blockquote>
+<p>选项：</p>
+<ul>
+<li>（1） -u：查看某个用户的最后一次登陆历史</li>
+<li>（2） -t：查看最近几天之内的用户登录历史</li>
+<li>（3） -b：查看指定天数之前的用户登录历史</li>
+</ul>
+<h1 id="ac命令">
+  <a class="Heading-link u-clickable" href="/post/system_monitor/#ac%e5%91%bd%e4%bb%a4">ac命令</a>
+</h1>
+<blockquote>
+<p>根据/var/log/wtmp文件中的登陆和退出时间报告用户连接的时间（小时），默认输出报告总时间</p>
+</blockquote>
+<ul>
+<li>（1）-p：显示每个用户的连接时间</li>
+<li>（2）-d：显示每天的连接时间</li>
+<li>（3）-y：显示年份，和-d配合使用</li>
+</ul>
+
+    
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    
+  
+
+  </article>
+
+
+      </div>
+    </div>
+  </main>
+  
+  <footer class="Footer">
+    <div class="u-wrapper">
+      <div class="u-padding">
+        开发的乐趣在于相通而不同
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d08a2ad355cb7a065a41be081b43297e";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>
