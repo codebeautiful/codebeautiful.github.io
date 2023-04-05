@@ -30,7 +30,7 @@ command中指定的进程已经起来，但supervisor还不断重启 问题描�
 
 <meta name="generator" content="Hugo 0.111.2">
   <title>Supervisor管理GO程序 | 通通不同-博客</title>
-  <link rel="canonical" href="http://ttbt.work/post/supervisor/">
+  <link rel="canonical" href="https://codebeautiful.gitee.io/post/supervisor/">
 
 
   
@@ -96,19 +96,19 @@ command中指定的进程已经起来，但supervisor还不断重启 问题描�
     <time datetime="2023-03-21T14:04:34&#43;08:00">21 March, 2023</time>
   
 </header>
-    <h1 id="安装">
+    <h3 id="安装">
   <a class="Heading-link u-clickable" href="/post/supervisor/#%e5%ae%89%e8%a3%85">安装</a>
-</h1>
+</h3>
 
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>apt-get install supervisor</span></span></code></pre></div>
-<h1 id="使用说明">
+<h3 id="使用说明">
   <a class="Heading-link u-clickable" href="/post/supervisor/#%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e">使用说明</a>
-</h1>
+</h3>
 <p>supervisor配置文件：/etc/supervisor/supervisord.conf
 子进程配置文件路径：/etc/supervisor/conf.d/</p>
-<h1 id="常用命令说明">
+<h3 id="常用命令说明">
   <a class="Heading-link u-clickable" href="/post/supervisor/#%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4%e8%af%b4%e6%98%8e">常用命令说明</a>
-</h1>
+</h3>
 
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 查看所有进程的状态</span>
 </span></span><span style="display:flex;"><span>supervisorctl status
@@ -122,9 +122,9 @@ command中指定的进程已经起来，但supervisor还不断重启 问题描�
 </span></span><span style="display:flex;"><span>supervisorctl update
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 重新启动配置中的所有程序</span>
 </span></span><span style="display:flex;"><span>supervisorctl reload</span></span></code></pre></div>
-<h1 id="配置go进程">
+<h3 id="配置go进程">
   <a class="Heading-link u-clickable" href="/post/supervisor/#%e9%85%8d%e7%bd%aego%e8%bf%9b%e7%a8%8b">配置GO进程</a>
-</h1>
+</h3>
 
 <pre tabindex="0"><code class="language-conf" data-lang="conf">[program:iot]
 # 脚本目录
@@ -140,9 +140,9 @@ startsecs=5
 priority=1
 stopasgroup=true
 killasgroup=true</code></pre>
-<h1 id="常见问题">
+<h3 id="常见问题">
   <a class="Heading-link u-clickable" href="/post/supervisor/#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98">常见问题</a>
-</h1>
+</h3>
 <ol>
 <li>unix:///var/run/supervisor.sock no such file</li>
 </ol>
