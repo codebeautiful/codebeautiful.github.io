@@ -106,9 +106,6 @@
     
     
     
-      
-      
-    
     
     
   
@@ -184,6 +181,587 @@
     <article>
       <header class="Heading">
   <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/golang_value_reference_type/" rel="bookmark">golang中的值类型和引用类型</a>
+  </h2>
+  
+    <time datetime="2023-04-19T00:48:08&#43;08:00">19 April, 2023</time>
+  
+</header>
+      
+        <h2 id="golang中的值类型和引用类型">
+  <a class="Heading-link u-clickable" href="/post/golang_value_reference_type/#golang%e4%b8%ad%e7%9a%84%e5%80%bc%e7%b1%bb%e5%9e%8b%e5%92%8c%e5%bc%95%e7%94%a8%e7%b1%bb%e5%9e%8b">golang中的值类型和引用类型</a>
+</h2>
+<ul>
+<li>值类型分别有：int系列、float系列、bool、string、数组和结构体</li>
+<li>引用类型有：指针、slice切片、管道channel、接口interface、map、函数等</li>
+</ul>
+<p>值类型的特点是：变量直接存储值，内存通常在栈中分配</p>
+<p>引用类型的特点是：变量存储的是一个地址，这个地址对应的空间里才是真正存储的值，内存通常在堆中分配</p>
+<p>对interface，map，函数 类型最好不要使用指针定义或取地址操作</p>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/golang_response_body_close/" rel="bookmark">GO http请求完成后需要关闭response.Body.Close()</a>
+  </h2>
+  
+    <time datetime="2023-04-19T00:43:08&#43;08:00">19 April, 2023</time>
+  
+</header>
+      
+        
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Post</span>(<span style="color:#a6e22e">url</span>, <span style="color:#e6db74">&#34;application/json&#34;</span>, <span style="color:#66d9ef">nil</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">defer</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">body</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">ReadCloser</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">body</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">Close</span>()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}(<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">Body</span>)</span></span></code></pre></div>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/mac_book_use_routes/" rel="bookmark">MacBook当做无线或有线路由器使用</a>
+  </h2>
+  
+    <time datetime="2023-04-14T22:44:55&#43;08:00">14 April, 2023</time>
+  
+</header>
+      
+        <p><strong>需求问题</strong></p>
+<p>客户服务器需要安装软件，但是服务器无法连接互联网，怎么搞。</p>
+<ol>
+<li>买一台无线随身热点，需要有带网线接口，无线5G WiFi路由器</li>
+<li>手里有一台MacBook电脑和有网口的扩展坞，是否可以搞一个无线的WiFi路由器</li>
+</ol>
+<p>先决调节：Mac笔记本作为无线路由器（需要一个带网口的扩展坞）</p>
+<h4 id="macbook通过wifi连接互联网">
+  <a class="Heading-link u-clickable" href="/post/mac_book_use_routes/#macbook%e9%80%9a%e8%bf%87wifi%e8%bf%9e%e6%8e%a5%e4%ba%92%e8%81%94%e7%bd%91">MacBook通过WiFi连接互联网</a>
+</h4>
+<p>配置互联网共享（系统设置-&gt;通用-&gt;共享）其中AX88179A是扩展坞的网口，配置好后点击完成，再开启互联网共享</p>
+<p><img src="/images/MacBook_shareNetwork.png" alt="Pasted Graphic.png"></p>
+<p>完成以上配置后，将待联网机器通过网线和扩展坞连接，设备就可以访问互联网了</p>
+<h4 id="mac笔记本作为有线路由器通过网线接入互联网">
+  <a class="Heading-link u-clickable" href="/post/mac_book_use_routes/#mac%e7%ac%94%e8%ae%b0%e6%9c%ac%e4%bd%9c%e4%b8%ba%e6%9c%89%e7%ba%bf%e8%b7%af%e7%94%b1%e5%99%a8%e9%80%9a%e8%bf%87%e7%bd%91%e7%ba%bf%e6%8e%a5%e5%85%a5%e4%ba%92%e8%81%94%e7%bd%91">Mac笔记本作为有线路由器通过网线接入互联网</a>
+</h4>
+<p>该方式和上面的相反，电脑以有线方式接入互联网</p>
+<p>配置项如图所示，最后面会出现一个Wi-Fi选项，点击后，可以设置WiFi名称和密码，以供WiFi设备连接该热点，点击完成后，开启互联网共享</p>
+<p><img src="/images/mac_book_use_routes/image-20230414225641422.png" alt="image-20230414225641422"></p>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/go_vs_mysql_type/" rel="bookmark">GO vs MySQL类型对应关系</a>
+  </h2>
+  
+    <time datetime="2023-04-14T15:30:01&#43;08:00">14 April, 2023</time>
+  
+</header>
+      
+        <table>
+<thead>
+<tr>
+<th>golang</th>
+<th>MySQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int,int32 添加auto或名称为Id时</td>
+<td>integer AUTO_INCREMENT</td>
+</tr>
+<tr>
+<td>int64</td>
+<td>bigint AUTO_INCREMENT</td>
+</tr>
+<tr>
+<td>uint,uint32</td>
+<td>integer unsigned AUTO_INCREMENT</td>
+</tr>
+<tr>
+<td>uint64</td>
+<td>bigint unsigned AUTO_INCREMENT</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>string size 255</td>
+<td>varchar(255)</td>
+</tr>
+<tr>
+<td>string type(text)</td>
+<td>longtext</td>
+</tr>
+<tr>
+<td>time.Time type(data)</td>
+<td>date</td>
+</tr>
+<tr>
+<td>time.Time</td>
+<td>datetime</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>tinyint unsigned</td>
+</tr>
+<tr>
+<td>rune</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>int</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>int8</td>
+<td>tinyint</td>
+</tr>
+<tr>
+<td>int16</td>
+<td>smallint</td>
+</tr>
+<tr>
+<td>int32</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>int64</td>
+<td>bigint</td>
+</tr>
+<tr>
+<td>uint</td>
+<td>integer unsigned</td>
+</tr>
+<tr>
+<td>uint8</td>
+<td>tinyint unsigned</td>
+</tr>
+<tr>
+<td>uint16</td>
+<td>smallint unsigned</td>
+</tr>
+<tr>
+<td>uint32</td>
+<td>integer unsigned</td>
+</tr>
+<tr>
+<td>uint64</td>
+<td>bigint unsigned</td>
+</tr>
+<tr>
+<td>float32</td>
+<td>double precision</td>
+</tr>
+<tr>
+<td>float64</td>
+<td>double precision</td>
+</tr>
+<tr>
+<td>float64  digits,decimals</td>
+<td>numeric(digits,decimals)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>参数名称</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>描述</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>eventType</td>
+<td>String</td>
+<td>是</td>
+<td>LockEvent</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>sn</td>
+<td>String</td>
+<td>是</td>
+<td>门锁Mac地址</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>operation</td>
+<td>String</td>
+<td>是</td>
+<td>OncePassword</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>param</td>
+<td>Object</td>
+<td>是</td>
+<td>名称</td>
+<td>类型</td>
+<td>描述</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>userId</td>
+<td>long</td>
+<td>用户标识</td>
+</tr>
+<tr>
+<td>返回信息</td>
+<td>参数名称</td>
+<td>参数类型</td>
+<td>是否必须</td>
+<td>描述</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>success</td>
+<td>Boolean</td>
+<td>是</td>
+<td>操作结果</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>msg</td>
+<td>String</td>
+<td>是</td>
+<td>结果描述信息</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>data</td>
+<td>Object</td>
+<td>是</td>
+<td>参数</td>
+<td>类型</td>
+<td>描述</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>password</td>
+<td>String</td>
+<td>一次性密码</td>
+</tr>
+</tbody>
+</table>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/mac_essay_recording/" rel="bookmark">macOS使用随笔记录</a>
+  </h2>
+  
+    <time datetime="2023-04-13T23:16:50&#43;08:00">13 April, 2023</time>
+  
+</header>
+      
+        <h1 id="快捷键">
+  <a class="Heading-link u-clickable" href="/post/mac_essay_recording/#%e5%bf%ab%e6%8d%b7%e9%94%ae">快捷键</a>
+</h1>
+<p>Command+Shift+Y ：快速将当前选中的文字添加到便笺中df</p>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/next_software_developer/" rel="bookmark">下一步的软件开发计划</a>
+  </h2>
+  
+    <time datetime="2023-04-13T23:10:30&#43;08:00">13 April, 2023</time>
+  
+</header>
+      
+        <h1 id="小米串口工具开发">
+  <a class="Heading-link u-clickable" href="/post/next_software_developer/#%e5%b0%8f%e7%b1%b3%e4%b8%b2%e5%8f%a3%e5%b7%a5%e5%85%b7%e5%bc%80%e5%8f%91">小米串口工具开发</a>
+</h1>
+<h1 id="配料表信息查看app">
+  <a class="Heading-link u-clickable" href="/post/next_software_developer/#%e9%85%8d%e6%96%99%e8%a1%a8%e4%bf%a1%e6%81%af%e6%9f%a5%e7%9c%8bapp">配料表信息查看APP</a>
+</h1>
+<h1 id="docset离线文档移植android平台">
+  <a class="Heading-link u-clickable" href="/post/next_software_developer/#docset%e7%a6%bb%e7%ba%bf%e6%96%87%e6%a1%a3%e7%a7%bb%e6%a4%8dandroid%e5%b9%b3%e5%8f%b0">docset离线文档移植Android平台</a>
+</h1>
+<h1 id="制作docset离线文档">
+  <a class="Heading-link u-clickable" href="/post/next_software_developer/#%e5%88%b6%e4%bd%9cdocset%e7%a6%bb%e7%ba%bf%e6%96%87%e6%a1%a3">制作docset离线文档</a>
+</h1>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/swift_main_thread/" rel="bookmark">Swift中主线程中执行UI任务记录</a>
+  </h2>
+  
+    <time datetime="2023-04-13T22:45:26&#43;08:00">13 April, 2023</time>
+  
+</header>
+      
+        
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">methodUI</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> Thread.current.isMainThread {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ui action</span>
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    DispatchQueue.main.async {
+</span></span><span style="display:flex;"><span>      methodUI()
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/android_ndk_missing_and_no_known_rule/" rel="bookmark">Android NDK 引入外部动态库.so报错 missing and no known rule</a>
+  </h2>
+  
+    <time datetime="2023-04-01T07:08:32&#43;08:00">1 April, 2023</time>
+  
+</header>
+      
+        <h3 id="正确的配置项-cmake">
+  <a class="Heading-link u-clickable" href="/post/android_ndk_missing_and_no_known_rule/#%e6%ad%a3%e7%a1%ae%e7%9a%84%e9%85%8d%e7%bd%ae%e9%a1%b9-cmake">正确的配置项-cmake</a>
+</h3>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span>add_library( <span style="color:#e6db74">qtcore</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#e6db74">SHARED</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#e6db74">IMPORTED</span> )<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>set_target_properties( <span style="color:#75715e"># Specifies the target library.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>              <span style="color:#e6db74">qtcore</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#75715e"># Specifies the parameter you want to define.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>              <span style="color:#e6db74">PROPERTIES</span> <span style="color:#e6db74">IMPORTED_LOCATION</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#75715e"># 关键点在这里，这个路径必须为绝对路径，报错原因是因为使用了相对路径
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>              <span style="color:#f92672">${</span>PROJECT_SOURCE_DIR<span style="color:#f92672">}</span><span style="color:#e6db74">/../libs/</span><span style="color:#f92672">${</span>ANDROID_ABI<span style="color:#f92672">}</span><span style="color:#e6db74">/libQt6Core.so</span> )<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>target_link_libraries( <span style="color:#75715e"># Specifies the target library.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>              <span style="color:#e6db74">shared</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#e6db74">qtcore</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#75715e"># Links the target library to the log library
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>              <span style="color:#75715e"># included in the NDK.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>              <span style="color:#f92672">${</span>log-lib<span style="color:#f92672">}</span>)</span></span></code></pre></div>
+<ul>
+<li>关键点在这里，这个路径必须为绝对路径，报错原因是因为使用了相对路径</li>
+</ul>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/uiview_cornerradius_setting/" rel="bookmark">Storyboard下设置UIView圆角</a>
+  </h2>
+  
+    <time datetime="2023-03-31T16:08:53&#43;08:00">31 March, 2023</time>
+  
+</header>
+      
+        <ul>
+<li>如图UIView的宽度为8，高度为8，圆角设置为宽高的一半
+<img src="/images/UIView_cornerRadius.png" alt="UIView设置圆角"></li>
+</ul>
+<blockquote>
+<p>第二个属性可以不用设置  layer.masksToBounds</p>
+</blockquote>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
     <a class="Heading-link u-clickable" href="/post/uinavigationcontroller_scrollview_whiten/" rel="bookmark">解决UINavigationController 滑动UIScrollView出现白边问题</a>
   </h2>
   
@@ -236,654 +814,15 @@
       <div class="Divider"></div>
     
   
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/storyboard_uinavigation_back_cancel/" rel="bookmark">iOS开发取消UINavigationController返回按钮的问题和自定义按钮颜色</a>
-  </h2>
-  
-    <time datetime="2023-03-31T14:20:40&#43;08:00">31 March, 2023</time>
-  
-</header>
-      
-        <ul>
-<li>
-<p>如图修改BackButton属性值给一个空格回车
-<img src="/images/UINavigationItem1.png" alt="设置Back按钮"></p>
-</li>
-<li>
-<p>接下来会发现Navigation Item下会有一个新的控件出现，如图
-<img src="/images/UINavigationItem2.png" alt="设置按钮颜色"></p>
-</li>
-<li>
-<p>选中该组件Bar Button Item，修改相关属性值
-其中Tint属性就是修改按钮颜色值</p>
-</li>
-</ul>
-
-      
-      
-
 
   
-
-  
-
-  
-
-
-
-
-
-    </article>
+  <nav>
     
-      <div class="Divider"></div>
+      <a class="Pagination u-clickable" href="/page/2/" rel="prev">« Previous</a>
     
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/swift_available/" rel="bookmark">swift 使用 @available 或 #available</a>
-  </h2>
-  
-    <time datetime="2023-03-30T17:06:01&#43;08:00">30 March, 2023</time>
-  
-</header>
-      
-        
-<pre tabindex="0"><code>if #available(iOS 14, *) {
-  print(&#34;This code only runs on iOS 14 and up&#34;)
-} else {
-  print(&#34;This code only runs on iOS 13 and lower&#34;)
-}</code></pre>
-<p>在 guard 语句中使用 available 属性：</p>
-
-<pre tabindex="0"><code>guard #available(iOS 14, *) else {
-  print(&#34;Returning if iOS 13 or lower&#34;)
-  return
-}</code></pre>
-<h2 id="available和available之间的区别">
-  <a class="Heading-link u-clickable" href="/post/swift_available/#available%e5%92%8cavailable%e4%b9%8b%e9%97%b4%e7%9a%84%e5%8c%ba%e5%88%ab">@available和#available之间的区别</a>
-</h2>
-<p>@available: 用于标记类或方法的可用性</p>
-<p>#available: 用于仅针对特定平台或版本执行一段代码</p>
-<p>设置类或方法的可用性</p>
-<p>@available(iOS 14, *)
-final class NewAppIntroduction {
-// ..
-}</p>
-<p>if #available(iOS 14, *) {
-let appIntroduction = NewAppIntroduction()
-} else {
-// .. use the old app introduction
-}
-我们可以使用@available属性对方法进行完全相同的操作：</p>
-<p>@available(iOS 14, *)
-func launchNewAppIntroduction() {
-let appIntroduction = NewAppIntroduction()
-}</p>
-<p>@available(iOS 14, macOS 11.0, *)
-func launchNewAppIntroduction() {
-let appIntroduction = NewAppIntroduction()
-}</p>
-<h2 id="将方法标记为已弃用或过时">
-  <a class="Heading-link u-clickable" href="/post/swift_available/#%e5%b0%86%e6%96%b9%e6%b3%95%e6%a0%87%e8%ae%b0%e4%b8%ba%e5%b7%b2%e5%bc%83%e7%94%a8%e6%88%96%e8%bf%87%e6%97%b6">将方法标记为已弃用或过时</a>
-</h2>
-<p>另一个属性值用于将方法标记为已弃用或已废弃</p>
-<p>@available(iOS, deprecated: 12, obsoleted: 13, message: &ldquo;We no longer show an app introduction on iOS 14 and up&rdquo;)
-func launchAppIntroduction() {
-// ..
-}</p>
-
-      
-      
-
-
-  
-
-  
-
-  
-
-
-
-
-
-    </article>
     
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/swift_tableview_delete_style/" rel="bookmark">Swift 自定义UITableView左滑删除样式</a>
-  </h2>
-  
-    <time datetime="2023-03-30T16:44:09&#43;08:00">30 March, 2023</time>
-  
-</header>
-      
-        
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span>@available(iOS <span style="color:#ae81ff">11</span>, <span style="color:#f92672">*</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">tableView</span>(<span style="color:#66d9ef">_</span> tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -&gt; UISwipeActionsConfiguration? {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> deleteRowAction = UIContextualAction.<span style="color:#66d9ef">init</span>(style: UIContextualAction.Style.destructive, title: <span style="color:#e6db74">&#34;DELETE&#34;</span>) {(action: UIContextualAction , sourceView: UIView, completionHandle: (Bool) -&gt; Void) <span style="color:#66d9ef">in</span>
-</span></span><span style="display:flex;"><span>    my_log(<span style="color:#e6db74">&#34;delete click&#34;</span>)
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  deleteRowAction.image = UIImage(named: <span style="color:#e6db74">&#34;delete&#34;</span>)
-</span></span><span style="display:flex;"><span>  deleteRowAction.backgroundColor = UIColor(hexString: <span style="color:#e6db74">&#34;FE9B02&#34;</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> config = UISwipeActionsConfiguration.<span style="color:#66d9ef">init</span>(actions: [deleteRowAction])
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> config
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+  </nav>
 
-      
-      
-
-
-  
-
-  
-
-  
-
-
-
-
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/platform_define/" rel="bookmark">各个平台的内置宏定义</a>
-  </h2>
-  
-    <time datetime="2023-03-28T19:24:03&#43;08:00">28 March, 2023</time>
-  
-</header>
-      
-        <h3 id="windows">
-  <a class="Heading-link u-clickable" href="/post/platform_define/#windows">Windows</a>
-</h3>
-<ul>
-<li>WIN32、_WIN32、<em>WIN32</em>、WIN64、_WIN64、<em>WIN64</em></li>
-</ul>
-<h3 id="android">
-  <a class="Heading-link u-clickable" href="/post/platform_define/#android">Android</a>
-</h3>
-<ul>
-<li>ANDROID、<strong>ANDROID</strong></li>
-</ul>
-<h3 id="linux">
-  <a class="Heading-link u-clickable" href="/post/platform_define/#linux">Linux</a>
-</h3>
-<ul>
-<li><strong>linux</strong></li>
-</ul>
-<h3 id="iosmac">
-  <a class="Heading-link u-clickable" href="/post/platform_define/#iosmac">iOS/Mac</a>
-</h3>
-<ul>
-<li><strong>APPLE</strong>、TARGET_OS_IPHONE、TARGET_IPHONE_SIMULATOR、TARGET_OS_MAC</li>
-</ul>
-<h2 id="代码判断">
-  <a class="Heading-link u-clickable" href="/post/platform_define/#%e4%bb%a3%e7%a0%81%e5%88%a4%e6%96%ad">代码判断</a>
-</h2>
-
-<pre tabindex="0"><code>#if defined(WIN32) || defined(_WIN32) || defined(_WIN32_) || defined(WIN64) || defined(_WIN64) || defined(_WIN64_)
-#define OS_WINDOWS       1
-#elif defined(ANDROID) || defined(__ANDROID__)
-#define OS_ANDROID       1
-#elif defined(__linux__)
-#define OS_LINUX	         1
-#elif defined(__APPLE__) || defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR) || defined(TARGET_OS_MAC)
-#define OS_IOS           1
-#else
-#define OS_UNKNOWN 1
-#endif</code></pre>
-
-      
-      
-
-
-  
-
-  
-
-  
-
-
-
-
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/program_data_directory/" rel="bookmark">桌面软件数据存放路径</a>
-  </h2>
-  
-    <time datetime="2023-03-22T22:39:52&#43;08:00">22 March, 2023</time>
-  
-</header>
-      
-        <h2 id="windows下程序数据存放目录">
-  <a class="Heading-link u-clickable" href="/post/program_data_directory/#windows%e4%b8%8b%e7%a8%8b%e5%ba%8f%e6%95%b0%e6%8d%ae%e5%ad%98%e6%94%be%e7%9b%ae%e5%bd%95">windows下程序数据存放目录</a>
-</h2>
-<blockquote>
-<p>C:\Users\用户名\AppData \Roaming,
-通过环境变量%AppData%可以访问,这里用来存放当前登录用户所产生的数据，
-对其他的用户不可见。如果你在公司网络,加入了域,这个文件夹会通过网路同步，
-让你的数据在不同的计算机上漫游。该目录常被滥用。</p>
-</blockquote>
-<blockquote>
-<p>C:\Users\用户名\AppData \Local,
-通过环境变量%LocalAppData%可以访问，
-这个目录和上面的基本- -样,不过仅限本地,加入了域也不会同步。
--般情况下，如果不加入域，Roaming和Local并没有什么区别，
-但是需要网络同步的时候,尽量把不必要的数据留在本地。
-个人使用的软件可以装在C:\Users\用户名\AppData\Local/\Programs下面。</p>
-</blockquote>
-<blockquote>
-<p>C:\ProgramData,
-和AppData的区别在于,这里存放的数据是公用的,
-如果你希望软件的数据在所有的用户之间保持一致,
-那么程序生成的数据应当存放在这里。</p>
-</blockquote>
-<h2 id="macos-app程序数据存放目录">
-  <a class="Heading-link u-clickable" href="/post/program_data_directory/#macos-app%e7%a8%8b%e5%ba%8f%e6%95%b0%e6%8d%ae%e5%ad%98%e6%94%be%e7%9b%ae%e5%bd%95">macOS App程序数据存放目录</a>
-</h2>
-<blockquote>
-<p>/Users/用户名/Library/Application Support</p>
-</blockquote>
-
-      
-      
-
-
-  
-
-  
-
-  
-
-
-
-
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/linux_create_user/" rel="bookmark">linux创建新用户</a>
-  </h2>
-  
-    <time datetime="2023-03-21T15:23:06&#43;08:00">21 March, 2023</time>
-  
-</header>
-      
-        
-<pre tabindex="0"><code>useradd -d /home/test -m test</code></pre>
-<blockquote>
-<p>useradd：创建新用户</p>
-</blockquote>
-<ul>
-<li>-d 指定目录文件夹</li>
-<li>-m 新账号名</li>
-<li>-c comment 指定一段注释性描述</li>
-<li>-d 目录 指定用户主目录，如果此目录不存在，则同时使用-m选项，可以创建主目录</li>
-<li>-g 用户组 指定用户所属的用户组</li>
-<li>-G 用户组，用户组 指定用户所属的附加组</li>
-<li>-s Shell文件 指定用户的登录Shell</li>
-<li>-u 用户号 指定用户的用户号，如果同时有-o选项，则可以重复使用其他用户的标识号</li>
-</ul>
-<h1 id="设置密码">
-  <a class="Heading-link u-clickable" href="/post/linux_create_user/#%e8%ae%be%e7%bd%ae%e5%af%86%e7%a0%81">设置密码</a>
-</h1>
-
-<pre tabindex="0"><code>passwd test</code></pre>
-<p>会提示你输入两次密码</p>
-<h1 id="删除账号">
-  <a class="Heading-link u-clickable" href="/post/linux_create_user/#%e5%88%a0%e9%99%a4%e8%b4%a6%e5%8f%b7">删除账号</a>
-</h1>
-
-<pre tabindex="0"><code>userdel test</code></pre>
-
-      
-      
-
-
-  
-
-  
-
-  
-
-
-
-
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/system_monitor/" rel="bookmark">服务器运维监控命令汇总</a>
-  </h2>
-  
-    <time datetime="2023-03-21T14:25:13&#43;08:00">21 March, 2023</time>
-  
-</header>
-      
-        <h1 id="who命令">
-  <a class="Heading-link u-clickable" href="/post/system_monitor/#who%e5%91%bd%e4%bb%a4">who命令</a>
-</h1>
-<p>输出信息包括 用户名，终端类型，登录日期，访问IP
--H 打印列标题
--b 查看上次启动时间</p>
-
-<pre tabindex="0"><code>who [-H|-b]
-who [-H|-b] /var/log/wtmp</code></pre>
-<h1 id="查看命令历史">
-  <a class="Heading-link u-clickable" href="/post/system_monitor/#%e6%9f%a5%e7%9c%8b%e5%91%bd%e4%bb%a4%e5%8e%86%e5%8f%b2">查看命令历史</a>
-</h1>
-<ul>
-<li>每个用户都有一份命令历史记录</li>
-<li>查看$HOME/.bash_history</li>
-<li>或者在终端输入： history</li>
-</ul>
-<h1 id="last命令">
-  <a class="Heading-link u-clickable" href="/post/system_monitor/#last%e5%91%bd%e4%bb%a4">last命令</a>
-</h1>
-<ul>
-<li>查看用户登录历史</li>
-<li>命令会读取 /var/log/wtmp文件；</li>
-<li>/var/log/btmp可以显示远程登陆信息。</li>
-<li>last默认打印所有用户的登陆信息。</li>
-<li>如果想打印某个用户的登陆信息，可以使用</li>
-<li>last 用户名</li>
-</ul>
-<p>选项：</p>
-<ul>
-<li>（1）-x：显示系统开关机以及执行等级信息</li>
-<li>（2）-a：将登陆ip显示在最后一行</li>
-<li>（3）-f ：读取特定文件，可以选择 -f /var/log/btmp文件</li>
-<li>（4）-d：将IP地址转换为主机名</li>
-<li>（5）-n：设置列出名单的显示列数</li>
-<li>（6）-t：查看指定时间的用户登录历史</li>
-</ul>
-<h1 id="lastlog命令">
-  <a class="Heading-link u-clickable" href="/post/system_monitor/#lastlog%e5%91%bd%e4%bb%a4">lastlog命令</a>
-</h1>
-<blockquote>
-<p>查看所有用户最近一次登录历史</p>
-</blockquote>
-<blockquote>
-<p>命令将读取/var/log/lastlog文件；用户排列顺序按照/etc/passwd中的顺序</p>
-</blockquote>
-<p>选项：</p>
-<ul>
-<li>（1） -u：查看某个用户的最后一次登陆历史</li>
-<li>（2） -t：查看最近几天之内的用户登录历史</li>
-<li>（3） -b：查看指定天数之前的用户登录历史</li>
-</ul>
-<h1 id="ac命令">
-  <a class="Heading-link u-clickable" href="/post/system_monitor/#ac%e5%91%bd%e4%bb%a4">ac命令</a>
-</h1>
-<blockquote>
-<p>根据/var/log/wtmp文件中的登陆和退出时间报告用户连接的时间（小时），默认输出报告总时间</p>
-</blockquote>
-<ul>
-<li>（1）-p：显示每个用户的连接时间</li>
-<li>（2）-d：显示每天的连接时间</li>
-<li>（3）-y：显示年份，和-d配合使用</li>
-</ul>
-
-      
-      
-
-
-  
-
-  
-
-  
-
-
-
-
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/supervisor/" rel="bookmark">Supervisor管理GO程序</a>
-  </h2>
-  
-    <time datetime="2023-03-21T14:04:34&#43;08:00">21 March, 2023</time>
-  
-</header>
-      
-        <h3 id="安装">
-  <a class="Heading-link u-clickable" href="/post/supervisor/#%e5%ae%89%e8%a3%85">安装</a>
-</h3>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>apt-get install supervisor</span></span></code></pre></div>
-<h3 id="使用说明">
-  <a class="Heading-link u-clickable" href="/post/supervisor/#%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e">使用说明</a>
-</h3>
-<p>supervisor配置文件：/etc/supervisor/supervisord.conf
-子进程配置文件路径：/etc/supervisor/conf.d/</p>
-<h3 id="常用命令说明">
-  <a class="Heading-link u-clickable" href="/post/supervisor/#%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4%e8%af%b4%e6%98%8e">常用命令说明</a>
-</h3>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 查看所有进程的状态</span>
-</span></span><span style="display:flex;"><span>supervisorctl status
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 停止iot</span>
-</span></span><span style="display:flex;"><span>supervisorctl stop iot
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启动iot</span>
-</span></span><span style="display:flex;"><span>supervisorctl start iot
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 重启iot</span>
-</span></span><span style="display:flex;"><span>supervisorctl restart iot
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 配置文件修改后使用该命令加载新的配置</span>
-</span></span><span style="display:flex;"><span>supervisorctl update
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 重新启动配置中的所有程序</span>
-</span></span><span style="display:flex;"><span>supervisorctl reload</span></span></code></pre></div>
-<h3 id="配置go进程">
-  <a class="Heading-link u-clickable" href="/post/supervisor/#%e9%85%8d%e7%bd%aego%e8%bf%9b%e7%a8%8b">配置GO进程</a>
-</h3>
-
-<pre tabindex="0"><code class="language-conf" data-lang="conf">[program:iot]
-# 脚本目录
-directory=/opt/iot
-# 脚本执行命令
-command=/opt/iot/main
-# 日志输出
-stdout_logfile=/opt/iot/supervisor/main.log
-# supervisor启动的时候是否随着同时启动，默认True
-autostart=true
-autorestart=true
-startsecs=5
-priority=1
-stopasgroup=true
-killasgroup=true</code></pre>
-<h3 id="常见问题">
-  <a class="Heading-link u-clickable" href="/post/supervisor/#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98">常见问题</a>
-</h3>
-<ol>
-<li>unix:///var/run/supervisor.sock no such file</li>
-</ol>
-<blockquote>
-<p>问题描述：安装好supervisor没有开启服务直接使用supervisorctl报的错</p>
-</blockquote>
-<blockquote>
-<p>解决办法：supervisord -c /etc/supervisord.conf</p>
-</blockquote>
-<ol start="2">
-<li>command中指定的进程已经起来，但supervisor还不断重启</li>
-</ol>
-<blockquote>
-<p>问题描述：command中启动方式为后台启动，导致识别不到pid，然后不断重启，这里使用的是elasticsearch，command指定的是$path/bin/elasticsearch -d</p>
-</blockquote>
-<blockquote>
-<p>解决办法：supervisor无法检测后台启动进程的pid，而supervisor本身就是后台启动守护进程，因此不用担心这个</p>
-</blockquote>
-<ol start="3">
-<li>启动了多个supervisord服务，导致无法正常关闭服务</li>
-</ol>
-<blockquote>
-<p>问题描述：在运行supervisord -c /etc/supervisord.conf之前，直接运行过supervisord -c /etc/supervisord.d/xx.conf导致有些进程被多个superviord管理，无法正常关闭进程。</p>
-</blockquote>
-<blockquote>
-<p>解决办法：使用ps -fe | grep supervisord查看所有启动过的supervisord服务，kill相关的进程。</p>
-</blockquote>
-
-      
-      
-
-
-  
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-    
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/supervisor/" rel="tag">Supervisor</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/go%E7%9A%84%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" rel="tag">GO的守护进程管理</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/config/" rel="bookmark">配置博客文档</a>
-  </h2>
-  
-    <time datetime="2023-03-11T23:16:37&#43;08:00">11 March, 2023</time>
-  
-</header>
-      
-        <h3 id="安装">
-  <a class="Heading-link u-clickable" href="/post/config/#%e5%ae%89%e8%a3%85">安装</a>
-</h3>
-
-<pre tabindex="0"><code>$ brew install hugo</code></pre>
-<h3 id="生成博客">
-  <a class="Heading-link u-clickable" href="/post/config/#%e7%94%9f%e6%88%90%e5%8d%9a%e5%ae%a2">生成博客</a>
-</h3>
-
-<pre tabindex="0"><code>$ hugo new site myblog</code></pre>
-<h3 id="安装皮肤">
-  <a class="Heading-link u-clickable" href="/post/config/#%e5%ae%89%e8%a3%85%e7%9a%ae%e8%82%a4">安装皮肤</a>
-</h3>
-
-<pre tabindex="0"><code>$ cd themes
-$ git clone https://github.com/de-souza/hugo-flex.git</code></pre>
-<h3 id="创建文章">
-  <a class="Heading-link u-clickable" href="/post/config/#%e5%88%9b%e5%bb%ba%e6%96%87%e7%ab%a0">创建文章</a>
-</h3>
-
-<pre tabindex="0"><code>$ hugo new post/config.md</code></pre>
-<h3 id="运行hugo">
-  <a class="Heading-link u-clickable" href="/post/config/#%e8%bf%90%e8%a1%8chugo">运行hugo</a>
-</h3>
-
-<pre tabindex="0"><code>hugo server -D --theme=hugo-flex --buildDrafts</code></pre>
-<h3 id="部署">
-  <a class="Heading-link u-clickable" href="/post/config/#%e9%83%a8%e7%bd%b2">部署</a>
-</h3>
-
-<pre tabindex="0"><code>hugo --theme=hugo-flex --baseUrl=&#34;http://ttbt.work&#34; --buildDrafts
-
-hugo --theme=hugo-flex --baseUrl=&#34;https://codebeautiful.gitee.io&#34; --buildDrafts</code></pre>
-
-      
-      
-
-
-  
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-    
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/hugo/" rel="tag">hugo</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/" rel="tag">博客搭建指南</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-  
-
-  
 
 
 

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+    <meta name="description" content=" golang MySQL int,int32 添加auto或名称为Id时 integer AUTO_INCREMENT int64 bigint AUTO_INCREMENT uint,uint32 integer unsigned AUTO_INCREMENT uint64 bigint unsigned AUTO_INCREMENT bool bool string size 255 varchar(255) string type(text) longtext time.Time type(data) date time.Time datetime byte tinyint unsigned rune integer int integer int8 tinyint int16 smallint int32 integer int64 bigint uint integer unsigned uint8 tinyint unsigned uint16 smallint unsigned uint32 integer unsigned uint64 bigint unsigned float32 double precision float64 double precision float64 digits,decimals numeric(digits,decimals) 输入参数 参数名称 参数类型 是否必须 描述 eventType String 是 LockEvent sn String 是 门锁Mac地址 operation String 是 OncePassword param Object 是 名称 类型 描述 userId long 用户标识 返回信息 参数名称 参数类型 是否必须 描述 success Boolean 是 操作结果 msg String 是 结果描述信息 data Object 是 参数 类型 描述 password String 一次性密码 ">
+  
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.111.2">
+  <title>GO vs MySQL类型对应关系 | 通通不同-博客</title>
+  <link rel="canonical" href="https://codebeautiful.gitee.io/post/go_vs_mysql_type/">
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+  <link rel="stylesheet" href="/css/base.min.4f231885947d13c748c815d93da49f07ab89afb67629f9970b7c054610e88e0b.css" integrity="sha256-TyMYhZR9E8dIyBXZPaSfB6uJr7Z2KfmXC3wFRhDojgs=" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <h1 class="Banner-heading">
+          <a class="Banner-link u-clickable" href="/">通通不同-博客</a>
+        </h1>
+      </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">全部</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">分类</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">标签</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <article>
+    <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/go_vs_mysql_type/" rel="bookmark">GO vs MySQL类型对应关系</a>
+  </h2>
+  
+    <time datetime="2023-04-14T15:30:01&#43;08:00">14 April, 2023</time>
+  
+</header>
+    <table>
+<thead>
+<tr>
+<th>golang</th>
+<th>MySQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int,int32 添加auto或名称为Id时</td>
+<td>integer AUTO_INCREMENT</td>
+</tr>
+<tr>
+<td>int64</td>
+<td>bigint AUTO_INCREMENT</td>
+</tr>
+<tr>
+<td>uint,uint32</td>
+<td>integer unsigned AUTO_INCREMENT</td>
+</tr>
+<tr>
+<td>uint64</td>
+<td>bigint unsigned AUTO_INCREMENT</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>string size 255</td>
+<td>varchar(255)</td>
+</tr>
+<tr>
+<td>string type(text)</td>
+<td>longtext</td>
+</tr>
+<tr>
+<td>time.Time type(data)</td>
+<td>date</td>
+</tr>
+<tr>
+<td>time.Time</td>
+<td>datetime</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>tinyint unsigned</td>
+</tr>
+<tr>
+<td>rune</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>int</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>int8</td>
+<td>tinyint</td>
+</tr>
+<tr>
+<td>int16</td>
+<td>smallint</td>
+</tr>
+<tr>
+<td>int32</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>int64</td>
+<td>bigint</td>
+</tr>
+<tr>
+<td>uint</td>
+<td>integer unsigned</td>
+</tr>
+<tr>
+<td>uint8</td>
+<td>tinyint unsigned</td>
+</tr>
+<tr>
+<td>uint16</td>
+<td>smallint unsigned</td>
+</tr>
+<tr>
+<td>uint32</td>
+<td>integer unsigned</td>
+</tr>
+<tr>
+<td>uint64</td>
+<td>bigint unsigned</td>
+</tr>
+<tr>
+<td>float32</td>
+<td>double precision</td>
+</tr>
+<tr>
+<td>float64</td>
+<td>double precision</td>
+</tr>
+<tr>
+<td>float64  digits,decimals</td>
+<td>numeric(digits,decimals)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>输入参数</th>
+<th>参数名称</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>描述</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>eventType</td>
+<td>String</td>
+<td>是</td>
+<td>LockEvent</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>sn</td>
+<td>String</td>
+<td>是</td>
+<td>门锁Mac地址</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>operation</td>
+<td>String</td>
+<td>是</td>
+<td>OncePassword</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>param</td>
+<td>Object</td>
+<td>是</td>
+<td>名称</td>
+<td>类型</td>
+<td>描述</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>userId</td>
+<td>long</td>
+<td>用户标识</td>
+</tr>
+<tr>
+<td>返回信息</td>
+<td>参数名称</td>
+<td>参数类型</td>
+<td>是否必须</td>
+<td>描述</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>success</td>
+<td>Boolean</td>
+<td>是</td>
+<td>操作结果</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>msg</td>
+<td>String</td>
+<td>是</td>
+<td>结果描述信息</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>data</td>
+<td>Object</td>
+<td>是</td>
+<td>参数</td>
+<td>类型</td>
+<td>描述</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>password</td>
+<td>String</td>
+<td>一次性密码</td>
+</tr>
+</tbody>
+</table>
+
+    
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    
+  
+
+  </article>
+
+
+      </div>
+    </div>
+  </main>
+  
+  <footer class="Footer">
+    <div class="u-wrapper">
+      <div class="u-padding">
+        开发的乐趣在于相通而不同
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d08a2ad355cb7a065a41be081b43297e";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

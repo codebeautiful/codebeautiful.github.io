@@ -2,13 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://codebeautiful.gitee.io/post/</loc>
-    <lastmod>2023-03-31T15:18:50+08:00</lastmod>
+    <loc>https://codebeautiful.gitee.io/post/golang_value_reference_type/</loc>
+    <lastmod>2023-04-19T00:48:08+08:00</lastmod>
   </url><url>
-    <loc>https://codebeautiful.gitee.io/post/uinavigationcontroller_scrollview_whiten/</loc>
-    <lastmod>2023-03-31T15:18:50+08:00</lastmod>
+    <loc>https://codebeautiful.gitee.io/post/</loc>
+    <lastmod>2023-04-19T00:48:08+08:00</lastmod>
   </url><url>
     <loc>https://codebeautiful.gitee.io/</loc>
+    <lastmod>2023-04-19T00:48:08+08:00</lastmod>
+  </url><url>
+    <loc>https://codebeautiful.gitee.io/post/golang_response_body_close/</loc>
+    <lastmod>2023-04-19T00:43:08+08:00</lastmod>
+  </url><url>
+    <loc>https://codebeautiful.gitee.io/post/mac_book_use_routes/</loc>
+    <lastmod>2023-04-14T22:44:55+08:00</lastmod>
+  </url><url>
+    <loc>https://codebeautiful.gitee.io/post/go_vs_mysql_type/</loc>
+    <lastmod>2023-04-14T15:30:01+08:00</lastmod>
+  </url><url>
+    <loc>https://codebeautiful.gitee.io/post/mac_essay_recording/</loc>
+    <lastmod>2023-04-13T23:16:50+08:00</lastmod>
+  </url><url>
+    <loc>https://codebeautiful.gitee.io/post/next_software_developer/</loc>
+    <lastmod>2023-04-13T23:10:30+08:00</lastmod>
+  </url><url>
+    <loc>https://codebeautiful.gitee.io/post/swift_main_thread/</loc>
+    <lastmod>2023-04-13T22:45:26+08:00</lastmod>
+  </url><url>
+    <loc>https://codebeautiful.gitee.io/post/android_ndk_missing_and_no_known_rule/</loc>
+    <lastmod>2023-04-01T07:08:32+08:00</lastmod>
+  </url><url>
+    <loc>https://codebeautiful.gitee.io/post/uiview_cornerradius_setting/</loc>
+    <lastmod>2023-03-31T16:08:53+08:00</lastmod>
+  </url><url>
+    <loc>https://codebeautiful.gitee.io/post/uinavigationcontroller_scrollview_whiten/</loc>
     <lastmod>2023-03-31T15:18:50+08:00</lastmod>
   </url><url>
     <loc>https://codebeautiful.gitee.io/post/storyboard_uinavigation_back_cancel/</loc>
@@ -52,6 +79,9 @@
   </url><url>
     <loc>https://codebeautiful.gitee.io/post/config/</loc>
     <lastmod>2023-03-11T23:16:37+08:00</lastmod>
+  </url><url>
+    <loc>https://codebeautiful.gitee.io/about/</loc>
+    <lastmod>2023-03-11T22:41:52+08:00</lastmod>
   </url><url>
     <loc>https://codebeautiful.gitee.io/categories/</loc>
   </url><url>

@@ -9,6 +9,380 @@
     <language>cn-zh</language>
     <atom:link href="https://codebeautiful.gitee.io/series/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>golang中的值类型和引用类型</title>
+      <link>https://codebeautiful.gitee.io/post/golang_value_reference_type/</link>
+      <pubDate>Wed, 19 Apr 2023 00:48:08 +0800</pubDate>
+      <guid>https://codebeautiful.gitee.io/post/golang_value_reference_type/</guid>
+      <description>&lt;h2 id=&#34;golang中的值类型和引用类型&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/golang_value_reference_type/#golang%e4%b8%ad%e7%9a%84%e5%80%bc%e7%b1%bb%e5%9e%8b%e5%92%8c%e5%bc%95%e7%94%a8%e7%b1%bb%e5%9e%8b&#34;&gt;golang中的值类型和引用类型&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;值类型分别有：int系列、float系列、bool、string、数组和结构体&lt;/li&gt;
+&lt;li&gt;引用类型有：指针、slice切片、管道channel、接口interface、map、函数等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;值类型的特点是：变量直接存储值，内存通常在栈中分配&lt;/p&gt;
+&lt;p&gt;引用类型的特点是：变量存储的是一个地址，这个地址对应的空间里才是真正存储的值，内存通常在堆中分配&lt;/p&gt;
+&lt;p&gt;对interface，map，函数 类型最好不要使用指针定义或取地址操作&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>GO http请求完成后需要关闭response.Body.Close()</title>
+      <link>https://codebeautiful.gitee.io/post/golang_response_body_close/</link>
+      <pubDate>Wed, 19 Apr 2023 00:43:08 +0800</pubDate>
+      <guid>https://codebeautiful.gitee.io/post/golang_response_body_close/</guid>
+      <description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;resp&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;http&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Post&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;url&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;application/json&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;defer&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;body&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;io&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ReadCloser&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;body&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;body&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Close&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}(&lt;span style=&#34;color:#a6e22e&#34;&gt;response&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Body&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    <item>
+      <title>MacBook当做无线或有线路由器使用</title>
+      <link>https://codebeautiful.gitee.io/post/mac_book_use_routes/</link>
+      <pubDate>Fri, 14 Apr 2023 22:44:55 +0800</pubDate>
+      <guid>https://codebeautiful.gitee.io/post/mac_book_use_routes/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;需求问题&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;客户服务器需要安装软件，但是服务器无法连接互联网，怎么搞。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;买一台无线随身热点，需要有带网线接口，无线5G WiFi路由器&lt;/li&gt;
+&lt;li&gt;手里有一台MacBook电脑和有网口的扩展坞，是否可以搞一个无线的WiFi路由器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;先决调节：Mac笔记本作为无线路由器（需要一个带网口的扩展坞）&lt;/p&gt;
+&lt;h4 id=&#34;macbook通过wifi连接互联网&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/mac_book_use_routes/#macbook%e9%80%9a%e8%bf%87wifi%e8%bf%9e%e6%8e%a5%e4%ba%92%e8%81%94%e7%bd%91&#34;&gt;MacBook通过WiFi连接互联网&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;配置互联网共享（系统设置-&amp;gt;通用-&amp;gt;共享）其中AX88179A是扩展坞的网口，配置好后点击完成，再开启互联网共享&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://codebeautiful.gitee.io/images/MacBook_shareNetwork.png&#34; alt=&#34;Pasted Graphic.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;完成以上配置后，将待联网机器通过网线和扩展坞连接，设备就可以访问互联网了&lt;/p&gt;
+&lt;h4 id=&#34;mac笔记本作为有线路由器通过网线接入互联网&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/mac_book_use_routes/#mac%e7%ac%94%e8%ae%b0%e6%9c%ac%e4%bd%9c%e4%b8%ba%e6%9c%89%e7%ba%bf%e8%b7%af%e7%94%b1%e5%99%a8%e9%80%9a%e8%bf%87%e7%bd%91%e7%ba%bf%e6%8e%a5%e5%85%a5%e4%ba%92%e8%81%94%e7%bd%91&#34;&gt;Mac笔记本作为有线路由器通过网线接入互联网&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;该方式和上面的相反，电脑以有线方式接入互联网&lt;/p&gt;
+&lt;p&gt;配置项如图所示，最后面会出现一个Wi-Fi选项，点击后，可以设置WiFi名称和密码，以供WiFi设备连接该热点，点击完成后，开启互联网共享&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://codebeautiful.gitee.io/images/mac_book_use_routes/image-20230414225641422.png&#34; alt=&#34;image-20230414225641422&#34;&gt;&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>GO vs MySQL类型对应关系</title>
+      <link>https://codebeautiful.gitee.io/post/go_vs_mysql_type/</link>
+      <pubDate>Fri, 14 Apr 2023 15:30:01 +0800</pubDate>
+      <guid>https://codebeautiful.gitee.io/post/go_vs_mysql_type/</guid>
+      <description>&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;golang&lt;/th&gt;
+&lt;th&gt;MySQL&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;int,int32 添加auto或名称为Id时&lt;/td&gt;
+&lt;td&gt;integer AUTO_INCREMENT&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int64&lt;/td&gt;
+&lt;td&gt;bigint AUTO_INCREMENT&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;uint,uint32&lt;/td&gt;
+&lt;td&gt;integer unsigned AUTO_INCREMENT&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;uint64&lt;/td&gt;
+&lt;td&gt;bigint unsigned AUTO_INCREMENT&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;bool&lt;/td&gt;
+&lt;td&gt;bool&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;string size 255&lt;/td&gt;
+&lt;td&gt;varchar(255)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;string type(text)&lt;/td&gt;
+&lt;td&gt;longtext&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;time.Time type(data)&lt;/td&gt;
+&lt;td&gt;date&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;time.Time&lt;/td&gt;
+&lt;td&gt;datetime&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;byte&lt;/td&gt;
+&lt;td&gt;tinyint unsigned&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;rune&lt;/td&gt;
+&lt;td&gt;integer&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int&lt;/td&gt;
+&lt;td&gt;integer&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int8&lt;/td&gt;
+&lt;td&gt;tinyint&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int16&lt;/td&gt;
+&lt;td&gt;smallint&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int32&lt;/td&gt;
+&lt;td&gt;integer&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int64&lt;/td&gt;
+&lt;td&gt;bigint&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;uint&lt;/td&gt;
+&lt;td&gt;integer unsigned&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;uint8&lt;/td&gt;
+&lt;td&gt;tinyint unsigned&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;uint16&lt;/td&gt;
+&lt;td&gt;smallint unsigned&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;uint32&lt;/td&gt;
+&lt;td&gt;integer unsigned&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;uint64&lt;/td&gt;
+&lt;td&gt;bigint unsigned&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;float32&lt;/td&gt;
+&lt;td&gt;double precision&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;float64&lt;/td&gt;
+&lt;td&gt;double precision&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;float64  digits,decimals&lt;/td&gt;
+&lt;td&gt;numeric(digits,decimals)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;输入参数&lt;/th&gt;
+&lt;th&gt;参数名称&lt;/th&gt;
+&lt;th&gt;参数类型&lt;/th&gt;
+&lt;th&gt;是否必须&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;eventType&lt;/td&gt;
+&lt;td&gt;String&lt;/td&gt;
+&lt;td&gt;是&lt;/td&gt;
+&lt;td&gt;LockEvent&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;sn&lt;/td&gt;
+&lt;td&gt;String&lt;/td&gt;
+&lt;td&gt;是&lt;/td&gt;
+&lt;td&gt;门锁Mac地址&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;operation&lt;/td&gt;
+&lt;td&gt;String&lt;/td&gt;
+&lt;td&gt;是&lt;/td&gt;
+&lt;td&gt;OncePassword&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;param&lt;/td&gt;
+&lt;td&gt;Object&lt;/td&gt;
+&lt;td&gt;是&lt;/td&gt;
+&lt;td&gt;名称&lt;/td&gt;
+&lt;td&gt;类型&lt;/td&gt;
+&lt;td&gt;描述&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;userId&lt;/td&gt;
+&lt;td&gt;long&lt;/td&gt;
+&lt;td&gt;用户标识&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;返回信息&lt;/td&gt;
+&lt;td&gt;参数名称&lt;/td&gt;
+&lt;td&gt;参数类型&lt;/td&gt;
+&lt;td&gt;是否必须&lt;/td&gt;
+&lt;td&gt;描述&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;success&lt;/td&gt;
+&lt;td&gt;Boolean&lt;/td&gt;
+&lt;td&gt;是&lt;/td&gt;
+&lt;td&gt;操作结果&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;msg&lt;/td&gt;
+&lt;td&gt;String&lt;/td&gt;
+&lt;td&gt;是&lt;/td&gt;
+&lt;td&gt;结果描述信息&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;data&lt;/td&gt;
+&lt;td&gt;Object&lt;/td&gt;
+&lt;td&gt;是&lt;/td&gt;
+&lt;td&gt;参数&lt;/td&gt;
+&lt;td&gt;类型&lt;/td&gt;
+&lt;td&gt;描述&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;password&lt;/td&gt;
+&lt;td&gt;String&lt;/td&gt;
+&lt;td&gt;一次性密码&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+    </item>
+    <item>
+      <title>macOS使用随笔记录</title>
+      <link>https://codebeautiful.gitee.io/post/mac_essay_recording/</link>
+      <pubDate>Thu, 13 Apr 2023 23:16:50 +0800</pubDate>
+      <guid>https://codebeautiful.gitee.io/post/mac_essay_recording/</guid>
+      <description>&lt;h1 id=&#34;快捷键&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/mac_essay_recording/#%e5%bf%ab%e6%8d%b7%e9%94%ae&#34;&gt;快捷键&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Command+Shift+Y ：快速将当前选中的文字添加到便笺中df&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>下一步的软件开发计划</title>
+      <link>https://codebeautiful.gitee.io/post/next_software_developer/</link>
+      <pubDate>Thu, 13 Apr 2023 23:10:30 +0800</pubDate>
+      <guid>https://codebeautiful.gitee.io/post/next_software_developer/</guid>
+      <description>&lt;h1 id=&#34;小米串口工具开发&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/next_software_developer/#%e5%b0%8f%e7%b1%b3%e4%b8%b2%e5%8f%a3%e5%b7%a5%e5%85%b7%e5%bc%80%e5%8f%91&#34;&gt;小米串口工具开发&lt;/a&gt;
+&lt;/h1&gt;
+&lt;h1 id=&#34;配料表信息查看app&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/next_software_developer/#%e9%85%8d%e6%96%99%e8%a1%a8%e4%bf%a1%e6%81%af%e6%9f%a5%e7%9c%8bapp&#34;&gt;配料表信息查看APP&lt;/a&gt;
+&lt;/h1&gt;
+&lt;h1 id=&#34;docset离线文档移植android平台&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/next_software_developer/#docset%e7%a6%bb%e7%ba%bf%e6%96%87%e6%a1%a3%e7%a7%bb%e6%a4%8dandroid%e5%b9%b3%e5%8f%b0&#34;&gt;docset离线文档移植Android平台&lt;/a&gt;
+&lt;/h1&gt;
+&lt;h1 id=&#34;制作docset离线文档&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/next_software_developer/#%e5%88%b6%e4%bd%9cdocset%e7%a6%bb%e7%ba%bf%e6%96%87%e6%a1%a3&#34;&gt;制作docset离线文档&lt;/a&gt;
+&lt;/h1&gt;
+</description>
+    </item>
+    <item>
+      <title>Swift中主线程中执行UI任务记录</title>
+      <link>https://codebeautiful.gitee.io/post/swift_main_thread/</link>
+      <pubDate>Thu, 13 Apr 2023 22:45:26 +0800</pubDate>
+      <guid>https://codebeautiful.gitee.io/post/swift_main_thread/</guid>
+      <description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;methodUI&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; Thread.current.isMainThread {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// ui action&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  } &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    DispatchQueue.main.async {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      methodUI()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    <item>
+      <title>Android NDK 引入外部动态库.so报错 missing and no known rule</title>
+      <link>https://codebeautiful.gitee.io/post/android_ndk_missing_and_no_known_rule/</link>
+      <pubDate>Sat, 01 Apr 2023 07:08:32 +0800</pubDate>
+      <guid>https://codebeautiful.gitee.io/post/android_ndk_missing_and_no_known_rule/</guid>
+      <description>&lt;h3 id=&#34;正确的配置项-cmake&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/android_ndk_missing_and_no_known_rule/#%e6%ad%a3%e7%a1%ae%e7%9a%84%e9%85%8d%e7%bd%ae%e9%a1%b9-cmake&#34;&gt;正确的配置项-cmake&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cmake&#34; data-lang=&#34;cmake&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;add_library( &lt;span style=&#34;color:#e6db74&#34;&gt;qtcore&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              &lt;span style=&#34;color:#e6db74&#34;&gt;SHARED&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              &lt;span style=&#34;color:#e6db74&#34;&gt;IMPORTED&lt;/span&gt; )&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;set_target_properties( &lt;span style=&#34;color:#75715e&#34;&gt;# Specifies the target library.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;              &lt;span style=&#34;color:#e6db74&#34;&gt;qtcore&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              &lt;span style=&#34;color:#75715e&#34;&gt;# Specifies the parameter you want to define.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;              &lt;span style=&#34;color:#e6db74&#34;&gt;PROPERTIES&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;IMPORTED_LOCATION&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              &lt;span style=&#34;color:#75715e&#34;&gt;# 关键点在这里，这个路径必须为绝对路径，报错原因是因为使用了相对路径
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;              &lt;span style=&#34;color:#f92672&#34;&gt;${&lt;/span&gt;PROJECT_SOURCE_DIR&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;/../libs/&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;${&lt;/span&gt;ANDROID_ABI&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;/libQt6Core.so&lt;/span&gt; )&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;target_link_libraries( &lt;span style=&#34;color:#75715e&#34;&gt;# Specifies the target library.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;              &lt;span style=&#34;color:#e6db74&#34;&gt;shared&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              &lt;span style=&#34;color:#e6db74&#34;&gt;qtcore&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              &lt;span style=&#34;color:#75715e&#34;&gt;# Links the target library to the log library
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;              &lt;span style=&#34;color:#75715e&#34;&gt;# included in the NDK.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;              &lt;span style=&#34;color:#f92672&#34;&gt;${&lt;/span&gt;log-lib&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;关键点在这里，这个路径必须为绝对路径，报错原因是因为使用了相对路径&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    <item>
+      <title>Storyboard下设置UIView圆角</title>
+      <link>https://codebeautiful.gitee.io/post/uiview_cornerradius_setting/</link>
+      <pubDate>Fri, 31 Mar 2023 16:08:53 +0800</pubDate>
+      <guid>https://codebeautiful.gitee.io/post/uiview_cornerradius_setting/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;如图UIView的宽度为8，高度为8，圆角设置为宽高的一半
+&lt;img src=&#34;https://codebeautiful.gitee.io/images/UIView_cornerRadius.png&#34; alt=&#34;UIView设置圆角&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;第二个属性可以不用设置  layer.masksToBounds&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    <item>
       <title>解决UINavigationController 滑动UIScrollView出现白边问题</title>
       <link>https://codebeautiful.gitee.io/post/uinavigationcontroller_scrollview_whiten/</link>
       <pubDate>Fri, 31 Mar 2023 15:18:50 +0800</pubDate>
@@ -406,35 +780,35 @@ killasgroup=true&lt;/code&gt;&lt;/pre&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/config/#%e5%ae%89%e8%a3%85&#34;&gt;安装&lt;/a&gt;
 &lt;/h3&gt;
 
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ brew install hugo&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ brew install hugo&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;生成博客&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/config/#%e7%94%9f%e6%88%90%e5%8d%9a%e5%ae%a2&#34;&gt;生成博客&lt;/a&gt;
 &lt;/h3&gt;
 
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ hugo new site myblog&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ hugo new site myblog&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;安装皮肤&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/config/#%e5%ae%89%e8%a3%85%e7%9a%ae%e8%82%a4&#34;&gt;安装皮肤&lt;/a&gt;
 &lt;/h3&gt;
 
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ cd themes
-$ git clone https://github.com/de-souza/hugo-flex.git&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ cd themes
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git clone https://github.com/de-souza/hugo-flex.git&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;创建文章&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/config/#%e5%88%9b%e5%bb%ba%e6%96%87%e7%ab%a0&#34;&gt;创建文章&lt;/a&gt;
 &lt;/h3&gt;
 
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ hugo new post/config.md&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ hugo new post/config.md&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;运行hugo&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/config/#%e8%bf%90%e8%a1%8chugo&#34;&gt;运行hugo&lt;/a&gt;
 &lt;/h3&gt;
 
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;hugo server -D --theme=hugo-flex --buildDrafts&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo server -D --theme&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;hugo-flex --buildDrafts&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;部署&#34;&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/config/#%e9%83%a8%e7%bd%b2&#34;&gt;部署&lt;/a&gt;
 &lt;/h3&gt;
 
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;hugo --theme=hugo-flex --baseUrl=&amp;#34;http://ttbt.work&amp;#34; --buildDrafts
-
-hugo --theme=hugo-flex --baseUrl=&amp;#34;https://codebeautiful.gitee.io&amp;#34; --buildDrafts&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo --theme&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;hugo-flex --baseUrl&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;http://ttbt.work&amp;#34;&lt;/span&gt; --buildDrafts
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo --theme&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;hugo-flex --baseUrl&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://codebeautiful.gitee.io&amp;#34;&lt;/span&gt; --buildDrafts&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
     </item>
   </channel>

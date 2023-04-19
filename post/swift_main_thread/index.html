@@ -11,7 +11,7 @@
 
 
   
-    <meta name="description" content=" 关于 ">
+    <meta name="description" content=" func methodUI() { if Thread.current.isMainThread { // ui action } else { DispatchQueue.main.async { methodUI() return } } } ">
   
 
 
@@ -24,8 +24,8 @@
 
 
 <meta name="generator" content="Hugo 0.111.2">
-  <title>关于 | 通通不同-博客</title>
-  <link rel="canonical" href="https://codebeautiful.gitee.io/about/">
+  <title>Swift中主线程中执行UI任务记录 | 通通不同-博客</title>
+  <link rel="canonical" href="https://codebeautiful.gitee.io/post/swift_main_thread/">
 
 
   
@@ -85,15 +85,24 @@
   <article>
     <header class="Heading">
   <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/about/" rel="bookmark">关于</a>
+    <a class="Heading-link u-clickable" href="/post/swift_main_thread/" rel="bookmark">Swift中主线程中执行UI任务记录</a>
   </h2>
   
-    <time datetime="2023-03-11T22:41:52&#43;08:00">11 March, 2023</time>
+    <time datetime="2023-04-13T22:45:26&#43;08:00">13 April, 2023</time>
   
 </header>
-    <h1 id="关于">
-  <a class="Heading-link u-clickable" href="/about/#%e5%85%b3%e4%ba%8e">关于</a>
-</h1>
+    
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">methodUI</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> Thread.current.isMainThread {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ui action</span>
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    DispatchQueue.main.async {
+</span></span><span style="display:flex;"><span>      methodUI()
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 
     
 
