@@ -10,9 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-  
-    <meta name="description" content=" resp, err := http.Post(url, &#34;application/json&#34;, nil) if err != nil { return err } defer func(body io.ReadCloser) { if body != nil { err := body.Close() if err != nil { } } }(response.Body) ">
-  
+  <meta name="description" content="GO http发送请求完成后需要手动调用Close方法">
 
 
 <meta name="color-scheme" content="light dark">
@@ -24,7 +22,18 @@
 
 
 <meta name="generator" content="Hugo 0.111.2">
-  <title>GO http请求完成后需要关闭response.Body.Close() | 通通不同-博客</title>
+
+<meta content="Go, http, response.Body.Close(), body, 关闭, Close" name="keywords">
+<meta content="GO http请求完成后需要关闭response.Body.Close() - 通通不同-博客" property="og:title">
+<meta content="开发的乐趣在于相通而不同 - GO http发送请求完成后需要手动调用Close方法" property="og:description">
+
+  <title>
+    
+    GO http请求完成后需要关闭response.Body.Close()
+     - 通通不同-博客
+    
+</title>
+
   <link rel="canonical" href="https://codebeautiful.gitee.io/post/golang_response_body_close/">
 
 
@@ -91,6 +100,7 @@
     <time datetime="2023-04-19T00:43:08&#43;08:00">19 April, 2023</time>
   
 </header>
+
     
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Post</span>(<span style="color:#a6e22e">url</span>, <span style="color:#e6db74">&#34;application/json&#34;</span>, <span style="color:#66d9ef">nil</span>)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {

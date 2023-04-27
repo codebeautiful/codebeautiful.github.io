@@ -10,9 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-  
-    <meta name="description" content=" 正确的配置项-cmake add_library( qtcore SHARED IMPORTED ) set_target_properties( # Specifies the target library. qtcore # Specifies the parameter you want to define. PROPERTIES IMPORTED_LOCATION # 关键点在这里，这个路径必须为绝对路径，报错原因是因为使用了相对路径 ${PROJECT_SOURCE_DIR}/../libs/${ANDROID_ABI}/libQt6Core.so ) target_link_libraries( # Specifies the target library. shared qtcore # Links the target library to the log library # included in the NDK. ${log-lib}) 关键点在这里，这个路径必须为绝对路径，报错原因是因为使用了相对路径 ">
-  
+  <meta name="description" content="Android NDK 使用问题">
 
 
 <meta name="color-scheme" content="light dark">
@@ -24,7 +22,18 @@
 
 
 <meta name="generator" content="Hugo 0.111.2">
-  <title>Android NDK 引入外部动态库.so报错 missing and no known rule | 通通不同-博客</title>
+
+<meta content="Android, NDK, missing and no know rule, Qt, .so" name="keywords">
+<meta content="Android NDK 引入外部动态库.so报错 missing and no known rule - 通通不同-博客" property="og:title">
+<meta content="开发的乐趣在于相通而不同 - Android NDK 使用问题" property="og:description">
+
+  <title>
+    
+    Android NDK 引入外部动态库.so报错 missing and no known rule
+     - 通通不同-博客
+    
+</title>
+
   <link rel="canonical" href="https://codebeautiful.gitee.io/post/android_ndk_missing_and_no_known_rule/">
 
 
@@ -91,6 +100,7 @@
     <time datetime="2023-04-01T07:08:32&#43;08:00">1 April, 2023</time>
   
 </header>
+
     <h3 id="正确的配置项-cmake">
   <a class="Heading-link u-clickable" href="/post/android_ndk_missing_and_no_known_rule/#%e6%ad%a3%e7%a1%ae%e7%9a%84%e9%85%8d%e7%bd%ae%e9%a1%b9-cmake">正确的配置项-cmake</a>
 </h3>

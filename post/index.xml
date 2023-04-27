@@ -98,10 +98,7 @@
       <link>https://codebeautiful.gitee.io/post/golang_value_reference_type/</link>
       <pubDate>Wed, 19 Apr 2023 00:48:08 +0800</pubDate>
       <guid>https://codebeautiful.gitee.io/post/golang_value_reference_type/</guid>
-      <description>&lt;h2 id=&#34;golang中的值类型和引用类型&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/golang_value_reference_type/#golang%e4%b8%ad%e7%9a%84%e5%80%bc%e7%b1%bb%e5%9e%8b%e5%92%8c%e5%bc%95%e7%94%a8%e7%b1%bb%e5%9e%8b&#34;&gt;golang中的值类型和引用类型&lt;/a&gt;
-&lt;/h2&gt;
-&lt;ul&gt;
+      <description>&lt;ul&gt;
 &lt;li&gt;值类型分别有：int系列、float系列、bool、string、数组和结构体&lt;/li&gt;
 &lt;li&gt;引用类型有：指针、slice切片、管道channel、接口interface、map、函数等&lt;/li&gt;
 &lt;/ul&gt;
@@ -674,7 +671,7 @@ killasgroup=true&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     <item>
-      <title>配置博客文档</title>
+      <title>使用hugo配置博客文档</title>
       <link>https://codebeautiful.gitee.io/post/config/</link>
       <pubDate>Sat, 11 Mar 2023 23:16:37 +0800</pubDate>
       <guid>https://codebeautiful.gitee.io/post/config/</guid>
