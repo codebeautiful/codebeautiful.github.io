@@ -106,6 +106,9 @@
     
     
     
+      
+      
+    
     
     
   
@@ -120,6 +123,9 @@
   
     
     
+    
+      
+      
     
     
     
@@ -181,6 +187,269 @@
     <article>
       <header class="Heading">
   <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/ios_upload_ipa_solve_bluetooth_permission/" rel="bookmark">iOS上架ipa，解决蓝牙权限申请问题</a>
+  </h2>
+  
+    <time datetime="2023-04-25T21:01:58&#43;08:00">25 April, 2023</time>
+  
+</header>
+      
+        <h3 id="收到错误的邮件信息">
+  <a class="Heading-link u-clickable" href="/post/ios_upload_ipa_solve_bluetooth_permission/#%e6%94%b6%e5%88%b0%e9%94%99%e8%af%af%e7%9a%84%e9%82%ae%e4%bb%b6%e4%bf%a1%e6%81%af">收到错误的邮件信息</a>
+</h3>
+<p><strong>ITMS-90683: Missing purpose string in Info.plist</strong> - Your app’s code references one or more APIs that access sensitive user data, or the app has one or more entitlements that permit such access. The Info.plist file for the “iosApp.app” bundle should contain a <em>NSBluetoothPeripheralUsageDescription</em> key with a user-facing purpose string explaining clearly and completely why your app needs the data. If you’re using external libraries or SDKs, they may reference APIs that require a purpose string. While your app might not use these APIs, a purpose string is still required. For details, visit:</p>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;key&gt;</span>NSBluetoothPeripheralUsageDescription<span style="color:#f92672">&lt;/key&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;string&gt;</span>Bluetooth is used to communicate with BLE devices.<span style="color:#f92672">&lt;/string&gt;</span></span></span></code></pre></div>
+<p><img src="/images/image-20230425210600856.png" alt="image-20230425210600856"></p>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+    
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/ios/" rel="tag">iOS</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/nsbluetoothperipheralusagedescription/" rel="tag">NSBluetoothPeripheralUsageDescription</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/%E4%B8%8A%E6%9E%B6app/" rel="tag">上架APP</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/%E8%93%9D%E7%89%99/" rel="tag">蓝牙</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/ios_viewdiddisappear_without_destroying_objects/" rel="bookmark">iOS navigationController 跳转页面不销毁对象，退出销毁对象</a>
+  </h2>
+  
+    <time datetime="2023-04-21T11:49:45&#43;08:00">21 April, 2023</time>
+  
+</header>
+      
+        <h3 id="需求分析">
+  <a class="Heading-link u-clickable" href="/post/ios_viewdiddisappear_without_destroying_objects/#%e9%9c%80%e6%b1%82%e5%88%86%e6%9e%90">需求分析</a>
+</h3>
+<ol>
+<li>进入界面开启蓝牙连接</li>
+<li>中间有跳转其他页面，需要再其他页面保持蓝牙连接状态</li>
+<li>退出界面后需要断开蓝牙连接</li>
+</ol>
+<h3 id="解决办法">
+  <a class="Heading-link u-clickable" href="/post/ios_viewdiddisappear_without_destroying_objects/#%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95">解决办法</a>
+</h3>
+<p>在viewDidDisappear中处理连接断开问题</p>
+<p>在该方法中，如果是跳转界面self.navigationController不为空，如果退出当前界面得到的值为nil</p>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">viewDidDisappear</span>(<span style="color:#66d9ef">_</span> animated: Bool) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">self</span>.navigationController == <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>    		<span style="color:#75715e">// todo 调用蓝牙断开方法</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+    
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/ios/" rel="tag">iOS</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/uinavigationcontroller/" rel="tag">UINavigationController</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/%E5%AF%B9%E8%B1%A1%E9%94%80%E6%AF%81/" rel="tag">对象销毁</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/%E5%AF%B9%E8%B1%A1%E4%BF%9D%E7%95%99/" rel="tag">对象保留</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/%E8%93%9D%E7%89%99/" rel="tag">蓝牙</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/kotlin_nsdata_to_bytearray/" rel="bookmark">Kotlin Native 开发 NSData转ByteArray</a>
+  </h2>
+  
+    <time datetime="2023-04-20T13:02:36&#43;08:00">20 April, 2023</time>
+  
+</header>
+      
+        <h3 id="string转nsdata">
+  <a class="Heading-link u-clickable" href="/post/kotlin_nsdata_to_bytearray/#string%e8%bd%acnsdata">String转NSData</a>
+</h3>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> nsdata = (<span style="color:#e6db74">&#34;Hello&#34;</span> <span style="color:#66d9ef">as</span> NSString).dataUsingEncoding(NSUTF8StringEncoding)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> hello = <span style="color:#e6db74">&#34;Hello&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">NSData</span>.create(bytes = hello.cstr.ptr, length = hello.length)</span></span></code></pre></div>
+<h3 id="nsdata转bytearray">
+  <a class="Heading-link u-clickable" href="/post/kotlin_nsdata_to_bytearray/#nsdata%e8%bd%acbytearray">NSData转ByteArray</a>
+</h3>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#75715e">// 实现1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> (nsdata <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">val</span> byteArray = ByteArray(nsdata.length.toInt())
+</span></span><span style="display:flex;"><span>    byteArray.usePinned {
+</span></span><span style="display:flex;"><span>        memcpy(<span style="color:#66d9ef">it</span>.addressOf(<span style="color:#ae81ff">0</span>), nsdata.bytes, nsdata.length)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 实现2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">val</span> byteArray = ByteArray(<span style="color:#66d9ef">data</span>.length.toInt())
+</span></span><span style="display:flex;"><span>byteArray.apply {
+</span></span><span style="display:flex;"><span>  usePinned {
+</span></span><span style="display:flex;"><span>  		memcpy(<span style="color:#66d9ef">it</span>.addressOf(<span style="color:#ae81ff">0</span>), <span style="color:#66d9ef">data</span>.bytes, <span style="color:#66d9ef">data</span>.length)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 实现3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">val</span> byteArray = <span style="color:#66d9ef">data</span>.bytes<span style="color:#f92672">?.</span>readBytes(<span style="color:#66d9ef">data</span>.length.toInt())</span></span></code></pre></div>
+<h3 id="bytearray-转-nsdata">
+  <a class="Heading-link u-clickable" href="/post/kotlin_nsdata_to_bytearray/#bytearray-%e8%bd%ac-nsdata">ByteArray 转 NSData</a>
+</h3>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> nsdata: NSData
+</span></span><span style="display:flex;"><span>byteArray<span style="color:#f92672">?.</span>usePinned {
+</span></span><span style="display:flex;"><span>    nsdata = <span style="color:#a6e22e">NSData</span>.dataWithBytes(<span style="color:#66d9ef">it</span>.addressOf(<span style="color:#ae81ff">0</span>), <span style="color:#66d9ef">it</span>.<span style="color:#66d9ef">get</span>().size.toULong())
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+    
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/kotlin/" rel="tag">Kotlin</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/native/" rel="tag">Native</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/nsdata/" rel="tag">NSData</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/bytearray/" rel="tag">ByteArray</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/string/" rel="tag">String</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/string%E8%BD%ACnsdata/" rel="tag">String转NSData</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/nsdata%E8%BD%ACbytearray/" rel="tag">NSData转ByteArray</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/bytearray-%E8%BD%AC-nsdata/" rel="tag">ByteArray 转 NSData</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
     <a class="Heading-link u-clickable" href="/post/golang_value_reference_type/" rel="bookmark">golang中的值类型和引用类型</a>
   </h2>
   
@@ -212,6 +481,32 @@
 
 
 
+
+  <footer>
+    
+      
+    
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/go/" rel="tag">go</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/%E5%80%BC%E7%B1%BB%E5%9E%8B/" rel="tag">值类型</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/" rel="tag">引用类型</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
 
     </article>
     
@@ -255,6 +550,36 @@
 
 
 
+
+  <footer>
+    
+      
+    
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/go/" rel="tag">go</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/http/" rel="tag">http</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/body/" rel="tag">body</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/%E5%85%B3%E9%97%AD/" rel="tag">关闭</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
 
     </article>
     
@@ -304,6 +629,32 @@
 
 
 
+
+  <footer>
+    
+      
+    
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/macbook/" rel="tag">MacBook</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/%E9%80%9A%E8%BF%87wifi%E8%BF%9E%E6%8E%A5%E4%BA%92%E8%81%94%E7%BD%91/" rel="tag">通过WiFi连接互联网</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/mac%E7%AC%94%E8%AE%B0%E6%9C%AC%E4%BD%9C%E4%B8%BA%E6%9C%89%E7%BA%BF%E8%B7%AF%E7%94%B1%E5%99%A8%E9%80%9A%E8%BF%87%E7%BD%91%E7%BA%BF%E6%8E%A5%E5%85%A5%E4%BA%92%E8%81%94%E7%BD%91/" rel="tag">Mac笔记本作为有线路由器通过网线接入互联网</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
 
     </article>
     
@@ -426,111 +777,6 @@
 </tr>
 </tbody>
 </table>
-<table>
-<thead>
-<tr>
-<th>输入参数</th>
-<th>参数名称</th>
-<th>参数类型</th>
-<th>是否必须</th>
-<th>描述</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td>eventType</td>
-<td>String</td>
-<td>是</td>
-<td>LockEvent</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>sn</td>
-<td>String</td>
-<td>是</td>
-<td>门锁Mac地址</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>operation</td>
-<td>String</td>
-<td>是</td>
-<td>OncePassword</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>param</td>
-<td>Object</td>
-<td>是</td>
-<td>名称</td>
-<td>类型</td>
-<td>描述</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>userId</td>
-<td>long</td>
-<td>用户标识</td>
-</tr>
-<tr>
-<td>返回信息</td>
-<td>参数名称</td>
-<td>参数类型</td>
-<td>是否必须</td>
-<td>描述</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>success</td>
-<td>Boolean</td>
-<td>是</td>
-<td>操作结果</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>msg</td>
-<td>String</td>
-<td>是</td>
-<td>结果描述信息</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>data</td>
-<td>Object</td>
-<td>是</td>
-<td>参数</td>
-<td>类型</td>
-<td>描述</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>password</td>
-<td>String</td>
-<td>一次性密码</td>
-</tr>
-</tbody>
-</table>
 
       
       
@@ -546,123 +792,31 @@
 
 
 
-    </article>
+  <footer>
     
-      <div class="Divider"></div>
+      
     
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/mac_essay_recording/" rel="bookmark">macOS使用随笔记录</a>
-  </h2>
-  
-    <time datetime="2023-04-13T23:16:50&#43;08:00">13 April, 2023</time>
-  
-</header>
       
-        <h1 id="快捷键">
-  <a class="Heading-link u-clickable" href="/post/mac_essay_recording/#%e5%bf%ab%e6%8d%b7%e9%94%ae">快捷键</a>
-</h1>
-<p>Command+Shift+Y ：快速将当前选中的文字添加到便笺中df</p>
-
-      
-      
-
-
-  
-
-  
-
-  
-
-
-
-
-
-    </article>
     
-      <div class="Divider"></div>
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/go/" rel="tag">go</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/mysql/" rel="tag">MySQL</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/%E7%B1%BB%E5%9E%8B/" rel="tag">类型</a>
+            </li>
+          
+        </ul>
+      
     
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/next_software_developer/" rel="bookmark">下一步的软件开发计划</a>
-  </h2>
-  
-    <time datetime="2023-04-13T23:10:30&#43;08:00">13 April, 2023</time>
-  
-</header>
-      
-        <h1 id="小米串口工具开发">
-  <a class="Heading-link u-clickable" href="/post/next_software_developer/#%e5%b0%8f%e7%b1%b3%e4%b8%b2%e5%8f%a3%e5%b7%a5%e5%85%b7%e5%bc%80%e5%8f%91">小米串口工具开发</a>
-</h1>
-<h1 id="配料表信息查看app">
-  <a class="Heading-link u-clickable" href="/post/next_software_developer/#%e9%85%8d%e6%96%99%e8%a1%a8%e4%bf%a1%e6%81%af%e6%9f%a5%e7%9c%8bapp">配料表信息查看APP</a>
-</h1>
-<h1 id="docset离线文档移植android平台">
-  <a class="Heading-link u-clickable" href="/post/next_software_developer/#docset%e7%a6%bb%e7%ba%bf%e6%96%87%e6%a1%a3%e7%a7%bb%e6%a4%8dandroid%e5%b9%b3%e5%8f%b0">docset离线文档移植Android平台</a>
-</h1>
-<h1 id="制作docset离线文档">
-  <a class="Heading-link u-clickable" href="/post/next_software_developer/#%e5%88%b6%e4%bd%9cdocset%e7%a6%bb%e7%ba%bf%e6%96%87%e6%a1%a3">制作docset离线文档</a>
-</h1>
-
-      
-      
-
-
-  
-
-  
-
-  
-
-
-
-
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/swift_main_thread/" rel="bookmark">Swift中主线程中执行UI任务记录</a>
-  </h2>
-  
-    <time datetime="2023-04-13T22:45:26&#43;08:00">13 April, 2023</time>
-  
-</header>
-      
-        
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">methodUI</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> Thread.current.isMainThread {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ui action</span>
-</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>    DispatchQueue.main.async {
-</span></span><span style="display:flex;"><span>      methodUI()
-</span></span><span style="display:flex;"><span>      
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span>
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
-
-      
-      
-
-
-  
-
-  
-
-  
-
-
-
-
+  </footer>
 
     </article>
     
@@ -717,42 +871,35 @@
 
 
 
-    </article>
+  <footer>
     
-      <div class="Divider"></div>
+      
     
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/uiview_cornerradius_setting/" rel="bookmark">Storyboard下设置UIView圆角</a>
-  </h2>
-  
-    <time datetime="2023-03-31T16:08:53&#43;08:00">31 March, 2023</time>
-  
-</header>
       
-        <ul>
-<li>如图UIView的宽度为8，高度为8，圆角设置为宽高的一半
-<img src="/images/UIView_cornerRadius.png" alt="UIView设置圆角"></li>
-</ul>
-<blockquote>
-<p>第二个属性可以不用设置  layer.masksToBounds</p>
-</blockquote>
-
+    
       
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/android/" rel="tag">Android</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/ndk/" rel="tag">NDK</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/qt/" rel="tag">Qt</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/cmake/" rel="tag">cmake</a>
+            </li>
+          
+        </ul>
       
-
-
-  
-
-  
-
-  
-
-
-
-
+    
+  </footer>
 
     </article>
     
@@ -808,6 +955,76 @@
 
 
 
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/storyboard_uinavigation_back_cancel/" rel="bookmark">iOS开发取消UINavigationController返回按钮的问题和自定义按钮颜色</a>
+  </h2>
+  
+    <time datetime="2023-03-31T14:20:40&#43;08:00">31 March, 2023</time>
+  
+</header>
+      
+        <ul>
+<li>
+<p>如图修改BackButton属性值给一个空格回车
+<img src="/images/UINavigationItem1.png" alt="设置Back按钮"></p>
+</li>
+<li>
+<p>接下来会发现Navigation Item下会有一个新的控件出现，如图
+<img src="/images/UINavigationItem2.png" alt="设置按钮颜色"></p>
+</li>
+<li>
+<p>选中该组件Bar Button Item，修改相关属性值
+其中Tint属性就是修改按钮颜色值</p>
+</li>
+</ul>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+    
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/ios/" rel="tag">iOS</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/uinavigationcontroller/" rel="tag">UINavigationController</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%89%E9%92%AE%E9%A2%9C%E8%89%B2/" rel="tag">自定义按钮颜色</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
 
     </article>
     

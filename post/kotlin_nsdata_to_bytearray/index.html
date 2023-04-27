@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+    <meta name="description" content=" String转NSData val nsdata = (&#34;Hello&#34; as NSString).dataUsingEncoding(NSUTF8StringEncoding) val hello = &#34;Hello&#34; NSData.create(bytes = hello.cstr.ptr, length = hello.length) NSData转ByteArray // 实现1 if (nsdata != null) { val byteArray = ByteArray(nsdata.length.toInt()) byteArray.usePinned { memcpy(it.addressOf(0), nsdata.bytes, nsdata.length) } } // 实现2 val byteArray = ByteArray(data.length.toInt()) byteArray.apply { usePinned { memcpy(it.addressOf(0), data.bytes, data.length) } } // 实现3 val byteArray = data.bytes?.readBytes(data.length.toInt()) ByteArray 转 NSData var nsdata: NSData byteArray?.usePinned { nsdata = NSData.dataWithBytes(it.addressOf(0), it.get().size.toULong()) } ">
+  
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.111.2">
+  <title>Kotlin Native 开发 NSData转ByteArray | 通通不同-博客</title>
+  <link rel="canonical" href="https://codebeautiful.gitee.io/post/kotlin_nsdata_to_bytearray/">
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+  <link rel="stylesheet" href="/css/base.min.4f231885947d13c748c815d93da49f07ab89afb67629f9970b7c054610e88e0b.css" integrity="sha256-TyMYhZR9E8dIyBXZPaSfB6uJr7Z2KfmXC3wFRhDojgs=" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <h1 class="Banner-heading">
+          <a class="Banner-link u-clickable" href="/">通通不同-博客</a>
+        </h1>
+      </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">全部</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">分类</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">标签</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <article>
+    <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/kotlin_nsdata_to_bytearray/" rel="bookmark">Kotlin Native 开发 NSData转ByteArray</a>
+  </h2>
+  
+    <time datetime="2023-04-20T13:02:36&#43;08:00">20 April, 2023</time>
+  
+</header>
+    <h3 id="string转nsdata">
+  <a class="Heading-link u-clickable" href="/post/kotlin_nsdata_to_bytearray/#string%e8%bd%acnsdata">String转NSData</a>
+</h3>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> nsdata = (<span style="color:#e6db74">&#34;Hello&#34;</span> <span style="color:#66d9ef">as</span> NSString).dataUsingEncoding(NSUTF8StringEncoding)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> hello = <span style="color:#e6db74">&#34;Hello&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">NSData</span>.create(bytes = hello.cstr.ptr, length = hello.length)</span></span></code></pre></div>
+<h3 id="nsdata转bytearray">
+  <a class="Heading-link u-clickable" href="/post/kotlin_nsdata_to_bytearray/#nsdata%e8%bd%acbytearray">NSData转ByteArray</a>
+</h3>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#75715e">// 实现1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> (nsdata <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">val</span> byteArray = ByteArray(nsdata.length.toInt())
+</span></span><span style="display:flex;"><span>    byteArray.usePinned {
+</span></span><span style="display:flex;"><span>        memcpy(<span style="color:#66d9ef">it</span>.addressOf(<span style="color:#ae81ff">0</span>), nsdata.bytes, nsdata.length)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 实现2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">val</span> byteArray = ByteArray(<span style="color:#66d9ef">data</span>.length.toInt())
+</span></span><span style="display:flex;"><span>byteArray.apply {
+</span></span><span style="display:flex;"><span>  usePinned {
+</span></span><span style="display:flex;"><span>  		memcpy(<span style="color:#66d9ef">it</span>.addressOf(<span style="color:#ae81ff">0</span>), <span style="color:#66d9ef">data</span>.bytes, <span style="color:#66d9ef">data</span>.length)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 实现3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">val</span> byteArray = <span style="color:#66d9ef">data</span>.bytes<span style="color:#f92672">?.</span>readBytes(<span style="color:#66d9ef">data</span>.length.toInt())</span></span></code></pre></div>
+<h3 id="bytearray-转-nsdata">
+  <a class="Heading-link u-clickable" href="/post/kotlin_nsdata_to_bytearray/#bytearray-%e8%bd%ac-nsdata">ByteArray 转 NSData</a>
+</h3>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> nsdata: NSData
+</span></span><span style="display:flex;"><span>byteArray<span style="color:#f92672">?.</span>usePinned {
+</span></span><span style="display:flex;"><span>    nsdata = <span style="color:#a6e22e">NSData</span>.dataWithBytes(<span style="color:#66d9ef">it</span>.addressOf(<span style="color:#ae81ff">0</span>), <span style="color:#66d9ef">it</span>.<span style="color:#66d9ef">get</span>().size.toULong())
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+
+    
+
+
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+    
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/kotlin/" rel="tag">Kotlin</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/native/" rel="tag">Native</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/nsdata/" rel="tag">NSData</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/bytearray/" rel="tag">ByteArray</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/string/" rel="tag">String</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/string%E8%BD%ACnsdata/" rel="tag">String转NSData</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/nsdata%E8%BD%ACbytearray/" rel="tag">NSData转ByteArray</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/bytearray-%E8%BD%AC-nsdata/" rel="tag">ByteArray 转 NSData</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    
+  
+
+  </article>
+
+
+      </div>
+    </div>
+  </main>
+  
+  <footer class="Footer">
+    <div class="u-wrapper">
+      <div class="u-padding">
+        开发的乐趣在于相通而不同
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d08a2ad355cb7a065a41be081b43297e";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>
