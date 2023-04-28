@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<?xml-stylesheet type="text/xsl" href="https://codebeautiful.gitee.io/xml/base.min.xml" ?>
+<?xml-stylesheet type="text/xsl" href="https://blog.ttbt.work/xml/base.min.xml" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>通通不同-博客</title>
-    <link>https://codebeautiful.gitee.io/</link>
+    <link>https://blog.ttbt.work/</link>
     <description>Recent content on 通通不同-博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <lastBuildDate>Tue, 25 Apr 2023 21:01:58 +0800</lastBuildDate>
-    <atom:link href="https://codebeautiful.gitee.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.ttbt.work/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>iOS上架ipa，解决蓝牙权限申请问题</title>
-      <link>https://codebeautiful.gitee.io/post/ios_upload_ipa_solve_bluetooth_permission/</link>
+      <link>https://blog.ttbt.work/post/ios_upload_ipa_solve_bluetooth_permission/</link>
       <pubDate>Tue, 25 Apr 2023 21:01:58 +0800</pubDate>
-      <guid>https://codebeautiful.gitee.io/post/ios_upload_ipa_solve_bluetooth_permission/</guid>
+      <guid>https://blog.ttbt.work/post/ios_upload_ipa_solve_bluetooth_permission/</guid>
       <description>&lt;h3 id=&#34;收到错误的邮件信息&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/ios_upload_ipa_solve_bluetooth_permission/#%e6%94%b6%e5%88%b0%e9%94%99%e8%af%af%e7%9a%84%e9%82%ae%e4%bb%b6%e4%bf%a1%e6%81%af&#34;&gt;收到错误的邮件信息&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/ios_upload_ipa_solve_bluetooth_permission/#%e6%94%b6%e5%88%b0%e9%94%99%e8%af%af%e7%9a%84%e9%82%ae%e4%bb%b6%e4%bf%a1%e6%81%af&#34;&gt;收到错误的邮件信息&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;ITMS-90683: Missing purpose string in Info.plist&lt;/strong&gt; - Your app’s code references one or more APIs that access sensitive user data, or the app has one or more entitlements that permit such access. The Info.plist file for the “iosApp.app” bundle should contain a &lt;em&gt;NSBluetoothPeripheralUsageDescription&lt;/em&gt; key with a user-facing purpose string explaining clearly and completely why your app needs the data. If you’re using external libraries or SDKs, they may reference APIs that require a purpose string. While your app might not use these APIs, a purpose string is still required. For details, visit:&lt;/p&gt;
 
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;key&amp;gt;&lt;/span&gt;NSBluetoothPeripheralUsageDescription&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;string&amp;gt;&lt;/span&gt;Bluetooth is used to communicate with BLE devices.&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&#34;https://codebeautiful.gitee.io/images/image-20230425210600856.png&#34; alt=&#34;image-20230425210600856&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.ttbt.work/images/image-20230425210600856.png&#34; alt=&#34;image-20230425210600856&#34;&gt;&lt;/p&gt;
 </description>
     </item>
     <item>
       <title>iOS navigationController 跳转页面不销毁对象，退出销毁对象</title>
-      <link>https://codebeautiful.gitee.io/post/ios_viewdiddisappear_without_destroying_objects/</link>
+      <link>https://blog.ttbt.work/post/ios_viewdiddisappear_without_destroying_objects/</link>
       <pubDate>Fri, 21 Apr 2023 11:49:45 +0800</pubDate>
-      <guid>https://codebeautiful.gitee.io/post/ios_viewdiddisappear_without_destroying_objects/</guid>
+      <guid>https://blog.ttbt.work/post/ios_viewdiddisappear_without_destroying_objects/</guid>
       <description>&lt;h3 id=&#34;需求分析&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/ios_viewdiddisappear_without_destroying_objects/#%e9%9c%80%e6%b1%82%e5%88%86%e6%9e%90&#34;&gt;需求分析&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/ios_viewdiddisappear_without_destroying_objects/#%e9%9c%80%e6%b1%82%e5%88%86%e6%9e%90&#34;&gt;需求分析&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;进入界面开启蓝牙连接&lt;/li&gt;
@@ -38,7 +38,7 @@
 &lt;li&gt;退出界面后需要断开蓝牙连接&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&#34;解决办法&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/ios_viewdiddisappear_without_destroying_objects/#%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95&#34;&gt;解决办法&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/ios_viewdiddisappear_without_destroying_objects/#%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95&#34;&gt;解决办法&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;在viewDidDisappear中处理连接断开问题&lt;/p&gt;
 &lt;p&gt;在该方法中，如果是跳转界面self.navigationController不为空，如果退出当前界面得到的值为nil&lt;/p&gt;
@@ -52,11 +52,11 @@
     </item>
     <item>
       <title>Kotlin Native 开发 NSData转ByteArray</title>
-      <link>https://codebeautiful.gitee.io/post/kotlin_nsdata_to_bytearray/</link>
+      <link>https://blog.ttbt.work/post/kotlin_nsdata_to_bytearray/</link>
       <pubDate>Thu, 20 Apr 2023 13:02:36 +0800</pubDate>
-      <guid>https://codebeautiful.gitee.io/post/kotlin_nsdata_to_bytearray/</guid>
+      <guid>https://blog.ttbt.work/post/kotlin_nsdata_to_bytearray/</guid>
       <description>&lt;h3 id=&#34;string转nsdata&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/kotlin_nsdata_to_bytearray/#string%e8%bd%acnsdata&#34;&gt;String转NSData&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/kotlin_nsdata_to_bytearray/#string%e8%bd%acnsdata&#34;&gt;String转NSData&lt;/a&gt;
 &lt;/h3&gt;
 
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-kotlin&#34; data-lang=&#34;kotlin&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; nsdata = (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; NSString).dataUsingEncoding(NSUTF8StringEncoding)
@@ -64,7 +64,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; hello = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;NSData&lt;/span&gt;.create(bytes = hello.cstr.ptr, length = hello.length)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;nsdata转bytearray&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/kotlin_nsdata_to_bytearray/#nsdata%e8%bd%acbytearray&#34;&gt;NSData转ByteArray&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/kotlin_nsdata_to_bytearray/#nsdata%e8%bd%acbytearray&#34;&gt;NSData转ByteArray&lt;/a&gt;
 &lt;/h3&gt;
 
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-kotlin&#34; data-lang=&#34;kotlin&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 实现1
@@ -84,7 +84,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 实现3
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; byteArray = &lt;span style=&#34;color:#66d9ef&#34;&gt;data&lt;/span&gt;.bytes&lt;span style=&#34;color:#f92672&#34;&gt;?.&lt;/span&gt;readBytes(&lt;span style=&#34;color:#66d9ef&#34;&gt;data&lt;/span&gt;.length.toInt())&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;bytearray-转-nsdata&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/kotlin_nsdata_to_bytearray/#bytearray-%e8%bd%ac-nsdata&#34;&gt;ByteArray 转 NSData&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/kotlin_nsdata_to_bytearray/#bytearray-%e8%bd%ac-nsdata&#34;&gt;ByteArray 转 NSData&lt;/a&gt;
 &lt;/h3&gt;
 
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-kotlin&#34; data-lang=&#34;kotlin&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; nsdata: NSData
@@ -95,9 +95,9 @@
     </item>
     <item>
       <title>golang中的值类型和引用类型</title>
-      <link>https://codebeautiful.gitee.io/post/golang_value_reference_type/</link>
+      <link>https://blog.ttbt.work/post/golang_value_reference_type/</link>
       <pubDate>Wed, 19 Apr 2023 00:48:08 +0800</pubDate>
-      <guid>https://codebeautiful.gitee.io/post/golang_value_reference_type/</guid>
+      <guid>https://blog.ttbt.work/post/golang_value_reference_type/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;值类型分别有：int系列、float系列、bool、string、数组和结构体&lt;/li&gt;
 &lt;li&gt;引用类型有：指针、slice切片、管道channel、接口interface、map、函数等&lt;/li&gt;
@@ -109,9 +109,9 @@
     </item>
     <item>
       <title>GO http请求完成后需要关闭response.Body.Close()</title>
-      <link>https://codebeautiful.gitee.io/post/golang_response_body_close/</link>
+      <link>https://blog.ttbt.work/post/golang_response_body_close/</link>
       <pubDate>Wed, 19 Apr 2023 00:43:08 +0800</pubDate>
-      <guid>https://codebeautiful.gitee.io/post/golang_response_body_close/</guid>
+      <guid>https://blog.ttbt.work/post/golang_response_body_close/</guid>
       <description>
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;resp&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;http&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Post&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;url&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;application/json&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; {
@@ -129,9 +129,9 @@
     </item>
     <item>
       <title>MacBook当做无线或有线路由器使用</title>
-      <link>https://codebeautiful.gitee.io/post/mac_book_use_routes/</link>
+      <link>https://blog.ttbt.work/post/mac_book_use_routes/</link>
       <pubDate>Fri, 14 Apr 2023 22:44:55 +0800</pubDate>
-      <guid>https://codebeautiful.gitee.io/post/mac_book_use_routes/</guid>
+      <guid>https://blog.ttbt.work/post/mac_book_use_routes/</guid>
       <description>&lt;p&gt;&lt;strong&gt;需求问题&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;客户服务器需要安装软件，但是服务器无法连接互联网，怎么搞。&lt;/p&gt;
 &lt;ol&gt;
@@ -140,24 +140,24 @@
 &lt;/ol&gt;
 &lt;p&gt;先决调节：Mac笔记本作为无线路由器（需要一个带网口的扩展坞）&lt;/p&gt;
 &lt;h4 id=&#34;macbook通过wifi连接互联网&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/mac_book_use_routes/#macbook%e9%80%9a%e8%bf%87wifi%e8%bf%9e%e6%8e%a5%e4%ba%92%e8%81%94%e7%bd%91&#34;&gt;MacBook通过WiFi连接互联网&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/mac_book_use_routes/#macbook%e9%80%9a%e8%bf%87wifi%e8%bf%9e%e6%8e%a5%e4%ba%92%e8%81%94%e7%bd%91&#34;&gt;MacBook通过WiFi连接互联网&lt;/a&gt;
 &lt;/h4&gt;
 &lt;p&gt;配置互联网共享（系统设置-&amp;gt;通用-&amp;gt;共享）其中AX88179A是扩展坞的网口，配置好后点击完成，再开启互联网共享&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://codebeautiful.gitee.io/images/MacBook_shareNetwork.png&#34; alt=&#34;Pasted Graphic.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.ttbt.work/images/MacBook_shareNetwork.png&#34; alt=&#34;Pasted Graphic.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;完成以上配置后，将待联网机器通过网线和扩展坞连接，设备就可以访问互联网了&lt;/p&gt;
 &lt;h4 id=&#34;mac笔记本作为有线路由器通过网线接入互联网&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/mac_book_use_routes/#mac%e7%ac%94%e8%ae%b0%e6%9c%ac%e4%bd%9c%e4%b8%ba%e6%9c%89%e7%ba%bf%e8%b7%af%e7%94%b1%e5%99%a8%e9%80%9a%e8%bf%87%e7%bd%91%e7%ba%bf%e6%8e%a5%e5%85%a5%e4%ba%92%e8%81%94%e7%bd%91&#34;&gt;Mac笔记本作为有线路由器通过网线接入互联网&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/mac_book_use_routes/#mac%e7%ac%94%e8%ae%b0%e6%9c%ac%e4%bd%9c%e4%b8%ba%e6%9c%89%e7%ba%bf%e8%b7%af%e7%94%b1%e5%99%a8%e9%80%9a%e8%bf%87%e7%bd%91%e7%ba%bf%e6%8e%a5%e5%85%a5%e4%ba%92%e8%81%94%e7%bd%91&#34;&gt;Mac笔记本作为有线路由器通过网线接入互联网&lt;/a&gt;
 &lt;/h4&gt;
 &lt;p&gt;该方式和上面的相反，电脑以有线方式接入互联网&lt;/p&gt;
 &lt;p&gt;配置项如图所示，最后面会出现一个Wi-Fi选项，点击后，可以设置WiFi名称和密码，以供WiFi设备连接该热点，点击完成后，开启互联网共享&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://codebeautiful.gitee.io/images/mac_book_use_routes/image-20230414225641422.png&#34; alt=&#34;image-20230414225641422&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://blog.ttbt.work/images/mac_book_use_routes/image-20230414225641422.png&#34; alt=&#34;image-20230414225641422&#34;&gt;&lt;/p&gt;
 </description>
     </item>
     <item>
       <title>GO vs MySQL类型对应关系</title>
-      <link>https://codebeautiful.gitee.io/post/go_vs_mysql_type/</link>
+      <link>https://blog.ttbt.work/post/go_vs_mysql_type/</link>
       <pubDate>Fri, 14 Apr 2023 15:30:01 +0800</pubDate>
-      <guid>https://codebeautiful.gitee.io/post/go_vs_mysql_type/</guid>
+      <guid>https://blog.ttbt.work/post/go_vs_mysql_type/</guid>
       <description>&lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -268,11 +268,11 @@
     </item>
     <item>
       <title>Android NDK 引入外部动态库.so报错 missing and no known rule</title>
-      <link>https://codebeautiful.gitee.io/post/android_ndk_missing_and_no_known_rule/</link>
+      <link>https://blog.ttbt.work/post/android_ndk_missing_and_no_known_rule/</link>
       <pubDate>Sat, 01 Apr 2023 07:08:32 +0800</pubDate>
-      <guid>https://codebeautiful.gitee.io/post/android_ndk_missing_and_no_known_rule/</guid>
+      <guid>https://blog.ttbt.work/post/android_ndk_missing_and_no_known_rule/</guid>
       <description>&lt;h3 id=&#34;正确的配置项-cmake&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/android_ndk_missing_and_no_known_rule/#%e6%ad%a3%e7%a1%ae%e7%9a%84%e9%85%8d%e7%bd%ae%e9%a1%b9-cmake&#34;&gt;正确的配置项-cmake&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/android_ndk_missing_and_no_known_rule/#%e6%ad%a3%e7%a1%ae%e7%9a%84%e9%85%8d%e7%bd%ae%e9%a1%b9-cmake&#34;&gt;正确的配置项-cmake&lt;/a&gt;
 &lt;/h3&gt;
 
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cmake&#34; data-lang=&#34;cmake&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;add_library( &lt;span style=&#34;color:#e6db74&#34;&gt;qtcore&lt;/span&gt;
@@ -298,23 +298,23 @@
     </item>
     <item>
       <title>解决UINavigationController 滑动UIScrollView出现白边问题</title>
-      <link>https://codebeautiful.gitee.io/post/uinavigationcontroller_scrollview_whiten/</link>
+      <link>https://blog.ttbt.work/post/uinavigationcontroller_scrollview_whiten/</link>
       <pubDate>Fri, 31 Mar 2023 15:18:50 +0800</pubDate>
-      <guid>https://codebeautiful.gitee.io/post/uinavigationcontroller_scrollview_whiten/</guid>
+      <guid>https://blog.ttbt.work/post/uinavigationcontroller_scrollview_whiten/</guid>
       <description>&lt;h3 id=&#34;问题描述&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/uinavigationcontroller_scrollview_whiten/#%e9%97%ae%e9%a2%98%e6%8f%8f%e8%bf%b0&#34;&gt;问题描述&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/uinavigationcontroller_scrollview_whiten/#%e9%97%ae%e9%a2%98%e6%8f%8f%e8%bf%b0&#34;&gt;问题描述&lt;/a&gt;
 &lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;开发过程中出现ScrollView滑动会会使NavigationBar出现白边问题&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;正常情况
-&lt;img src=&#34;https://codebeautiful.gitee.io/images/UINavigationWhiten1.png&#34; alt=&#34;正常情况&#34;&gt;&lt;/li&gt;
+&lt;img src=&#34;https://blog.ttbt.work/images/UINavigationWhiten1.png&#34; alt=&#34;正常情况&#34;&gt;&lt;/li&gt;
 &lt;li&gt;异常情况
-&lt;img src=&#34;https://codebeautiful.gitee.io/images/UINavigationWhiten2.png&#34; alt=&#34;正常情况&#34;&gt;&lt;/li&gt;
+&lt;img src=&#34;https://blog.ttbt.work/images/UINavigationWhiten2.png&#34; alt=&#34;正常情况&#34;&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;解决方法&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/uinavigationcontroller_scrollview_whiten/#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95&#34;&gt;解决方法&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/uinavigationcontroller_scrollview_whiten/#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95&#34;&gt;解决方法&lt;/a&gt;
 &lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;在iOS13版本之后添加以下代码可以解决该问题，代码放到第一个UIControllerView的viewDidLoad方法中&lt;/p&gt;
@@ -330,17 +330,17 @@
     </item>
     <item>
       <title>iOS开发取消UINavigationController返回按钮的问题和自定义按钮颜色</title>
-      <link>https://codebeautiful.gitee.io/post/storyboard_uinavigation_back_cancel/</link>
+      <link>https://blog.ttbt.work/post/storyboard_uinavigation_back_cancel/</link>
       <pubDate>Fri, 31 Mar 2023 14:20:40 +0800</pubDate>
-      <guid>https://codebeautiful.gitee.io/post/storyboard_uinavigation_back_cancel/</guid>
+      <guid>https://blog.ttbt.work/post/storyboard_uinavigation_back_cancel/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;如图修改BackButton属性值给一个空格回车
-&lt;img src=&#34;https://codebeautiful.gitee.io/images/UINavigationItem1.png&#34; alt=&#34;设置Back按钮&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blog.ttbt.work/images/UINavigationItem1.png&#34; alt=&#34;设置Back按钮&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;接下来会发现Navigation Item下会有一个新的控件出现，如图
-&lt;img src=&#34;https://codebeautiful.gitee.io/images/UINavigationItem2.png&#34; alt=&#34;设置按钮颜色&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://blog.ttbt.work/images/UINavigationItem2.png&#34; alt=&#34;设置按钮颜色&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;选中该组件Bar Button Item，修改相关属性值
@@ -351,9 +351,9 @@
     </item>
     <item>
       <title>swift 使用 @available 或 #available</title>
-      <link>https://codebeautiful.gitee.io/post/swift_available/</link>
+      <link>https://blog.ttbt.work/post/swift_available/</link>
       <pubDate>Thu, 30 Mar 2023 17:06:01 +0800</pubDate>
-      <guid>https://codebeautiful.gitee.io/post/swift_available/</guid>
+      <guid>https://blog.ttbt.work/post/swift_available/</guid>
       <description>
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;#available&lt;/span&gt;(&lt;span style=&#34;color:#75715e&#34;&gt;iOS&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;14&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;) {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  print(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;This code only runs on iOS 14 and up&amp;#34;&lt;/span&gt;)
@@ -367,7 +367,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id=&#34;available和available之间的区别&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/swift_available/#available%e5%92%8cavailable%e4%b9%8b%e9%97%b4%e7%9a%84%e5%8c%ba%e5%88%ab&#34;&gt;@available和#available之间的区别&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/swift_available/#available%e5%92%8cavailable%e4%b9%8b%e9%97%b4%e7%9a%84%e5%8c%ba%e5%88%ab&#34;&gt;@available和#available之间的区别&lt;/a&gt;
 &lt;/h2&gt;
 &lt;p&gt;@available: 用于标记类或方法的可用性&lt;/p&gt;
 &lt;p&gt;#available: 用于仅针对特定平台或版本执行一段代码&lt;/p&gt;
@@ -384,9 +384,9 @@
     </item>
     <item>
       <title>Swift 自定义UITableView左滑删除样式</title>
-      <link>https://codebeautiful.gitee.io/post/swift_tableview_delete_style/</link>
+      <link>https://blog.ttbt.work/post/swift_tableview_delete_style/</link>
       <pubDate>Thu, 30 Mar 2023 16:44:09 +0800</pubDate>
-      <guid>https://codebeautiful.gitee.io/post/swift_tableview_delete_style/</guid>
+      <guid>https://blog.ttbt.work/post/swift_tableview_delete_style/</guid>
       <description>
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@available(iOS &lt;span style=&#34;color:#ae81ff&#34;&gt;11&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;tableView&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;_&lt;/span&gt; tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -&amp;gt; UISwipeActionsConfiguration? {
@@ -403,35 +403,35 @@
     </item>
     <item>
       <title>各个平台的内置宏定义</title>
-      <link>https://codebeautiful.gitee.io/post/platform_define/</link>
+      <link>https://blog.ttbt.work/post/platform_define/</link>
       <pubDate>Tue, 28 Mar 2023 19:24:03 +0800</pubDate>
-      <guid>https://codebeautiful.gitee.io/post/platform_define/</guid>
+      <guid>https://blog.ttbt.work/post/platform_define/</guid>
       <description>&lt;h3 id=&#34;windows&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/platform_define/#windows&#34;&gt;Windows&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/platform_define/#windows&#34;&gt;Windows&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;WIN32、_WIN32、&lt;em&gt;WIN32&lt;/em&gt;、WIN64、_WIN64、&lt;em&gt;WIN64&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;android&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/platform_define/#android&#34;&gt;Android&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/platform_define/#android&#34;&gt;Android&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;ANDROID、&lt;code&gt;__ANDROID__&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;linux&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/platform_define/#linux&#34;&gt;Linux&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/platform_define/#linux&#34;&gt;Linux&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;__linux__&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;iosmac&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/platform_define/#iosmac&#34;&gt;iOS/Mac&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/platform_define/#iosmac&#34;&gt;iOS/Mac&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;__APPLE__&lt;/code&gt;、TARGET_OS_IPHONE、TARGET_IPHONE_SIMULATOR、TARGET_OS_MAC&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;代码判断&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/platform_define/#%e4%bb%a3%e7%a0%81%e5%88%a4%e6%96%ad&#34;&gt;代码判断&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/platform_define/#%e4%bb%a3%e7%a0%81%e5%88%a4%e6%96%ad&#34;&gt;代码判断&lt;/a&gt;
 &lt;/h2&gt;
 
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#if defined(WIN32) || defined(_WIN32) || defined(_WIN32_) || defined(WIN64) || defined(_WIN64) || defined(_WIN64_)
@@ -449,11 +449,11 @@
     </item>
     <item>
       <title>桌面软件数据存放路径</title>
-      <link>https://codebeautiful.gitee.io/post/program_data_directory/</link>
+      <link>https://blog.ttbt.work/post/program_data_directory/</link>
       <pubDate>Wed, 22 Mar 2023 22:39:52 +0800</pubDate>
-      <guid>https://codebeautiful.gitee.io/post/program_data_directory/</guid>
+      <guid>https://blog.ttbt.work/post/program_data_directory/</guid>
       <description>&lt;h2 id=&#34;windows下程序数据存放目录&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/program_data_directory/#windows%e4%b8%8b%e7%a8%8b%e5%ba%8f%e6%95%b0%e6%8d%ae%e5%ad%98%e6%94%be%e7%9b%ae%e5%bd%95&#34;&gt;windows下程序数据存放目录&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/program_data_directory/#windows%e4%b8%8b%e7%a8%8b%e5%ba%8f%e6%95%b0%e6%8d%ae%e5%ad%98%e6%94%be%e7%9b%ae%e5%bd%95&#34;&gt;windows下程序数据存放目录&lt;/a&gt;
 &lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;C:\Users\用户名\AppData \Roaming,
@@ -476,7 +476,7 @@
 那么程序生成的数据应当存放在这里。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;macos-app程序数据存放目录&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/program_data_directory/#macos-app%e7%a8%8b%e5%ba%8f%e6%95%b0%e6%8d%ae%e5%ad%98%e6%94%be%e7%9b%ae%e5%bd%95&#34;&gt;macOS App程序数据存放目录&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/program_data_directory/#macos-app%e7%a8%8b%e5%ba%8f%e6%95%b0%e6%8d%ae%e5%ad%98%e6%94%be%e7%9b%ae%e5%bd%95&#34;&gt;macOS App程序数据存放目录&lt;/a&gt;
 &lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;/Users/用户名/Library/Application Support&lt;/p&gt;
@@ -485,11 +485,11 @@
     </item>
     <item>
       <title>linux创建新用户</title>
-      <link>https://codebeautiful.gitee.io/post/linux_create_user/</link>
+      <link>https://blog.ttbt.work/post/linux_create_user/</link>
       <pubDate>Tue, 21 Mar 2023 15:23:06 +0800</pubDate>
-      <guid>https://codebeautiful.gitee.io/post/linux_create_user/</guid>
+      <guid>https://blog.ttbt.work/post/linux_create_user/</guid>
       <description>&lt;h3 id=&#34;创建用户&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/linux_create_user/#%e5%88%9b%e5%bb%ba%e7%94%a8%e6%88%b7&#34;&gt;创建用户&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/linux_create_user/#%e5%88%9b%e5%bb%ba%e7%94%a8%e6%88%b7&#34;&gt;创建用户&lt;/a&gt;
 &lt;/h3&gt;
 
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;useradd -d /home/test -m test&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -507,13 +507,13 @@
 &lt;li&gt;-u 用户号 指定用户的用户号，如果同时有-o选项，则可以重复使用其他用户的标识号&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;设置密码&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/linux_create_user/#%e8%ae%be%e7%bd%ae%e5%af%86%e7%a0%81&#34;&gt;设置密码&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/linux_create_user/#%e8%ae%be%e7%bd%ae%e5%af%86%e7%a0%81&#34;&gt;设置密码&lt;/a&gt;
 &lt;/h3&gt;
 
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;passwd test&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;会提示你输入两次密码&lt;/p&gt;
 &lt;h3 id=&#34;删除账号&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/linux_create_user/#%e5%88%a0%e9%99%a4%e8%b4%a6%e5%8f%b7&#34;&gt;删除账号&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/linux_create_user/#%e5%88%a0%e9%99%a4%e8%b4%a6%e5%8f%b7&#34;&gt;删除账号&lt;/a&gt;
 &lt;/h3&gt;
 
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;userdel test&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -521,11 +521,11 @@
     </item>
     <item>
       <title>服务器运维监控命令汇总</title>
-      <link>https://codebeautiful.gitee.io/post/system_monitor/</link>
+      <link>https://blog.ttbt.work/post/system_monitor/</link>
       <pubDate>Tue, 21 Mar 2023 14:25:13 +0800</pubDate>
-      <guid>https://codebeautiful.gitee.io/post/system_monitor/</guid>
+      <guid>https://blog.ttbt.work/post/system_monitor/</guid>
       <description>&lt;h1 id=&#34;who命令&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/system_monitor/#who%e5%91%bd%e4%bb%a4&#34;&gt;who命令&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/system_monitor/#who%e5%91%bd%e4%bb%a4&#34;&gt;who命令&lt;/a&gt;
 &lt;/h1&gt;
 &lt;p&gt;输出信息包括 用户名，终端类型，登录日期，访问IP
 -H 打印列标题
@@ -534,7 +534,7 @@
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;who [-H|-b]
 who [-H|-b] /var/log/wtmp&lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id=&#34;查看命令历史&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/system_monitor/#%e6%9f%a5%e7%9c%8b%e5%91%bd%e4%bb%a4%e5%8e%86%e5%8f%b2&#34;&gt;查看命令历史&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/system_monitor/#%e6%9f%a5%e7%9c%8b%e5%91%bd%e4%bb%a4%e5%8e%86%e5%8f%b2&#34;&gt;查看命令历史&lt;/a&gt;
 &lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;每个用户都有一份命令历史记录&lt;/li&gt;
@@ -542,7 +542,7 @@ who [-H|-b] /var/log/wtmp&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;或者在终端输入： history&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;last命令&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/system_monitor/#last%e5%91%bd%e4%bb%a4&#34;&gt;last命令&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/system_monitor/#last%e5%91%bd%e4%bb%a4&#34;&gt;last命令&lt;/a&gt;
 &lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;查看用户登录历史&lt;/li&gt;
@@ -562,7 +562,7 @@ who [-H|-b] /var/log/wtmp&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;（6）-t：查看指定时间的用户登录历史&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;lastlog命令&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/system_monitor/#lastlog%e5%91%bd%e4%bb%a4&#34;&gt;lastlog命令&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/system_monitor/#lastlog%e5%91%bd%e4%bb%a4&#34;&gt;lastlog命令&lt;/a&gt;
 &lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;查看所有用户最近一次登录历史&lt;/p&gt;
@@ -577,7 +577,7 @@ who [-H|-b] /var/log/wtmp&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;（3） -b：查看指定天数之前的用户登录历史&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;ac命令&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/system_monitor/#ac%e5%91%bd%e4%bb%a4&#34;&gt;ac命令&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/system_monitor/#ac%e5%91%bd%e4%bb%a4&#34;&gt;ac命令&lt;/a&gt;
 &lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;根据/var/log/wtmp文件中的登陆和退出时间报告用户连接的时间（小时），默认输出报告总时间&lt;/p&gt;
@@ -591,21 +591,21 @@ who [-H|-b] /var/log/wtmp&lt;/code&gt;&lt;/pre&gt;
     </item>
     <item>
       <title>Supervisor管理GO程序</title>
-      <link>https://codebeautiful.gitee.io/post/supervisor/</link>
+      <link>https://blog.ttbt.work/post/supervisor/</link>
       <pubDate>Tue, 21 Mar 2023 14:04:34 +0800</pubDate>
-      <guid>https://codebeautiful.gitee.io/post/supervisor/</guid>
+      <guid>https://blog.ttbt.work/post/supervisor/</guid>
       <description>&lt;h3 id=&#34;安装&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/supervisor/#%e5%ae%89%e8%a3%85&#34;&gt;安装&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/supervisor/#%e5%ae%89%e8%a3%85&#34;&gt;安装&lt;/a&gt;
 &lt;/h3&gt;
 
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;apt-get install supervisor&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;使用说明&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/supervisor/#%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e&#34;&gt;使用说明&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/supervisor/#%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e&#34;&gt;使用说明&lt;/a&gt;
 &lt;/h3&gt;
 &lt;p&gt;supervisor配置文件：/etc/supervisor/supervisord.conf
 子进程配置文件路径：/etc/supervisor/conf.d/&lt;/p&gt;
 &lt;h3 id=&#34;常用命令说明&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/supervisor/#%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4%e8%af%b4%e6%98%8e&#34;&gt;常用命令说明&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/supervisor/#%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4%e8%af%b4%e6%98%8e&#34;&gt;常用命令说明&lt;/a&gt;
 &lt;/h3&gt;
 
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 查看所有进程的状态&lt;/span&gt;
@@ -621,7 +621,7 @@ who [-H|-b] /var/log/wtmp&lt;/code&gt;&lt;/pre&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 重新启动配置中的所有程序&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;supervisorctl reload&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;配置go进程&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/supervisor/#%e9%85%8d%e7%bd%aego%e8%bf%9b%e7%a8%8b&#34;&gt;配置GO进程&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/supervisor/#%e9%85%8d%e7%bd%aego%e8%bf%9b%e7%a8%8b&#34;&gt;配置GO进程&lt;/a&gt;
 &lt;/h3&gt;
 
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;[program:iot]
@@ -639,7 +639,7 @@ priority=1
 stopasgroup=true
 killasgroup=true&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;常见问题&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/supervisor/#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98&#34;&gt;常见问题&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/supervisor/#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98&#34;&gt;常见问题&lt;/a&gt;
 &lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;unix:///var/run/supervisor.sock no such file&lt;/li&gt;
@@ -672,40 +672,40 @@ killasgroup=true&lt;/code&gt;&lt;/pre&gt;
     </item>
     <item>
       <title>使用hugo配置博客文档</title>
-      <link>https://codebeautiful.gitee.io/post/config/</link>
+      <link>https://blog.ttbt.work/post/config/</link>
       <pubDate>Sat, 11 Mar 2023 23:16:37 +0800</pubDate>
-      <guid>https://codebeautiful.gitee.io/post/config/</guid>
+      <guid>https://blog.ttbt.work/post/config/</guid>
       <description>&lt;h3 id=&#34;安装&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/config/#%e5%ae%89%e8%a3%85&#34;&gt;安装&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/config/#%e5%ae%89%e8%a3%85&#34;&gt;安装&lt;/a&gt;
 &lt;/h3&gt;
 
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ brew install hugo&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;生成博客&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/config/#%e7%94%9f%e6%88%90%e5%8d%9a%e5%ae%a2&#34;&gt;生成博客&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/config/#%e7%94%9f%e6%88%90%e5%8d%9a%e5%ae%a2&#34;&gt;生成博客&lt;/a&gt;
 &lt;/h3&gt;
 
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ hugo new site myblog&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;安装皮肤&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/config/#%e5%ae%89%e8%a3%85%e7%9a%ae%e8%82%a4&#34;&gt;安装皮肤&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/config/#%e5%ae%89%e8%a3%85%e7%9a%ae%e8%82%a4&#34;&gt;安装皮肤&lt;/a&gt;
 &lt;/h3&gt;
 
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ cd themes
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ git clone https://github.com/de-souza/hugo-flex.git&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;创建文章&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/config/#%e5%88%9b%e5%bb%ba%e6%96%87%e7%ab%a0&#34;&gt;创建文章&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/config/#%e5%88%9b%e5%bb%ba%e6%96%87%e7%ab%a0&#34;&gt;创建文章&lt;/a&gt;
 &lt;/h3&gt;
 
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ hugo new post/config.md&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;运行hugo&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/config/#%e8%bf%90%e8%a1%8chugo&#34;&gt;运行hugo&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/config/#%e8%bf%90%e8%a1%8chugo&#34;&gt;运行hugo&lt;/a&gt;
 &lt;/h3&gt;
 
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo server -D --theme&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;hugo-flex --buildDrafts&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id=&#34;部署&#34;&gt;
-  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://codebeautiful.gitee.io/post/config/#%e9%83%a8%e7%bd%b2&#34;&gt;部署&lt;/a&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/config/#%e9%83%a8%e7%bd%b2&#34;&gt;部署&lt;/a&gt;
 &lt;/h3&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo --theme&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;hugo-flex --baseUrl&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;http://ttbt.work&amp;#34;&lt;/span&gt; --buildDrafts
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo --theme&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;hugo-flex --baseUrl&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://blog.ttbt.work&amp;#34;&lt;/span&gt; --buildDrafts
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo --theme&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;hugo-flex --baseUrl&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://codebeautiful.gitee.io&amp;#34;&lt;/span&gt; --buildDrafts&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
