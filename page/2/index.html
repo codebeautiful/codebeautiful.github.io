@@ -44,7 +44,7 @@
     
 </title>
 
-  <link rel="canonical" href="https://blog.ttbt.work/">
+  <link rel="canonical" href="https://codebeautiful.gitee.io/">
 
 
   <link rel="alternate" type="application/rss+xml" href="/index.xml" title="通通不同-博客">
@@ -127,6 +127,18 @@
     
     
     
+    
+    
+  
+    
+    
+    
+    
+    
+  
+    
+    
+    
       
       
     
@@ -177,6 +189,133 @@
       <div class="u-padding">
         
 
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/uinavigationcontroller_scrollview_whiten/" rel="bookmark">解决UINavigationController 滑动UIScrollView出现白边问题</a>
+  </h2>
+  
+    <time datetime="2023-03-31T15:18:50&#43;08:00">31 March, 2023</time>
+  
+</header>
+
+      
+        <h3 id="问题描述">
+  <a class="Heading-link u-clickable" href="/post/uinavigationcontroller_scrollview_whiten/#%e9%97%ae%e9%a2%98%e6%8f%8f%e8%bf%b0">问题描述</a>
+</h3>
+<blockquote>
+<p>开发过程中出现ScrollView滑动会会使NavigationBar出现白边问题</p>
+</blockquote>
+<ul>
+<li>正常情况
+<img src="/images/UINavigationWhiten1.png" alt="正常情况"></li>
+<li>异常情况
+<img src="/images/UINavigationWhiten2.png" alt="正常情况"></li>
+</ul>
+<h3 id="解决方法">
+  <a class="Heading-link u-clickable" href="/post/uinavigationcontroller_scrollview_whiten/#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95">解决方法</a>
+</h3>
+<blockquote>
+<p>在iOS13版本之后添加以下代码可以解决该问题，代码放到第一个UIControllerView的viewDidLoad方法中</p>
+</blockquote>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#75715e">#available</span>(<span style="color:#75715e">iOS</span> <span style="color:#ae81ff">13.0</span>, <span style="color:#f92672">*</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> apperance = UINavigationBarAppearance()
+</span></span><span style="display:flex;"><span>  apperance.backgroundColor = UIColor.black
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">self</span>.navigationController?.navigationBar.standardAppearance = apperance
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/storyboard_uinavigation_back_cancel/" rel="bookmark">iOS开发取消UINavigationController返回按钮的问题和自定义按钮颜色</a>
+  </h2>
+  
+    <time datetime="2023-03-31T14:20:40&#43;08:00">31 March, 2023</time>
+  
+</header>
+
+      
+        <ul>
+<li>
+<p>如图修改BackButton属性值给一个空格回车
+<img src="/images/UINavigationItem1.png" alt="设置Back按钮"></p>
+</li>
+<li>
+<p>接下来会发现Navigation Item下会有一个新的控件出现，如图
+<img src="/images/UINavigationItem2.png" alt="设置按钮颜色"></p>
+</li>
+<li>
+<p>选中该组件Bar Button Item，修改相关属性值
+其中Tint属性就是修改按钮颜色值</p>
+</li>
+</ul>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+    
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/ios/" rel="tag">iOS</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/uinavigationcontroller/" rel="tag">UINavigationController</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%89%E9%92%AE%E9%A2%9C%E8%89%B2/" rel="tag">自定义按钮颜色</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    </article>
+    
+      <div class="Divider"></div>
+    
   
     <article>
       <header class="Heading">

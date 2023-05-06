@@ -11,7 +11,10 @@
 
 
   
-    <meta name="description" content="如图修改BackButton属性值给一个空格回车 接下来会发现Navigation Item下会有一个新的控件出现，如图 选中该组件Bar Button Item，修改相关属性值 其中Tint属性就是修改按钮颜色值">
+    <meta name="description" content="使用环境是 macOS13 Qt Creator版本是9.0
+错误原因分析：未导入 ssl 和 crypto 相关库
+解决方法：在 .pro 文件中加入一下代码
+LIBS &#43;= -lssl LIBS &#43;= -lcrypto LIBS &#43;= -L&#34;/opt/homebrew/Cellar/openssl@1.1/1.1.1s/lib&#34; INCLUDEPATH &#43;= /opt/homebrew/Cellar/openssl@1.1/1.1.1s/include 其中openssl的路径依据安装路径不同存在不一致的情况，我自己的openssl是通过 brew install openssl 如果是M系列可能需要使用 arch -arm64 brew install openssl">
   
 
 
@@ -26,17 +29,17 @@
 <meta name="generator" content="Hugo 0.111.2">
 
 <meta content="" name="keywords">
-<meta content="iOS开发取消UINavigationController返回按钮的问题和自定义按钮颜色 - 通通不同-博客" property="og:title">
+<meta content="Qt开发https请求报 qt.tlsbackend.ossl: Failed to load libssl/libcrypto. - 通通不同-博客" property="og:title">
 <meta content="开发的乐趣在于相通而不同 - " property="og:description">
 
   <title>
     
-    iOS开发取消UINavigationController返回按钮的问题和自定义按钮颜色
+    Qt开发https请求报 qt.tlsbackend.ossl: Failed to load libssl/libcrypto.
      - 通通不同-博客
     
 </title>
 
-  <link rel="canonical" href="https://codebeautiful.gitee.io/post/storyboard_uinavigation_back_cancel/">
+  <link rel="canonical" href="https://codebeautiful.gitee.io/post/qt_https_failed_to_load_libssl_libcrypto/">
 
 
   
@@ -96,27 +99,23 @@
   <article>
     <header class="Heading">
   <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/storyboard_uinavigation_back_cancel/" rel="bookmark">iOS开发取消UINavigationController返回按钮的问题和自定义按钮颜色</a>
+    <a class="Heading-link u-clickable" href="/post/qt_https_failed_to_load_libssl_libcrypto/" rel="bookmark">Qt开发https请求报 qt.tlsbackend.ossl: Failed to load libssl/libcrypto.</a>
   </h2>
   
-    <time datetime="2023-03-31T14:20:40&#43;08:00">31 March, 2023</time>
+    <time datetime="2023-05-06T09:36:26&#43;08:00">6 May, 2023</time>
   
 </header>
 
-    <ul>
-<li>
-<p>如图修改BackButton属性值给一个空格回车
-<img src="/images/UINavigationItem1.png" alt="设置Back按钮"></p>
-</li>
-<li>
-<p>接下来会发现Navigation Item下会有一个新的控件出现，如图
-<img src="/images/UINavigationItem2.png" alt="设置按钮颜色"></p>
-</li>
-<li>
-<p>选中该组件Bar Button Item，修改相关属性值
-其中Tint属性就是修改按钮颜色值</p>
-</li>
-</ul>
+    <p>使用环境是 macOS13  Qt Creator版本是9.0</p>
+<p>错误原因分析：未导入 ssl 和 crypto 相关库</p>
+<p>解决方法：在 .pro 文件中加入一下代码</p>
+
+<pre tabindex="0"><code>LIBS += -lssl
+LIBS += -lcrypto
+
+LIBS    += -L&#34;/opt/homebrew/Cellar/openssl@1.1/1.1.1s/lib&#34;
+INCLUDEPATH += /opt/homebrew/Cellar/openssl@1.1/1.1.1s/include</code></pre>
+<p>其中openssl的路径依据安装路径不同存在不一致的情况，我自己的openssl是通过  brew install openssl  如果是M系列可能需要使用  arch -arm64 brew install openssl</p>
 
     
 
@@ -141,15 +140,27 @@
         <ul class="Tags">
           
             <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/ios/" rel="tag">iOS</a>
+              <a class="Tags-link u-clickable" href="/tags/qt/" rel="tag">Qt</a>
             </li>
           
             <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/uinavigationcontroller/" rel="tag">UINavigationController</a>
+              <a class="Tags-link u-clickable" href="/tags/ssl/" rel="tag">ssl</a>
             </li>
           
             <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%89%E9%92%AE%E9%A2%9C%E8%89%B2/" rel="tag">自定义按钮颜色</a>
+              <a class="Tags-link u-clickable" href="/tags/https/" rel="tag">https</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/crypto/" rel="tag">crypto</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/brew/" rel="tag">brew</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/openssl/" rel="tag">openssl</a>
             </li>
           
         </ul>

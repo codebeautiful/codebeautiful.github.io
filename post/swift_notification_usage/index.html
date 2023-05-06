@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+    <meta name="description" content=" 简单使用记录 //注册监听 var observer = NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: &#34;Notify&#34;), object: nil, queue: OperationQueue.main) {_ in } //移除监听 NotificationCenter.default.removeObserver(observer) //发送通知 NotificationCenter.default.post(name: Notification.Name(&#34;Notify&#34;), object: nil) ">
+  
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.111.2">
+
+<meta content="swift, Notification" name="keywords">
+<meta content="Swift Notification使用 - 通通不同-博客" property="og:title">
+<meta content="开发的乐趣在于相通而不同 - " property="og:description">
+
+  <title>
+    
+    Swift Notification使用
+     - 通通不同-博客
+    
+</title>
+
+  <link rel="canonical" href="https://codebeautiful.gitee.io/post/swift_notification_usage/">
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+  <link rel="stylesheet" href="/css/base.min.4f231885947d13c748c815d93da49f07ab89afb67629f9970b7c054610e88e0b.css" integrity="sha256-TyMYhZR9E8dIyBXZPaSfB6uJr7Z2KfmXC3wFRhDojgs=" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <h1 class="Banner-heading">
+          <a class="Banner-link u-clickable" href="/">通通不同-博客</a>
+        </h1>
+      </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">全部</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">分类</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">标签</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <article>
+    <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/swift_notification_usage/" rel="bookmark">Swift Notification使用</a>
+  </h2>
+  
+    <time datetime="2023-05-05T15:46:32&#43;08:00">5 May, 2023</time>
+  
+</header>
+
+    <h3 id="简单使用记录">
+  <a class="Heading-link u-clickable" href="/post/swift_notification_usage/#%e7%ae%80%e5%8d%95%e4%bd%bf%e7%94%a8%e8%ae%b0%e5%bd%95">简单使用记录</a>
+</h3>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#75715e">//注册监听</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> observer = NotificationCenter.<span style="color:#66d9ef">default</span>.addObserver(forName: Notification.Name(rawValue: <span style="color:#e6db74">&#34;Notify&#34;</span>), object: <span style="color:#66d9ef">nil</span>, queue: OperationQueue.main) {<span style="color:#66d9ef">_</span> <span style="color:#66d9ef">in</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//移除监听</span>
+</span></span><span style="display:flex;"><span>NotificationCenter.<span style="color:#66d9ef">default</span>.removeObserver(observer)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//发送通知</span>
+</span></span><span style="display:flex;"><span>NotificationCenter.<span style="color:#66d9ef">default</span>.post(name: Notification.Name(<span style="color:#e6db74">&#34;Notify&#34;</span>), object: <span style="color:#66d9ef">nil</span>)</span></span></code></pre></div>
+
+    
+
+
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+    
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/swift/" rel="tag">swift</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/notification/" rel="tag">Notification</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    
+  
+
+  </article>
+
+
+      </div>
+    </div>
+  </main>
+  
+  <footer class="Footer">
+    <div class="u-wrapper">
+      <div class="u-padding">
+        开发的乐趣在于相通而不同
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d08a2ad355cb7a065a41be081b43297e";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>
