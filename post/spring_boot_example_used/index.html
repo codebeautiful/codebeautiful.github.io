@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+    <meta name="description" content="基本使用方法 @GetMapping(&#34;/subwayLines&#34;) public ResponseListBase&lt;SubwayLine&gt; list(@RequestParam(required = false, defaultValue = &#34;0&#34;) int page, @RequestParam(required = false, defaultValue = &#34;20&#34;) int size, @RequestParam(required = false, defaultValue = &#34;&#34;) String lineNo, @RequestParam(required = false, defaultValue = &#34;&#34;) String lineName) { SubwayLine subwayLine = new SubwayLine(); ExampleMatcher em = ExampleMatcher.matching(); if(lineNo != null &amp;&amp; !lineNo.equals(&#34;&#34;)) { subwayLine.setLineNo(lineNo); em = em.withMatcher(&#34;lineNo&#34;, GenericPropertyMatcher::startsWith); } if(lineName != null &amp;&amp; !lineName.equals(&#34;&#34;)) { subwayLine.setLineName(lineName); em = em.withMatcher(&#34;lineName&#34;, GenericPropertyMatcher::startsWith); } Page&lt;SubwayLine&gt; subwayLinePage = repository.">
+  
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.124.1">
+
+<meta content="" name="keywords">
+<meta content="Spring_boot使用Example对象做条件查询 - 通通不同-博客" property="og:title">
+<meta content="开发的乐趣在于相通而不同 - " property="og:description">
+
+<meta name="msvalidate.01" content="F56ED94B7E86941E3DACEF208F07D329" />
+
+  <title>
+    
+    Spring_boot使用Example对象做条件查询
+     - 通通不同-博客
+    
+</title>
+
+  <link rel="canonical" href="https://blog.ttbt.work/post/spring_boot_example_used/">
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+  <link rel="stylesheet" href="/css/base.min.4f231885947d13c748c815d93da49f07ab89afb67629f9970b7c054610e88e0b.css" integrity="sha256-TyMYhZR9E8dIyBXZPaSfB6uJr7Z2KfmXC3wFRhDojgs=" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <h1 class="Banner-heading">
+          <a class="Banner-link u-clickable" href="/">通通不同-博客</a>
+        </h1>
+      </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">全部</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">分类</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">标签</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <article>
+    <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/spring_boot_example_used/" rel="bookmark">Spring_boot使用Example对象做条件查询</a>
+  </h2>
+  
+    <time datetime="2023-05-30T17:30:10&#43;08:00">30 May, 2023</time>
+  
+</header>
+
+    <h3 id="基本使用方法">
+  <a class="Heading-link u-clickable" href="/post/spring_boot_example_used/#%e5%9f%ba%e6%9c%ac%e4%bd%bf%e7%94%a8%e6%96%b9%e6%b3%95">基本使用方法</a>
+</h3>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span> <span style="color:#a6e22e">@GetMapping</span>(<span style="color:#e6db74">&#34;/subwayLines&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> ResponseListBase<span style="color:#f92672">&lt;</span>SubwayLine<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">list</span>(<span style="color:#a6e22e">@RequestParam</span>(required <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>, defaultValue <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0&#34;</span>) <span style="color:#66d9ef">int</span> page,
+</span></span><span style="display:flex;"><span>                                             <span style="color:#a6e22e">@RequestParam</span>(required <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>, defaultValue <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;20&#34;</span>) <span style="color:#66d9ef">int</span> size,
+</span></span><span style="display:flex;"><span>                                             <span style="color:#a6e22e">@RequestParam</span>(required <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>, defaultValue <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>) String lineNo,
+</span></span><span style="display:flex;"><span>                                             <span style="color:#a6e22e">@RequestParam</span>(required <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>, defaultValue <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>) String lineName) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        SubwayLine subwayLine <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SubwayLine();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        ExampleMatcher em <span style="color:#f92672">=</span> ExampleMatcher.<span style="color:#a6e22e">matching</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(lineNo <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>lineNo.<span style="color:#a6e22e">equals</span>(<span style="color:#e6db74">&#34;&#34;</span>)) {
+</span></span><span style="display:flex;"><span>            subwayLine.<span style="color:#a6e22e">setLineNo</span>(lineNo);
+</span></span><span style="display:flex;"><span>            em <span style="color:#f92672">=</span> em.<span style="color:#a6e22e">withMatcher</span>(<span style="color:#e6db74">&#34;lineNo&#34;</span>, GenericPropertyMatcher::startsWith);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(lineName <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>lineName.<span style="color:#a6e22e">equals</span>(<span style="color:#e6db74">&#34;&#34;</span>)) {
+</span></span><span style="display:flex;"><span>            subwayLine.<span style="color:#a6e22e">setLineName</span>(lineName);
+</span></span><span style="display:flex;"><span>            em <span style="color:#f92672">=</span> em.<span style="color:#a6e22e">withMatcher</span>(<span style="color:#e6db74">&#34;lineName&#34;</span>, GenericPropertyMatcher::startsWith);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        Page<span style="color:#f92672">&lt;</span>SubwayLine<span style="color:#f92672">&gt;</span> subwayLinePage <span style="color:#f92672">=</span> repository.<span style="color:#a6e22e">findAll</span>(Example.<span style="color:#a6e22e">of</span>(subwayLine, em), PageRequest.<span style="color:#a6e22e">of</span>(page, size));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> ResponseListBase<span style="color:#f92672">&lt;&gt;</span>(subwayLinePage);
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<blockquote>
+<p>注意事项：官方用例写法：</p>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ExampleMatcher matcher <span style="color:#f92672">=</span> ExampleMatcher.<span style="color:#a6e22e">matching</span>()
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">withMatcher</span>(<span style="color:#e6db74">&#34;firstname&#34;</span>, match <span style="color:#f92672">-&gt;</span> match.<span style="color:#a6e22e">endsWith</span>())
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">withMatcher</span>(<span style="color:#e6db74">&#34;firstname&#34;</span>, match <span style="color:#f92672">-&gt;</span> match.<span style="color:#a6e22e">startsWith</span>());</span></span></code></pre></div>
+<p>自己的写法：</p>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ExampleMatcher em <span style="color:#f92672">=</span> ExampleMatcher.<span style="color:#a6e22e">matching</span>();
+</span></span><span style="display:flex;"><span>em <span style="color:#f92672">=</span> exampleMatcher.<span style="color:#a6e22e">withMatcher</span>(<span style="color:#e6db74">&#34;lineNo&#34;</span>, ExampleMatcher.<span style="color:#a6e22e">GenericPropertyMatcher</span>::startsWith);</span></span></code></pre></div>
+<p>其中重新付值是必须的，查看withMatcher代码会发现，返回一个新的对象，如果不做赋值，会导致没有配置模糊查询</p>
+<p>第二个注意点是其中的<code>lineNo</code>必须和对象的名称一致，如果 <code>line_no</code>导致模糊查询不生效。</p>
+</blockquote>
+
+    
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    
+  
+
+  </article>
+
+
+      </div>
+    </div>
+  </main>
+  
+  <footer class="Footer">
+    <div class="u-wrapper">
+      <div class="u-padding">
+        开发的乐趣在于相通而不同
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d08a2ad355cb7a065a41be081b43297e";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

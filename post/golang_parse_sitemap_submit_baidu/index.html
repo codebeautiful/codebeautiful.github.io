@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+    <meta name="description" content="package main import ( &#34;encoding/hex&#34; &#34;encoding/xml&#34; &#34;fmt&#34; &#34;os&#34; &#34;strings&#34; &#34;testing&#34; ) type Node struct { Loc string `xml:&#34;loc&#34;` } type Root struct { XMLName xml.Name `xml:&#34;urlset&#34;` Nodes []Node `xml:&#34;url&#34;` } func main() { file, err := os.Open(&#34;../public/sitemap.xml&#34;) if err != nil { panic(err) } defer file.Close() var root Root decoder := xml.NewDecoder(file) if err := decoder.Decode(&amp;root); err != nil { panic(err) } for _, node := range root.Nodes { fmt.">
+  
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.124.1">
+
+<meta content="" name="keywords">
+<meta content="Golang_解析hugo生成的sitemap提交百度搜索 - 通通不同-博客" property="og:title">
+<meta content="开发的乐趣在于相通而不同 - " property="og:description">
+
+<meta name="msvalidate.01" content="F56ED94B7E86941E3DACEF208F07D329" />
+
+  <title>
+    
+    Golang_解析hugo生成的sitemap提交百度搜索
+     - 通通不同-博客
+    
+</title>
+
+  <link rel="canonical" href="https://blog.ttbt.work/post/golang_parse_sitemap_submit_baidu/">
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+  <link rel="stylesheet" href="/css/base.min.4f231885947d13c748c815d93da49f07ab89afb67629f9970b7c054610e88e0b.css" integrity="sha256-TyMYhZR9E8dIyBXZPaSfB6uJr7Z2KfmXC3wFRhDojgs=" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <h1 class="Banner-heading">
+          <a class="Banner-link u-clickable" href="/">通通不同-博客</a>
+        </h1>
+      </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">全部</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">分类</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">标签</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <article>
+    <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/golang_parse_sitemap_submit_baidu/" rel="bookmark">Golang_解析hugo生成的sitemap提交百度搜索</a>
+  </h2>
+  
+    <time datetime="2023-05-06T11:00:10&#43;08:00">6 May, 2023</time>
+  
+</header>
+
+    
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;encoding/hex&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;encoding/xml&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;os&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;strings&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;testing&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Node</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Loc</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`xml:&#34;loc&#34;`</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Root</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">XMLName</span> <span style="color:#a6e22e">xml</span>.<span style="color:#a6e22e">Name</span> <span style="color:#e6db74">`xml:&#34;urlset&#34;`</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Nodes</span>   []<span style="color:#a6e22e">Node</span>   <span style="color:#e6db74">`xml:&#34;url&#34;`</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">file</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Open</span>(<span style="color:#e6db74">&#34;../public/sitemap.xml&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		panic(<span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">file</span>.<span style="color:#a6e22e">Close</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">root</span> <span style="color:#a6e22e">Root</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">decoder</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">xml</span>.<span style="color:#a6e22e">NewDecoder</span>(<span style="color:#a6e22e">file</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">decoder</span>.<span style="color:#a6e22e">Decode</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">root</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		panic(<span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">node</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">Nodes</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">Loc</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>以下是sitemap.xml的文件获取路径</p>
+<p><a href="https://codebeautiful.gitee.io/sitemap.xml">https://codebeautiful.gitee.io/sitemap.xml</a></p>
+
+    
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    
+  
+
+  </article>
+
+
+      </div>
+    </div>
+  </main>
+  
+  <footer class="Footer">
+    <div class="u-wrapper">
+      <div class="u-padding">
+        开发的乐趣在于相通而不同
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d08a2ad355cb7a065a41be081b43297e";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+    <meta name="description" content=" 通过链接 http://dunkels.com/adam/pt/download.html 进行下载相关版本的ptthread库 主要特点： 非常小的RAM开销-每个protothread只有两个字节，没有额外的堆栈 高度可移植性-protothreads库是100%纯C，没有特定于体系结构的汇编代码 可以与操作系统一起使用，也可以不使用操作系统 提供阻塞等待，无需完全多线程或堆栈切换 在类似BSD的开源许可证下免费提供 使用场景 内存受限系统 事件驱动协议栈 小型嵌入式系统 传感器网络节点 便携式C应用程序 注意事项： 由于原线程不会在阻塞调用中保存堆栈上下文，因此当原线程阻塞时，不会保留局部变量。这意味着应该非常小心地使用局部变量——如果有疑问，不要在protothread中使用局部变量！ 一个原线程是由对运行该原线程的函数的重复调用驱动的。每次调用函数时，原线程都会运行，直到它阻塞或退出。因此，原线程的调度由使用原线程的应用程序完成。
+相关头文件 lc-addrlabels.h 用GCC语法扩展实现的协程基础 lc-switch.h 用switch语句实现的协程基础 lc.h 该文件存在的意义仅仅为了选择以上两者之一 pt.h 基于lc.h的协程设施的真正实现 pt-sem.h 协程间通信（信号量）的实现 相关API： void PT_INIT(struct pt *pt);//初始化一个protothread。 void PT_BEGIN(struct pt *pt);// C函数中声明协程的开始。 void PT_WAIT_UNTIL(struct pt *pt, condition);//阻塞并等待条件为真。 void PT_WAIT_WHILE(struct pt *pt, condition);//条件为真时，阻塞并等待。 void PT_WAIT_THREAD(struct pt *pt, thread);//阻塞并等待协程完成。 void PT_SPAWN(struct pt *pt, struct pt *child, thread);//生成一个协程并等待它退出。 void PT_RESTART(struct pt *pt);//重新启动协程。 void PT_EXIT(struct pt *pt);//退出协程序 void PT_END(struct pt *pt);//声明协程的结束。 int PT_SCHEDULE(protothread);//创建一个协程 void PT_YIELD(struct pt *pt);//当前原线程的产量。 ">
+  
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.124.1">
+
+<meta content="" name="keywords">
+<meta content="Protothreads - 通通不同-博客" property="og:title">
+<meta content="开发的乐趣在于相通而不同 - " property="og:description">
+
+<meta name="msvalidate.01" content="F56ED94B7E86941E3DACEF208F07D329" />
+
+  <title>
+    
+    Protothreads
+     - 通通不同-博客
+    
+</title>
+
+  <link rel="canonical" href="https://blog.ttbt.work/post/protothreads/">
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+  <link rel="stylesheet" href="/css/base.min.4f231885947d13c748c815d93da49f07ab89afb67629f9970b7c054610e88e0b.css" integrity="sha256-TyMYhZR9E8dIyBXZPaSfB6uJr7Z2KfmXC3wFRhDojgs=" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <h1 class="Banner-heading">
+          <a class="Banner-link u-clickable" href="/">通通不同-博客</a>
+        </h1>
+      </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">全部</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">分类</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">标签</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <article>
+    <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/protothreads/" rel="bookmark">Protothreads</a>
+  </h2>
+  
+    <time datetime="2023-12-19T12:27:51&#43;08:00">19 December, 2023</time>
+  
+</header>
+
+    <ul>
+<li>通过链接 <a href="http://dunkels.com/adam/pt/download.html">http://dunkels.com/adam/pt/download.html</a> 进行下载相关版本的ptthread库</li>
+</ul>
+<h1 id="主要特点">
+  <a class="Heading-link u-clickable" href="/post/protothreads/#%e4%b8%bb%e8%a6%81%e7%89%b9%e7%82%b9">主要特点：</a>
+</h1>
+<blockquote>
+<ul>
+<li>非常小的RAM开销-每个protothread只有两个字节，没有额外的堆栈</li>
+<li>高度可移植性-protothreads库是100%纯C，没有特定于体系结构的汇编代码</li>
+<li>可以与操作系统一起使用，也可以不使用操作系统</li>
+<li>提供阻塞等待，无需完全多线程或堆栈切换</li>
+<li>在类似BSD的开源许可证下免费提供</li>
+</ul>
+</blockquote>
+<h1 id="使用场景">
+  <a class="Heading-link u-clickable" href="/post/protothreads/#%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af">使用场景</a>
+</h1>
+<blockquote>
+<ul>
+<li>内存受限系统</li>
+<li>事件驱动协议栈</li>
+<li>小型嵌入式系统</li>
+<li>传感器网络节点</li>
+<li>便携式C应用程序</li>
+</ul>
+</blockquote>
+<h2 id="注意事项">
+  <a class="Heading-link u-clickable" href="/post/protothreads/#%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9">注意事项：</a>
+</h2>
+<blockquote>
+<p>由于原线程不会在阻塞调用中保存堆栈上下文，因此当原线程阻塞时，不会保留局部变量。这意味着应该非常小心地使用局部变量——如果有疑问，不要在protothread中使用局部变量！
+一个原线程是由对运行该原线程的函数的重复调用驱动的。每次调用函数时，原线程都会运行，直到它阻塞或退出。因此，原线程的调度由使用原线程的应用程序完成。</p>
+</blockquote>
+<h2 id="相关头文件">
+  <a class="Heading-link u-clickable" href="/post/protothreads/#%e7%9b%b8%e5%85%b3%e5%a4%b4%e6%96%87%e4%bb%b6">相关头文件</a>
+</h2>
+<ol>
+<li>lc-addrlabels.h        用GCC语法扩展实现的协程基础</li>
+<li>lc-switch.h            用switch语句实现的协程基础</li>
+<li>lc.h                   该文件存在的意义仅仅为了选择以上两者之一</li>
+<li>pt.h                   基于lc.h的协程设施的真正实现</li>
+<li>pt-sem.h               协程间通信（信号量）的实现</li>
+</ol>
+<h2 id="相关api">
+  <a class="Heading-link u-clickable" href="/post/protothreads/#%e7%9b%b8%e5%85%b3api">相关API：</a>
+</h2>
+<ul>
+<li>void PT_INIT(struct pt *pt);//初始化一个protothread。</li>
+<li>void PT_BEGIN(struct pt *pt);// C函数中声明协程的开始。</li>
+<li>void PT_WAIT_UNTIL(struct pt *pt, condition);//阻塞并等待条件为真。</li>
+<li>void PT_WAIT_WHILE(struct pt *pt, condition);//条件为真时，阻塞并等待。</li>
+<li>void PT_WAIT_THREAD(struct pt *pt, thread);//阻塞并等待协程完成。</li>
+<li>void PT_SPAWN(struct pt *pt, struct pt *child, thread);//生成一个协程并等待它退出。</li>
+<li>void PT_RESTART(struct pt *pt);//重新启动协程。</li>
+<li>void PT_EXIT(struct pt *pt);//退出协程序</li>
+<li>void PT_END(struct pt *pt);//声明协程的结束。</li>
+<li>int PT_SCHEDULE(protothread);//创建一个协程</li>
+<li>void PT_YIELD(struct pt *pt);//当前原线程的产量。</li>
+</ul>
+
+    
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    
+  
+
+  </article>
+
+
+      </div>
+    </div>
+  </main>
+  
+  <footer class="Footer">
+    <div class="u-wrapper">
+      <div class="u-padding">
+        开发的乐趣在于相通而不同
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d08a2ad355cb7a065a41be081b43297e";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

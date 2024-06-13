@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.111.2">
+<meta name="generator" content="Hugo 0.124.1">
 
 <meta content="" name="keywords">
 <meta content="通通不同-博客" property="og:title">
@@ -138,9 +138,6 @@
     
     
     
-      
-      
-    
     
     
   
@@ -201,39 +198,48 @@
     <article>
       <header class="Heading">
   <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/uinavigationcontroller_scrollview_whiten/" rel="bookmark">解决UINavigationController 滑动UIScrollView出现白边问题</a>
+    <a class="Heading-link u-clickable" href="/post/mac_os_dev_env/" rel="bookmark">mac新电脑安装开发环境工具</a>
   </h2>
   
-    <time datetime="2023-03-31T15:18:50&#43;08:00">31 March, 2023</time>
+    <time datetime="2023-10-06T19:18:30&#43;08:00">6 October, 2023</time>
   
 </header>
 
       
-        <h3 id="问题描述">
-  <a class="Heading-link u-clickable" href="/post/uinavigationcontroller_scrollview_whiten/#%e9%97%ae%e9%a2%98%e6%8f%8f%e8%bf%b0">问题描述</a>
-</h3>
-<blockquote>
-<p>开发过程中出现ScrollView滑动会会使NavigationBar出现白边问题</p>
-</blockquote>
-<ul>
-<li>正常情况
-<img src="/images/UINavigationWhiten1.png" alt="正常情况"></li>
-<li>异常情况
-<img src="/images/UINavigationWhiten2.png" alt="正常情况"></li>
-</ul>
-<h3 id="解决方法">
-  <a class="Heading-link u-clickable" href="/post/uinavigationcontroller_scrollview_whiten/#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95">解决方法</a>
-</h3>
-<blockquote>
-<p>在iOS13版本之后添加以下代码可以解决该问题，代码放到第一个UIControllerView的viewDidLoad方法中</p>
-</blockquote>
+        <h1 id="brew安装">
+  <a class="Heading-link u-clickable" href="/post/mac_os_dev_env/#brew%e5%ae%89%e8%a3%85">brew安装</a>
+</h1>
 
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#75715e">#available</span>(<span style="color:#75715e">iOS</span> <span style="color:#ae81ff">13.0</span>, <span style="color:#f92672">*</span>) {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> apperance = UINavigationBarAppearance()
-</span></span><span style="display:flex;"><span>  apperance.backgroundColor = UIColor.black
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">self</span>.navigationController?.navigationBar.standardAppearance = apperance
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/bin/bash -c <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>curl -fsSL https://gitee.com/ineo6/homebrew-install/raw/master/install.sh<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span></span></span></code></pre></div>
+<p>oh-my-zsh安装</p>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sh -c <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>curl -fsSL https://gitee.com/mirrors/oh-my-zsh/raw/master/tools/install.sh<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span></span></span></code></pre></div>
+<p>item2安装</p>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install item2 --cask</span></span></code></pre></div>
+<p>node安装</p>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install node
+</span></span><span style="display:flex;"><span>npm install -g n
+</span></span><span style="display:flex;"><span>sudo n install 12.13.1
+</span></span><span style="display:flex;"><span>brew uninstall node</span></span></code></pre></div>
+<p>watchman安装</p>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install watchman</span></span></code></pre></div>
+<p>cocoapods安装</p>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install cocoapods</span></span></code></pre></div>
+<p>go安装</p>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install go</span></span></code></pre></div>
+<p>hugo安装</p>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install hugo</span></span></code></pre></div>
+<p>xcode 命令行切换</p>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo xcode-select -r
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>sudo xcode-select --switch /Library/Developer/CommandLineTools</span></span></code></pre></div>
 
       
       
@@ -257,28 +263,38 @@
     <article>
       <header class="Heading">
   <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/storyboard_uinavigation_back_cancel/" rel="bookmark">iOS开发取消UINavigationController返回按钮的问题和自定义按钮颜色</a>
+    <a class="Heading-link u-clickable" href="/post/esp32c3_flash_partition_table/" rel="bookmark">Esp32c3 flash 分区最大化的OTA分区表</a>
   </h2>
   
-    <time datetime="2023-03-31T14:20:40&#43;08:00">31 March, 2023</time>
+    <time datetime="2023-07-11T17:28:51&#43;08:00">11 July, 2023</time>
   
 </header>
 
       
-        <ul>
-<li>
-<p>如图修改BackButton属性值给一个空格回车
-<img src="/images/UINavigationItem1.png" alt="设置Back按钮"></p>
-</li>
-<li>
-<p>接下来会发现Navigation Item下会有一个新的控件出现，如图
-<img src="/images/UINavigationItem2.png" alt="设置按钮颜色"></p>
-</li>
-<li>
-<p>选中该组件Bar Button Item，修改相关属性值
-其中Tint属性就是修改按钮颜色值</p>
-</li>
-</ul>
+        <p>测试环境为esp32c3 4MB flash</p>
+
+<pre tabindex="0"><code># ESP-IDF Partition Table
+# Name,   Type, SubType, Offset,  Size, Flags
+nvs,      data, nvs,     0x9000,  0x4000,
+otadata,  data, ota,     0xd000,  0x2000,
+phy_init, data, phy,     0xf000,  0x1000,
+ota_0,  app,  ota_0,   0x10000, 1980K,
+ota_1,    app,  ota_1,   0x200000, 1980K,</code></pre>
+
+<pre tabindex="0"><code>*******************************************************************************
+# ESP-IDF Partition Table
+# Name, Type, SubType, Offset, Size, Flags
+nvs,data,nvs,0x9000,16K,
+otadata,data,ota,0xd000,8K,
+phy_init,data,phy,0xf000,4K,
+ota_0,app,ota_0,0x10000,1980K,
+ota_1,app,ota_1,0x200000,1980K,
+*******************************************************************************</code></pre>
+<p>0x8000，位置烧录分区表</p>
+<p>0x0,烧录bootloader</p>
+<p>0x0: bootloader.bin</p>
+<p>0x8000: partition-table.bin</p>
+<p>0xd000: ota_data_initial.bin</p>
 
       
       
@@ -293,32 +309,6 @@
 
 
 
-
-  <footer>
-    
-      
-    
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/ios/" rel="tag">iOS</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/uinavigationcontroller/" rel="tag">UINavigationController</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%89%E9%92%AE%E9%A2%9C%E8%89%B2/" rel="tag">自定义按钮颜色</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
 
     </article>
     
@@ -328,40 +318,73 @@
     <article>
       <header class="Heading">
   <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/swift_available/" rel="bookmark">swift 使用 @available 或 #available</a>
+    <a class="Heading-link u-clickable" href="/post/golang_platform_name/" rel="bookmark">Golang_platform_name</a>
   </h2>
   
-    <time datetime="2023-03-30T17:06:01&#43;08:00">30 March, 2023</time>
+    <time datetime="2023-07-10T16:02:33&#43;08:00">10 July, 2023</time>
+  
+</header>
+
+      
+        <p>Golang文件名命名规则</p>
+<p>在golang源代码中，经常看到各种文件名，比如： bolt_windows.go。</p>
+<p>下面对文件名命令规则的说明：
+1、平台区分
+文件名_平台。</p>
+<p>例： file_windows.go, file_unix.go</p>
+<p>可选为：windows, unix, posix, plan9, darwin, bsd, linux, freebsd, nacl, netbsd, openbsd, solaris, dragonfly, bsd, notbsd， android，stubs</p>
+<p>2、测试单元
+文件名<em>test.go或者 文件名</em>平台_test.go。
+例： path_test.go, path_windows_test.go</p>
+<p>3、版本区分(猜测)
+文件名_版本号等。
+例：trap_windows_1.4.go</p>
+<p>4、CPU类型区分, 汇编用的多
+文件名_(平台:可选)_CPU类型.
+例：vdso_linux_amd64.go
+可选：amd64, none, 386, arm, arm64, mips64, s390,mips64x,ppc64x, nonppc64x, s390x, x86,amd64p32</p>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/esp32c3_fresh/" rel="bookmark">Esp32c3烧写</a>
+  </h2>
+  
+    <time datetime="2023-06-21T09:41:09&#43;08:00">21 June, 2023</time>
   
 </header>
 
       
         
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#75715e">#available</span>(<span style="color:#75715e">iOS</span> <span style="color:#ae81ff">14</span>, <span style="color:#f92672">*</span>) {
-</span></span><span style="display:flex;"><span>  print(<span style="color:#e6db74">&#34;This code only runs on iOS 14 and up&#34;</span>)
-</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>  print(<span style="color:#e6db74">&#34;This code only runs on iOS 13 and lower&#34;</span>)
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
-<p>在 guard 语句中使用 available 属性：</p>
+<pre tabindex="0"><code>//察除
+esptool.py --chip esp32c3 --port /dev/ttyUSB0 erase_flash
 
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">guard</span> <span style="color:#75715e">#available</span>(<span style="color:#75715e">iOS</span> <span style="color:#ae81ff">14</span>, <span style="color:#f92672">*</span>) <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>  print(<span style="color:#e6db74">&#34;Returning if iOS 13 or lower&#34;</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span>
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
-<h2 id="available和available之间的区别">
-  <a class="Heading-link u-clickable" href="/post/swift_available/#available%e5%92%8cavailable%e4%b9%8b%e9%97%b4%e7%9a%84%e5%8c%ba%e5%88%ab">@available和#available之间的区别</a>
-</h2>
-<p>@available: 用于标记类或方法的可用性</p>
-<p>#available: 用于仅针对特定平台或版本执行一段代码</p>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span>@available(iOS <span style="color:#ae81ff">15</span>, <span style="color:#f92672">*</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">App</span> {}
-</span></span><span style="display:flex;"><span>@available(iOS <span style="color:#ae81ff">15</span>, <span style="color:#f92672">*</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">app</span>() {}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#75715e">#available</span>(<span style="color:#75715e">iOS</span> <span style="color:#ae81ff">15</span>, <span style="color:#f92672">*</span>) {
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+// 烧录
+esptool.py --chip esp32c3 --port /dev/ttyUSB0 --baud 460800 write_flash -z 0x0 esp32c3-20220117-v1.18.bin</code></pre>
+<p>idf.py set-target esp32c3</p>
+<p>idf.py menuconfig</p>
+<p>idf.py build</p>
+<p>idf.py -p PORT [-b BAUD]</p>
+<p>idf.py -p PORT monitor</p>
 
       
       
@@ -385,26 +408,24 @@
     <article>
       <header class="Heading">
   <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/swift_tableview_delete_style/" rel="bookmark">Swift 自定义UITableView左滑删除样式</a>
+    <a class="Heading-link u-clickable" href="/post/linux_udp/" rel="bookmark">Linux发送UDP报文</a>
   </h2>
   
-    <time datetime="2023-03-30T16:44:09&#43;08:00">30 March, 2023</time>
+    <time datetime="2023-06-20T13:09:51&#43;08:00">20 June, 2023</time>
   
 </header>
 
       
         
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span>@available(iOS <span style="color:#ae81ff">11</span>, <span style="color:#f92672">*</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">tableView</span>(<span style="color:#66d9ef">_</span> tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -&gt; UISwipeActionsConfiguration? {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> deleteRowAction = UIContextualAction.<span style="color:#66d9ef">init</span>(style: UIContextualAction.Style.destructive, title: <span style="color:#e6db74">&#34;DELETE&#34;</span>) {(action: UIContextualAction , sourceView: UIView, completionHandle: (Bool) -&gt; Void) <span style="color:#66d9ef">in</span>
-</span></span><span style="display:flex;"><span>    my_log(<span style="color:#e6db74">&#34;delete click&#34;</span>)
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  deleteRowAction.image = UIImage(named: <span style="color:#e6db74">&#34;delete&#34;</span>)
-</span></span><span style="display:flex;"><span>  deleteRowAction.backgroundColor = UIColor(hexString: <span style="color:#e6db74">&#34;FE9B02&#34;</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> config = UISwipeActionsConfiguration.<span style="color:#66d9ef">init</span>(actions: [deleteRowAction])
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> config
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;hello&#34;</span> | socat - udp4-datagram:192.168.31.229:8011</span></span></code></pre></div>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>apt install socat</span></span></code></pre></div>
+<p>tcpdump -D 获取网络适配器列表，以下是在Ubuntu上获取到的结果：</p>
+<p>tcpdump -i &lt;需要监控的网络适配器编号&gt;，例如我想监控我的无线网卡wlan0，则使用tcpdump -i 2。</p>
+<p>使用无线网卡wlan0监控IP地址为172.16.86.111上443端口的tcp协议：
+　　tcpdump -i 2 host 172.16.86.111 and tcp port 443</p>
+<p>如果想要显示数据包的内容，需要使用-X参数，如，我想要显示捕获的https数据包http header的内容：
+　　tcpdump -X -i 2 host 172.16.86.111 and tcp port 443</p>
 
       
       
@@ -428,470 +449,29 @@
     <article>
       <header class="Heading">
   <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/platform_define/" rel="bookmark">各个平台的内置宏定义</a>
+    <a class="Heading-link u-clickable" href="/post/golang_gorm_set_fk_null/" rel="bookmark">Golang gorm 解决更新无法将外键设置为NULL</a>
   </h2>
   
-    <time datetime="2023-03-28T19:24:03&#43;08:00">28 March, 2023</time>
+    <time datetime="2023-06-01T18:04:48&#43;08:00">1 June, 2023</time>
   
 </header>
 
       
-        <h3 id="windows">
-  <a class="Heading-link u-clickable" href="/post/platform_define/#windows">Windows</a>
-</h3>
-<ul>
-<li>WIN32、_WIN32、<em>WIN32</em>、WIN64、_WIN64、<em>WIN64</em></li>
-</ul>
-<h3 id="android">
-  <a class="Heading-link u-clickable" href="/post/platform_define/#android">Android</a>
-</h3>
-<ul>
-<li>ANDROID、<code>__ANDROID__</code></li>
-</ul>
-<h3 id="linux">
-  <a class="Heading-link u-clickable" href="/post/platform_define/#linux">Linux</a>
-</h3>
-<ul>
-<li><code>__linux__</code></li>
-</ul>
-<h3 id="iosmac">
-  <a class="Heading-link u-clickable" href="/post/platform_define/#iosmac">iOS/Mac</a>
-</h3>
-<ul>
-<li><code>__APPLE__</code>、TARGET_OS_IPHONE、TARGET_IPHONE_SIMULATOR、TARGET_OS_MAC</li>
-</ul>
-<h2 id="代码判断">
-  <a class="Heading-link u-clickable" href="/post/platform_define/#%e4%bb%a3%e7%a0%81%e5%88%a4%e6%96%ad">代码判断</a>
-</h2>
-
-<pre tabindex="0"><code>#if defined(WIN32) || defined(_WIN32) || defined(_WIN32_) || defined(WIN64) || defined(_WIN64) || defined(_WIN64_)
-#define OS_WINDOWS       1
-#elif defined(ANDROID) || defined(__ANDROID__)
-#define OS_ANDROID       1
-#elif defined(__linux__)
-#define OS_LINUX	         1
-#elif defined(__APPLE__) || defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR) || defined(TARGET_OS_MAC)
-#define OS_IOS           1
-#else
-#define OS_UNKNOWN 1
-#endif</code></pre>
-
-      
-      
-
-
-  
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-    
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/c/" rel="tag">c</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/%E7%B3%BB%E7%BB%9F%E5%88%A4%E5%AE%9A/" rel="tag">系统判定</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/android/" rel="tag">Android</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/windows/" rel="tag">Windows</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/linux/" rel="tag">linux</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/ios/" rel="tag">iOS</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/osx/" rel="tag">OSX</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/program_data_directory/" rel="bookmark">桌面软件数据存放路径</a>
-  </h2>
-  
-    <time datetime="2023-03-22T22:39:52&#43;08:00">22 March, 2023</time>
-  
-</header>
-
-      
-        <h2 id="windows下程序数据存放目录">
-  <a class="Heading-link u-clickable" href="/post/program_data_directory/#windows%e4%b8%8b%e7%a8%8b%e5%ba%8f%e6%95%b0%e6%8d%ae%e5%ad%98%e6%94%be%e7%9b%ae%e5%bd%95">windows下程序数据存放目录</a>
-</h2>
-<blockquote>
-<p>C:\Users\用户名\AppData \Roaming,
-通过环境变量%AppData%可以访问,这里用来存放当前登录用户所产生的数据，
-对其他的用户不可见。如果你在公司网络,加入了域,这个文件夹会通过网路同步，
-让你的数据在不同的计算机上漫游。该目录常被滥用。</p>
-</blockquote>
-<blockquote>
-<p>C:\Users\用户名\AppData \Local,
-通过环境变量%LocalAppData%可以访问，
-这个目录和上面的基本- -样,不过仅限本地,加入了域也不会同步。
--般情况下，如果不加入域，Roaming和Local并没有什么区别，
-但是需要网络同步的时候,尽量把不必要的数据留在本地。
-个人使用的软件可以装在C:\Users\用户名\AppData\Local/\Programs下面。</p>
-</blockquote>
-<blockquote>
-<p>C:\ProgramData,
-和AppData的区别在于,这里存放的数据是公用的,
-如果你希望软件的数据在所有的用户之间保持一致,
-那么程序生成的数据应当存放在这里。</p>
-</blockquote>
-<h2 id="macos-app程序数据存放目录">
-  <a class="Heading-link u-clickable" href="/post/program_data_directory/#macos-app%e7%a8%8b%e5%ba%8f%e6%95%b0%e6%8d%ae%e5%ad%98%e6%94%be%e7%9b%ae%e5%bd%95">macOS App程序数据存放目录</a>
-</h2>
-<blockquote>
-<p>/Users/用户名/Library/Application Support</p>
-</blockquote>
-
-      
-      
-
-
-  
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-    
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/%E8%BD%AF%E4%BB%B6%E5%AD%98%E6%94%BE%E7%9B%AE%E5%BD%95/" rel="tag">软件存放目录</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/windows/" rel="tag">Windows</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/macos/" rel="tag">macOS</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/linux_create_user/" rel="bookmark">linux创建新用户</a>
-  </h2>
-  
-    <time datetime="2023-03-21T15:23:06&#43;08:00">21 March, 2023</time>
-  
-</header>
-
-      
-        <h3 id="创建用户">
-  <a class="Heading-link u-clickable" href="/post/linux_create_user/#%e5%88%9b%e5%bb%ba%e7%94%a8%e6%88%b7">创建用户</a>
-</h3>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>useradd -d /home/test -m test</span></span></code></pre></div>
-<blockquote>
-<p>useradd：创建新用户</p>
-</blockquote>
-<ul>
-<li>-d 指定目录文件夹</li>
-<li>-m 新账号名</li>
-<li>-c comment 指定一段注释性描述</li>
-<li>-d 目录 指定用户主目录，如果此目录不存在，则同时使用-m选项，可以创建主目录</li>
-<li>-g 用户组 指定用户所属的用户组</li>
-<li>-G 用户组，用户组 指定用户所属的附加组</li>
-<li>-s Shell文件 指定用户的登录Shell</li>
-<li>-u 用户号 指定用户的用户号，如果同时有-o选项，则可以重复使用其他用户的标识号</li>
-</ul>
-<h3 id="设置密码">
-  <a class="Heading-link u-clickable" href="/post/linux_create_user/#%e8%ae%be%e7%bd%ae%e5%af%86%e7%a0%81">设置密码</a>
-</h3>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>passwd test</span></span></code></pre></div>
-<p>会提示你输入两次密码</p>
-<h3 id="删除账号">
-  <a class="Heading-link u-clickable" href="/post/linux_create_user/#%e5%88%a0%e9%99%a4%e8%b4%a6%e5%8f%b7">删除账号</a>
-</h3>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>userdel test</span></span></code></pre></div>
-
-      
-      
-
-
-  
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-    
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/linux/" rel="tag">linux</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7/" rel="tag">创建用户</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/%E8%AE%BE%E7%BD%AE%E5%AF%86%E7%A0%81/" rel="tag">设置密码</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/%E5%88%A0%E9%99%A4%E8%B4%A6%E5%8F%B7/" rel="tag">删除账号</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/system_monitor/" rel="bookmark">服务器运维监控命令汇总</a>
-  </h2>
-  
-    <time datetime="2023-03-21T14:25:13&#43;08:00">21 March, 2023</time>
-  
-</header>
-
-      
-        <h1 id="who命令">
-  <a class="Heading-link u-clickable" href="/post/system_monitor/#who%e5%91%bd%e4%bb%a4">who命令</a>
-</h1>
-<p>输出信息包括 用户名，终端类型，登录日期，访问IP
--H 打印列标题
--b 查看上次启动时间</p>
-
-<pre tabindex="0"><code>who [-H|-b]
-who [-H|-b] /var/log/wtmp</code></pre>
-<h1 id="查看命令历史">
-  <a class="Heading-link u-clickable" href="/post/system_monitor/#%e6%9f%a5%e7%9c%8b%e5%91%bd%e4%bb%a4%e5%8e%86%e5%8f%b2">查看命令历史</a>
-</h1>
-<ul>
-<li>每个用户都有一份命令历史记录</li>
-<li>查看$HOME/.bash_history</li>
-<li>或者在终端输入： history</li>
-</ul>
-<h1 id="last命令">
-  <a class="Heading-link u-clickable" href="/post/system_monitor/#last%e5%91%bd%e4%bb%a4">last命令</a>
-</h1>
-<ul>
-<li>查看用户登录历史</li>
-<li>命令会读取 /var/log/wtmp文件；</li>
-<li>/var/log/btmp可以显示远程登陆信息。</li>
-<li>last默认打印所有用户的登陆信息。</li>
-<li>如果想打印某个用户的登陆信息，可以使用</li>
-<li>last 用户名</li>
-</ul>
-<p>选项：</p>
-<ul>
-<li>（1）-x：显示系统开关机以及执行等级信息</li>
-<li>（2）-a：将登陆ip显示在最后一行</li>
-<li>（3）-f ：读取特定文件，可以选择 -f /var/log/btmp文件</li>
-<li>（4）-d：将IP地址转换为主机名</li>
-<li>（5）-n：设置列出名单的显示列数</li>
-<li>（6）-t：查看指定时间的用户登录历史</li>
-</ul>
-<h1 id="lastlog命令">
-  <a class="Heading-link u-clickable" href="/post/system_monitor/#lastlog%e5%91%bd%e4%bb%a4">lastlog命令</a>
-</h1>
-<blockquote>
-<p>查看所有用户最近一次登录历史</p>
-</blockquote>
-<blockquote>
-<p>命令将读取/var/log/lastlog文件；用户排列顺序按照/etc/passwd中的顺序</p>
-</blockquote>
-<p>选项：</p>
-<ul>
-<li>（1） -u：查看某个用户的最后一次登陆历史</li>
-<li>（2） -t：查看最近几天之内的用户登录历史</li>
-<li>（3） -b：查看指定天数之前的用户登录历史</li>
-</ul>
-<h1 id="ac命令">
-  <a class="Heading-link u-clickable" href="/post/system_monitor/#ac%e5%91%bd%e4%bb%a4">ac命令</a>
-</h1>
-<blockquote>
-<p>根据/var/log/wtmp文件中的登陆和退出时间报告用户连接的时间（小时），默认输出报告总时间</p>
-</blockquote>
-<ul>
-<li>（1）-p：显示每个用户的连接时间</li>
-<li>（2）-d：显示每天的连接时间</li>
-<li>（3）-y：显示年份，和-d配合使用</li>
-</ul>
-
-      
-      
-
-
-  
-
-  
-
-  
-
-
-
-
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/supervisor/" rel="bookmark">Supervisor管理GO程序</a>
-  </h2>
-  
-    <time datetime="2023-03-21T14:04:34&#43;08:00">21 March, 2023</time>
-  
-</header>
-
-      
-        <h3 id="安装">
-  <a class="Heading-link u-clickable" href="/post/supervisor/#%e5%ae%89%e8%a3%85">安装</a>
-</h3>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>apt-get install supervisor</span></span></code></pre></div>
-<h3 id="使用说明">
-  <a class="Heading-link u-clickable" href="/post/supervisor/#%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e">使用说明</a>
-</h3>
-<p>supervisor配置文件：/etc/supervisor/supervisord.conf
-子进程配置文件路径：/etc/supervisor/conf.d/</p>
-<h3 id="常用命令说明">
-  <a class="Heading-link u-clickable" href="/post/supervisor/#%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4%e8%af%b4%e6%98%8e">常用命令说明</a>
-</h3>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 查看所有进程的状态</span>
-</span></span><span style="display:flex;"><span>supervisorctl status
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 停止iot</span>
-</span></span><span style="display:flex;"><span>supervisorctl stop iot
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启动iot</span>
-</span></span><span style="display:flex;"><span>supervisorctl start iot
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 重启iot</span>
-</span></span><span style="display:flex;"><span>supervisorctl restart iot
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 配置文件修改后使用该命令加载新的配置</span>
-</span></span><span style="display:flex;"><span>supervisorctl update
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 重新启动配置中的所有程序</span>
-</span></span><span style="display:flex;"><span>supervisorctl reload</span></span></code></pre></div>
-<h3 id="配置go进程">
-  <a class="Heading-link u-clickable" href="/post/supervisor/#%e9%85%8d%e7%bd%aego%e8%bf%9b%e7%a8%8b">配置GO进程</a>
-</h3>
-
-<pre tabindex="0"><code class="language-conf" data-lang="conf">[program:iot]
-# 脚本目录
-directory=/opt/iot
-# 脚本执行命令
-command=/opt/iot/main
-# 日志输出
-stdout_logfile=/opt/iot/supervisor/main.log
-# supervisor启动的时候是否随着同时启动，默认True
-autostart=true
-autorestart=true
-startsecs=5
-priority=1
-stopasgroup=true
-killasgroup=true</code></pre>
-<h3 id="常见问题">
-  <a class="Heading-link u-clickable" href="/post/supervisor/#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98">常见问题</a>
+        <h3 id="解决方案">
+  <a class="Heading-link u-clickable" href="/post/golang_gorm_set_fk_null/#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88">解决方案</a>
 </h3>
 <ol>
-<li>unix:///var/run/supervisor.sock no such file</li>
+<li>清楚外键引用的数据然后保存</li>
 </ol>
-<blockquote>
-<p>问题描述：安装好supervisor没有开启服务直接使用supervisorctl报的错</p>
-</blockquote>
-<blockquote>
-<p>解决办法：supervisord -c /etc/supervisord.conf</p>
-</blockquote>
-<ol start="2">
-<li>command中指定的进程已经起来，但supervisor还不断重启</li>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">gorm</span>.<span style="color:#a6e22e">Model</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">User</span>{}).<span style="color:#a6e22e">Association</span>(<span style="color:#e6db74">&#34;Role&#34;</span>).<span style="color:#a6e22e">Clear</span>()
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">gorm</span>.<span style="color:#a6e22e">Save</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">user</span>)</span></span></code></pre></div>
+<ol>
+<li>查询时将Preload方法去掉</li>
 </ol>
-<blockquote>
-<p>问题描述：command中启动方式为后台启动，导致识别不到pid，然后不断重启，这里使用的是elasticsearch，command指定的是$path/bin/elasticsearch -d</p>
-</blockquote>
-<blockquote>
-<p>解决办法：supervisor无法检测后台启动进程的pid，而supervisor本身就是后台启动守护进程，因此不用担心这个</p>
-</blockquote>
-<ol start="3">
-<li>启动了多个supervisord服务，导致无法正常关闭服务</li>
-</ol>
-<blockquote>
-<p>问题描述：在运行supervisord -c /etc/supervisord.conf之前，直接运行过supervisord -c /etc/supervisord.d/xx.conf导致有些进程被多个superviord管理，无法正常关闭进程。</p>
-</blockquote>
-<blockquote>
-<p>解决办法：使用ps -fe | grep supervisord查看所有启动过的supervisord服务，kill相关的进程。</p>
-</blockquote>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">gorm</span>.<span style="color:#a6e22e">Preload</span>(<span style="color:#e6db74">&#34;Role&#34;</span>).<span style="color:#a6e22e">Where</span>(<span style="color:#e6db74">&#34;id = 1&#34;</span>).<span style="color:#a6e22e">First</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">user</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">gorm</span>.<span style="color:#a6e22e">Where</span>(<span style="color:#e6db74">&#34;id = 1&#34;</span>).<span style="color:#a6e22e">First</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">user</span>)</span></span></code></pre></div>
 
       
       
@@ -906,28 +486,6 @@ killasgroup=true</code></pre>
 
 
 
-
-  <footer>
-    
-      
-    
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/supervisor/" rel="tag">Supervisor</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/go%E7%9A%84%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" rel="tag">GO的守护进程管理</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
 
     </article>
     
@@ -937,47 +495,53 @@ killasgroup=true</code></pre>
     <article>
       <header class="Heading">
   <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/config/" rel="bookmark">使用hugo配置博客文档</a>
+    <a class="Heading-link u-clickable" href="/post/spring_boot_example_used/" rel="bookmark">Spring_boot使用Example对象做条件查询</a>
   </h2>
   
-    <time datetime="2023-03-11T23:16:37&#43;08:00">11 March, 2023</time>
+    <time datetime="2023-05-30T17:30:10&#43;08:00">30 May, 2023</time>
   
 </header>
 
       
-        <h3 id="安装">
-  <a class="Heading-link u-clickable" href="/post/config/#%e5%ae%89%e8%a3%85">安装</a>
+        <h3 id="基本使用方法">
+  <a class="Heading-link u-clickable" href="/post/spring_boot_example_used/#%e5%9f%ba%e6%9c%ac%e4%bd%bf%e7%94%a8%e6%96%b9%e6%b3%95">基本使用方法</a>
 </h3>
 
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ brew install hugo</span></span></code></pre></div>
-<h3 id="生成博客">
-  <a class="Heading-link u-clickable" href="/post/config/#%e7%94%9f%e6%88%90%e5%8d%9a%e5%ae%a2">生成博客</a>
-</h3>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hugo new site myblog</span></span></code></pre></div>
-<h3 id="安装皮肤">
-  <a class="Heading-link u-clickable" href="/post/config/#%e5%ae%89%e8%a3%85%e7%9a%ae%e8%82%a4">安装皮肤</a>
-</h3>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd themes
-</span></span><span style="display:flex;"><span>$ git clone https://github.com/de-souza/hugo-flex.git</span></span></code></pre></div>
-<h3 id="创建文章">
-  <a class="Heading-link u-clickable" href="/post/config/#%e5%88%9b%e5%bb%ba%e6%96%87%e7%ab%a0">创建文章</a>
-</h3>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hugo new post/config.md</span></span></code></pre></div>
-<h3 id="运行hugo">
-  <a class="Heading-link u-clickable" href="/post/config/#%e8%bf%90%e8%a1%8chugo">运行hugo</a>
-</h3>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo server -D --theme<span style="color:#f92672">=</span>hugo-flex --buildDrafts</span></span></code></pre></div>
-<h3 id="部署">
-  <a class="Heading-link u-clickable" href="/post/config/#%e9%83%a8%e7%bd%b2">部署</a>
-</h3>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo --theme<span style="color:#f92672">=</span>hugo-flex --baseUrl<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://blog.ttbt.work&#34;</span> --buildDrafts
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span> <span style="color:#a6e22e">@GetMapping</span>(<span style="color:#e6db74">&#34;/subwayLines&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> ResponseListBase<span style="color:#f92672">&lt;</span>SubwayLine<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">list</span>(<span style="color:#a6e22e">@RequestParam</span>(required <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>, defaultValue <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0&#34;</span>) <span style="color:#66d9ef">int</span> page,
+</span></span><span style="display:flex;"><span>                                             <span style="color:#a6e22e">@RequestParam</span>(required <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>, defaultValue <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;20&#34;</span>) <span style="color:#66d9ef">int</span> size,
+</span></span><span style="display:flex;"><span>                                             <span style="color:#a6e22e">@RequestParam</span>(required <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>, defaultValue <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>) String lineNo,
+</span></span><span style="display:flex;"><span>                                             <span style="color:#a6e22e">@RequestParam</span>(required <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>, defaultValue <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>) String lineName) {
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>hugo --theme<span style="color:#f92672">=</span>hugo-flex --baseUrl<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://codebeautiful.gitee.io&#34;</span> --buildDrafts</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>        SubwayLine subwayLine <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SubwayLine();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        ExampleMatcher em <span style="color:#f92672">=</span> ExampleMatcher.<span style="color:#a6e22e">matching</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(lineNo <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>lineNo.<span style="color:#a6e22e">equals</span>(<span style="color:#e6db74">&#34;&#34;</span>)) {
+</span></span><span style="display:flex;"><span>            subwayLine.<span style="color:#a6e22e">setLineNo</span>(lineNo);
+</span></span><span style="display:flex;"><span>            em <span style="color:#f92672">=</span> em.<span style="color:#a6e22e">withMatcher</span>(<span style="color:#e6db74">&#34;lineNo&#34;</span>, GenericPropertyMatcher::startsWith);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(lineName <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>lineName.<span style="color:#a6e22e">equals</span>(<span style="color:#e6db74">&#34;&#34;</span>)) {
+</span></span><span style="display:flex;"><span>            subwayLine.<span style="color:#a6e22e">setLineName</span>(lineName);
+</span></span><span style="display:flex;"><span>            em <span style="color:#f92672">=</span> em.<span style="color:#a6e22e">withMatcher</span>(<span style="color:#e6db74">&#34;lineName&#34;</span>, GenericPropertyMatcher::startsWith);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        Page<span style="color:#f92672">&lt;</span>SubwayLine<span style="color:#f92672">&gt;</span> subwayLinePage <span style="color:#f92672">=</span> repository.<span style="color:#a6e22e">findAll</span>(Example.<span style="color:#a6e22e">of</span>(subwayLine, em), PageRequest.<span style="color:#a6e22e">of</span>(page, size));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> ResponseListBase<span style="color:#f92672">&lt;&gt;</span>(subwayLinePage);
+</span></span><span style="display:flex;"><span>    }</span></span></code></pre></div>
+<blockquote>
+<p>注意事项：官方用例写法：</p>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ExampleMatcher matcher <span style="color:#f92672">=</span> ExampleMatcher.<span style="color:#a6e22e">matching</span>()
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">withMatcher</span>(<span style="color:#e6db74">&#34;firstname&#34;</span>, match <span style="color:#f92672">-&gt;</span> match.<span style="color:#a6e22e">endsWith</span>())
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">withMatcher</span>(<span style="color:#e6db74">&#34;firstname&#34;</span>, match <span style="color:#f92672">-&gt;</span> match.<span style="color:#a6e22e">startsWith</span>());</span></span></code></pre></div>
+<p>自己的写法：</p>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ExampleMatcher em <span style="color:#f92672">=</span> ExampleMatcher.<span style="color:#a6e22e">matching</span>();
+</span></span><span style="display:flex;"><span>em <span style="color:#f92672">=</span> exampleMatcher.<span style="color:#a6e22e">withMatcher</span>(<span style="color:#e6db74">&#34;lineNo&#34;</span>, ExampleMatcher.<span style="color:#a6e22e">GenericPropertyMatcher</span>::startsWith);</span></span></code></pre></div>
+<p>其中重新付值是必须的，查看withMatcher代码会发现，返回一个新的对象，如果不做赋值，会导致没有配置模糊查询</p>
+<p>第二个注意点是其中的<code>lineNo</code>必须和对象的名称一致，如果 <code>line_no</code>导致模糊查询不生效。</p>
+</blockquote>
 
       
       
@@ -992,39 +556,152 @@ killasgroup=true</code></pre>
 
 
 
-
-  <footer>
-    
-      
-    
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/hugo/" rel="tag">hugo</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/" rel="tag">博客搭建指南</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/hugo-flex/" rel="tag">hugo-flex</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
 
     </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/gin_swagger_used/" rel="bookmark">Gin-swagger使用汇总</a>
+  </h2>
+  
+    <time datetime="2023-05-25T09:32:55&#43;08:00">25 May, 2023</time>
+  
+</header>
+
+      
+        
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/springboot3.0_security_use/" rel="bookmark">SpringBoot3.0 使用Spring Security</a>
+  </h2>
+  
+    <time datetime="2023-05-16T09:26:46&#43;08:00">16 May, 2023</time>
+  
+</header>
+
+      
+        <h2 id="以前版本使用方式">
+  <a class="Heading-link u-clickable" href="/post/springboot3.0_security_use/#%e4%bb%a5%e5%89%8d%e7%89%88%e6%9c%ac%e4%bd%bf%e7%94%a8%e6%96%b9%e5%bc%8f">以前版本使用方式</a>
+</h2>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SecurityConfiguration</span> <span style="color:#66d9ef">extends</span> WebSecurityConfigurerAdapter {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">configure</span>(WebSecurity web) {
+</span></span><span style="display:flex;"><span>        web.<span style="color:#a6e22e">ignoring</span>().<span style="color:#a6e22e">antMatchers</span>(<span style="color:#e6db74">&#34;/ignore1&#34;</span>, <span style="color:#e6db74">&#34;/ignore2&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">configure</span>(HttpSecurity http) <span style="color:#66d9ef">throws</span> Exception {
+</span></span><span style="display:flex;"><span>        http
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">authorizeRequests</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">anyRequest</span>().<span style="color:#a6e22e">authenticated</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">and</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">httpBasic</span>(withDefaults());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<h2 id="新版使用">
+  <a class="Heading-link u-clickable" href="/post/springboot3.0_security_use/#%e6%96%b0%e7%89%88%e4%bd%bf%e7%94%a8">新版使用</a>
+</h2>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 不需要继承WebSecurityConfigurerAdapter</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SecurityConfiguration</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Bean</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> WebSecurityCustomizer <span style="color:#a6e22e">webSecurityCustomizer</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (web) <span style="color:#f92672">-&gt;</span> web.<span style="color:#a6e22e">ignoring</span>().<span style="color:#a6e22e">requestMatchers</span>(<span style="color:#e6db74">&#34;/ignore1&#34;</span>, <span style="color:#e6db74">&#34;/ignore2&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Bean</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> SecurityFilterChain <span style="color:#a6e22e">filterChain</span>(HttpSecurity http) <span style="color:#66d9ef">throws</span> Exception {
+</span></span><span style="display:flex;"><span>        http
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">authorizeHttpRequests</span>((authz) <span style="color:#f92672">-&gt;</span> authz
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">anyRequest</span>().<span style="color:#a6e22e">authenticated</span>()
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">httpBasic</span>(withDefaults());
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> http.<span style="color:#a6e22e">build</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/android_gradle_could_not_resolve/" rel="bookmark">Android 新建工程报错 Could not resolve com.android.tools.build:gradle:8.0.1.</a>
+  </h2>
+  
+    <time datetime="2023-05-07T15:12:30&#43;08:00">7 May, 2023</time>
+  
+</header>
+
+      
+        <p>解决方法修改Gradle JDK版本</p>
+<p>File &gt; Settings &gt; Build, Execution, Deployment &gt; build tools &gt; gradle Then Change Gradle JDK from the dropdown and select Android Studio java home</p>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    </article>
+    
+      <div class="Divider"></div>
     
   
 
   
   <nav>
+    
+      <a class="Pagination u-clickable" href="/page/3/" rel="prev">« Previous</a>
     
     
       <a class="Pagination Pagination--right u-clickable" href="/" rel="next">Next »</a>

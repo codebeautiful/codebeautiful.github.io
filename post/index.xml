@@ -7,8 +7,1305 @@
     <description>Recent content in Posts on 通通不同-博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
-    <lastBuildDate>Sat, 06 May 2023 09:36:26 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 22 Dec 2023 10:45:53 +0800</lastBuildDate>
     <atom:link href="https://blog.ttbt.work/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vim Skill</title>
+      <link>https://blog.ttbt.work/post/vim-skill/</link>
+      <pubDate>Fri, 22 Dec 2023 10:45:53 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/vim-skill/</guid>
+      <description>&lt;p&gt;vim 是一个很好用的编辑器，应用十分广泛。但关于 vim，总有一些你不知道的事情，我们需要持续不断的学习。&lt;/p&gt;
+&lt;p&gt;我经常使用 vim，也经常在各大社区、论坛看到 vim 专家用户分享经验，今天我们就总结其中常用的一部分，分享给大家。&lt;/p&gt;
+&lt;h1 id=&#34;1使用内置帮助built-in-help&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/vim-skill/#1%e4%bd%bf%e7%94%a8%e5%86%85%e7%bd%ae%e5%b8%ae%e5%8a%a9built-in-help&#34;&gt;1，使用内置帮助（built-in help）&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;使用 vim 的内置帮助是一个好习惯（虽然很多朋友更喜欢在网上搜索相关的使用方法）。查看帮助的语法如下表格所示：&lt;/p&gt;
+
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;:help :w	有关 :w 命令的帮助
+
+:help j	有关“j”键在正常模式上下文中的帮助
+
+:help v_J	有关在上下文中使用“J”键到视觉模式的帮助
+
+:help i_&amp;lt;Esc&amp;gt;	有关在上下文中使用“Esc”键插入模式的帮助
+
+:help /\n	有关搜索模式“\n”的帮助&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;2以普通用户身份打开以-root-用户身份保存&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/vim-skill/#2%e4%bb%a5%e6%99%ae%e9%80%9a%e7%94%a8%e6%88%b7%e8%ba%ab%e4%bb%bd%e6%89%93%e5%bc%80%e4%bb%a5-root-%e7%94%a8%e6%88%b7%e8%ba%ab%e4%bb%bd%e4%bf%9d%e5%ad%98&#34;&gt;2，以普通用户身份打开，以 root 用户身份保存&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;在编辑系统文件或者受权限保护的文件的时候，很容易会忘记在 vim 编辑之前添加 sudo，这样将会以只读模式打开文件，也就是编辑后不能保存。&lt;/p&gt;
+&lt;p&gt;但是这时候，你可能已经对文件做了一些修改（尚未保存），很显然，强制退出不是一个好选择。&lt;/p&gt;
+&lt;p&gt;在这些情况下，在 vim 中键入以下命令：
+:w !sudo tee %
+键入此命令后，将要求您输入sudo命令的密码，然后文件就可以保存了。&lt;/p&gt;
+&lt;p&gt;注：我们应该使用 sudo edit 命令而不是 sudo vim 来编辑需要超级用户权限的文件。&lt;/p&gt;
+&lt;p&gt;我们将上述命令拆解来看下：&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-Bash&#34; data-lang=&#34;Bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;:w - 这是写入命令。由于没有给出参数，vim 将把整个文件写入标准输出；
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;!sudo - 将 sudo 命令作为 shell 命令而不是 vim 命令运行；
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tee - tee命令用于读取标准输入并将其写入标准输出或文件；
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;% - vim 将其替换为您正在编辑的当前文件的名称。
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;:w 命令将整个文件写入 STDOUT（标准输出）；然后，我们使用sudo命令（因为我们编辑的毕竟是一个系统文件）来获得临时权限。&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;百分号（%）表示文件名，tee 命令从 STDOUT 获取 vim 的输出并将其写入 % 文件。&lt;/p&gt;
+&lt;p&gt;这基本上适用于 &amp;lt;Vim&amp;rsquo;s STDOUT&amp;gt; | sudo tee /etc/ssh/sshd_config，有点复杂&amp;hellip;&lt;/p&gt;
+&lt;h1 id=&#34;3将所有空格转为制表符或者反过来&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/vim-skill/#3%e5%b0%86%e6%89%80%e6%9c%89%e7%a9%ba%e6%a0%bc%e8%bd%ac%e4%b8%ba%e5%88%b6%e8%a1%a8%e7%ac%a6%e6%88%96%e8%80%85%e5%8f%8d%e8%bf%87%e6%9d%a5&#34;&gt;3，将所有空格转为制表符（或者反过来）&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;我们都喜欢使用制表符(tab)或者空格，但是，如果我们正在编辑的文本其缩进使用的符号正好与我们的习惯相反，该怎么办？&lt;/p&gt;
+&lt;p&gt;3.1 将所有空格转换为制表符&lt;/p&gt;
+&lt;p&gt;如果当前文件使用空格缩进文本，希望将它们转换为制表符时，需要运行如下两个 vim 命令：&lt;/p&gt;
+&lt;p&gt;:set noexpandtab
+:retab!
+这样做会将所有空格转换为其等效的制表符。如果文档使用两个空格作为缩进宽度，它们将转换为1个制表符。如果 4 个空格用作单个缩进宽度时，这 4 个制表位将替换为 1 个制表字符。
+3.2 将所有制表符转换为空格&lt;/p&gt;
+&lt;p&gt;如果要编辑的文件使用制表符缩进，并且要将制表符转换为空格，则需要运行如下4个 vim 命令：&lt;/p&gt;
+&lt;p&gt;:set expandtab
+:set tabstop=4
+:set shiftwidth=4
+:retab
+第一个命令（expandtab）告诉 vim 使用空格展开 tab，第二个命令（tabstop）设置使用多少个空格用作一个“缩进块”。
+在我们的例子中，我们定义了“1个tab=4个空格”；当使用&amp;raquo;运算符时，shiftwidth 命令用于控制缩进，这也被设置为4个空格。&lt;/p&gt;
+&lt;p&gt;最后，retab 命令将所有制表符（用于缩进）转换为空格。&lt;/p&gt;
+&lt;p&gt;4，缩进所有行&lt;/p&gt;
+&lt;p&gt;错误的缩进，在 python 或者 YAML 程序中会报错，导致程序不能正确运行。&lt;/p&gt;
+&lt;p&gt;要缩进所有行，按 gg 键到达文件顶部，然后按 = 键表示“缩进”，最后按 G 键表示到“最后一行”。&lt;/p&gt;
+&lt;p&gt;这样将会自动缩进，从第一行到最后一行。&lt;/p&gt;
+&lt;p&gt;如下图所示，我使用 :gg=G命令缩进的演示：
+图片&lt;/p&gt;
+&lt;p&gt;正如你所看到的（从这个有限的预览中），所有行都正确缩进。&lt;/p&gt;
+&lt;p&gt;5，粘贴代码时保留缩进&lt;/p&gt;
+&lt;p&gt;我们都有过在互联网上复制代码的时候。当将代码粘贴到文件中时，缩进都给弄乱了，这时候需要怎样做呢？&lt;/p&gt;
+&lt;p&gt;为了避免这种情况，请在 .vimrc 文件中添加以下代码：&lt;/p&gt;
+&lt;p&gt;set pastetoggle=&lt;!-- raw HTML omitted --&gt;
+对 vimrc 文件进行如上更改后，在粘贴代码之前按 F2 键，这样做将确保代码粘贴正确的缩进。
+6，以正确的缩进深度开始书写&lt;/p&gt;
+&lt;p&gt;假设光标在第一行第一列，但是所要写的内容需要缩进，那在不按下制表符（tab）和空格键的情况下，应该怎样做呢？&lt;/p&gt;
+&lt;p&gt;答案是在正常模式下按下 S 键。&lt;/p&gt;
+&lt;p&gt;当光标位于行的第一列时，按 Esc 键进入正常模式。然后按 S（大写）键，这会将光标移动到适当的缩进深度，并自动进入“插入”模式，以便开始键入。
+图片&lt;/p&gt;
+&lt;p&gt;上图，我的光标位于第一列，通过按S键，光标移动到正确的缩进深度，Vim从正常模式切换到插入模式。&lt;/p&gt;
+&lt;p&gt;7，保存文件前显示差异&lt;/p&gt;
+&lt;p&gt;我们可能遇到过这样的情况：我修改了这个文件，但是忘记都做了哪些修改了，并且我担心其中有些地方可能修改错了。&lt;/p&gt;
+&lt;p&gt;解决此问题的方法是查看缓冲区和文件之间的差异。可在 vim 中执行如下命令：&lt;/p&gt;
+&lt;p&gt;:w !diff % -
+我们将上述命令拆解来看：&lt;/p&gt;
+&lt;p&gt;:w  用于保存/写入，在这个特定场景中，如果命令中没有指定文件名，则输出将写入STDIN（标准输入）文件；&lt;/p&gt;
+&lt;p&gt;:!&lt;!-- raw HTML omitted --&gt;  是执行 shell 命令的语法，在这个例子中，我们在 shell 中运行 diff 命令；&lt;/p&gt;
+&lt;p&gt;%  表示未修改的当前文件的名称；试试这个：:!echo %&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;是 diff 命令的 STDIN 文件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因此，该命令首先将所有[未保存]内容写入STDIN文件。然后diff命令读取当前文件（%）并将其与STDIN（-）文件进行比较。&lt;/p&gt;
+&lt;p&gt;这个命令大致等同于这个shell命令：diff &lt;!-- raw HTML omitted --&gt; &amp;lt;Vim&amp;rsquo;s STDOUT&amp;gt;&lt;/p&gt;
+&lt;p&gt;8，显示拼写错误&lt;/p&gt;
+&lt;p&gt;我们应该都使用过 Microsoft word，其拼写检查器在拼写错误的单词下会有一条红色的波浪线。&lt;/p&gt;
+&lt;p&gt;vim 也内置了拼写检查器，但默认情况下是关闭的。我们可以使用如下命令启用它：&lt;/p&gt;
+&lt;p&gt;:set spell
+这样，你可能会看到拼写错误的单词被突出显示，其突出显示的方式取决于你的 vim 颜色方案。我在拼写错误的单词下面有一条白色下划线，如下图所示：
+图片
+要将这设置为 vim 的默认，可在 .vimrc 文件中添加如下配置：&lt;/p&gt;
+&lt;p&gt;set spell
+9，显示行号
+与许多 vim 用户一样，你可能喜欢在 vim 中显示行号。&lt;/p&gt;
+&lt;p&gt;有两种方法可以显示行号。一种是绝对行编号，在这种情况下，每行显示绝对行号，就像任何其他代码编辑器或IDE一样。&lt;/p&gt;
+&lt;p&gt;第二种是相对行号。在这种情况下，当前行的行号为0，其他行的行号为相比于光标所在行的相对数字。&lt;/p&gt;
+&lt;p&gt;这两种情况，也并不是只能选择一个，事实上，可以两种都要。&lt;/p&gt;
+&lt;p&gt;通过在 .vimrc 中添加以下行，可以在 vim 中启用“混合行编号”：&lt;/p&gt;
+&lt;p&gt;set number relativenumber
+这将在光标所在行显示绝对行号，在其他行显示相对行号。如下图所示：&lt;/p&gt;
+&lt;p&gt;图片&lt;/p&gt;
+&lt;p&gt;当前光标位于第44行，因此该行显示绝对行号；其他行（光标上方和下方的行）显示相对行号。&lt;/p&gt;
+&lt;p&gt;10，使用 vim 打开文件的同时将光标定位在某一行&lt;/p&gt;
+&lt;p&gt;默认情况下，我们使用 vim 打开文件，光标总会在第一行。在某些时候，我们希望光标能够定位在我们指定的某一行，而不是第一行。&lt;/p&gt;
+&lt;p&gt;可以通过使用 +n（n为行号）选项来实现这一点，当然前提是你需要知道打开的文件总行数应大于或等于 n，如下：&lt;/p&gt;
+&lt;p&gt;vim +n &lt;!-- raw HTML omitted --&gt;
+11，使用可读的配色方案
+当谈到使用配色方案时，人们通常会选择他们觉得最吸引人或最美观的配色方案。但是，当你作为一个代码编辑器兼 IDE 的 vim 时，最好放弃一些引人注目的东西，转而使用具有更好视觉指导的配色方案。&lt;/p&gt;
+&lt;p&gt;一个好的配色方案看起来很好，但是一个优秀的配色可以帮助你在颜色的帮助下轻松识别关键词、变量和其他标识符。&lt;/p&gt;
+&lt;p&gt;当然，每个人的喜好是不同的，配色当然也是不同的。我们在下图中贴出几个大家都觉得顺眼的方案，可以作为参考：&lt;/p&gt;
+&lt;p&gt;图片&lt;/p&gt;
+&lt;p&gt;图片&lt;/p&gt;
+&lt;p&gt;图片&lt;/p&gt;
+&lt;p&gt;12，在插入模式下删除文本&lt;/p&gt;
+&lt;p&gt;我们都知道，在正常模式（normal mode）下，可以使用 d 和 x 键删除文本，那么在插入模式下如何执行相同的操作（比如 dd）呢？&lt;/p&gt;
+&lt;p&gt;以下是常用的一些方案：
+ctrl + w 删除前一个单词（字）（相当于正常模式下的 db）；&lt;/p&gt;
+&lt;p&gt;ctrl + h 删除前一个字符；&lt;/p&gt;
+&lt;p&gt;ctrl  + u 删除当前行所有前面的字符（相当于正常模式下的 d0 ）；&lt;/p&gt;
+&lt;p&gt;ctrl  + k 删除当前行中所有主要字符（相当于正常模式下的 d$）。&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Protothreads</title>
+      <link>https://blog.ttbt.work/post/protothreads/</link>
+      <pubDate>Tue, 19 Dec 2023 12:27:51 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/protothreads/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;通过链接 &lt;a href=&#34;http://dunkels.com/adam/pt/download.html&#34;&gt;http://dunkels.com/adam/pt/download.html&lt;/a&gt; 进行下载相关版本的ptthread库&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;主要特点&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/protothreads/#%e4%b8%bb%e8%a6%81%e7%89%b9%e7%82%b9&#34;&gt;主要特点：&lt;/a&gt;
+&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;非常小的RAM开销-每个protothread只有两个字节，没有额外的堆栈&lt;/li&gt;
+&lt;li&gt;高度可移植性-protothreads库是100%纯C，没有特定于体系结构的汇编代码&lt;/li&gt;
+&lt;li&gt;可以与操作系统一起使用，也可以不使用操作系统&lt;/li&gt;
+&lt;li&gt;提供阻塞等待，无需完全多线程或堆栈切换&lt;/li&gt;
+&lt;li&gt;在类似BSD的开源许可证下免费提供&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;使用场景&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/protothreads/#%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af&#34;&gt;使用场景&lt;/a&gt;
+&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;内存受限系统&lt;/li&gt;
+&lt;li&gt;事件驱动协议栈&lt;/li&gt;
+&lt;li&gt;小型嵌入式系统&lt;/li&gt;
+&lt;li&gt;传感器网络节点&lt;/li&gt;
+&lt;li&gt;便携式C应用程序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;注意事项&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/protothreads/#%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9&#34;&gt;注意事项：&lt;/a&gt;
+&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;由于原线程不会在阻塞调用中保存堆栈上下文，因此当原线程阻塞时，不会保留局部变量。这意味着应该非常小心地使用局部变量——如果有疑问，不要在protothread中使用局部变量！
+一个原线程是由对运行该原线程的函数的重复调用驱动的。每次调用函数时，原线程都会运行，直到它阻塞或退出。因此，原线程的调度由使用原线程的应用程序完成。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;相关头文件&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/protothreads/#%e7%9b%b8%e5%85%b3%e5%a4%b4%e6%96%87%e4%bb%b6&#34;&gt;相关头文件&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;lc-addrlabels.h        用GCC语法扩展实现的协程基础&lt;/li&gt;
+&lt;li&gt;lc-switch.h            用switch语句实现的协程基础&lt;/li&gt;
+&lt;li&gt;lc.h                   该文件存在的意义仅仅为了选择以上两者之一&lt;/li&gt;
+&lt;li&gt;pt.h                   基于lc.h的协程设施的真正实现&lt;/li&gt;
+&lt;li&gt;pt-sem.h               协程间通信（信号量）的实现&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;相关api&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/protothreads/#%e7%9b%b8%e5%85%b3api&#34;&gt;相关API：&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;void PT_INIT(struct pt *pt);//初始化一个protothread。&lt;/li&gt;
+&lt;li&gt;void PT_BEGIN(struct pt *pt);// C函数中声明协程的开始。&lt;/li&gt;
+&lt;li&gt;void PT_WAIT_UNTIL(struct pt *pt, condition);//阻塞并等待条件为真。&lt;/li&gt;
+&lt;li&gt;void PT_WAIT_WHILE(struct pt *pt, condition);//条件为真时，阻塞并等待。&lt;/li&gt;
+&lt;li&gt;void PT_WAIT_THREAD(struct pt *pt, thread);//阻塞并等待协程完成。&lt;/li&gt;
+&lt;li&gt;void PT_SPAWN(struct pt *pt, struct pt *child, thread);//生成一个协程并等待它退出。&lt;/li&gt;
+&lt;li&gt;void PT_RESTART(struct pt *pt);//重新启动协程。&lt;/li&gt;
+&lt;li&gt;void PT_EXIT(struct pt *pt);//退出协程序&lt;/li&gt;
+&lt;li&gt;void PT_END(struct pt *pt);//声明协程的结束。&lt;/li&gt;
+&lt;li&gt;int PT_SCHEDULE(protothread);//创建一个协程&lt;/li&gt;
+&lt;li&gt;void PT_YIELD(struct pt *pt);//当前原线程的产量。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    <item>
+      <title>Linux nohup用法</title>
+      <link>https://blog.ttbt.work/post/linux-nohup/</link>
+      <pubDate>Fri, 15 Dec 2023 12:10:03 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/linux-nohup/</guid>
+      <description>&lt;h1 id=&#34;nohup不输出日志文件&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/linux-nohup/#nohup%e4%b8%8d%e8%be%93%e5%87%ba%e6%97%a5%e5%bf%97%e6%96%87%e4%bb%b6&#34;&gt;nohup不输出日志文件&lt;/a&gt;
+&lt;/h1&gt;
+&lt;h2 id=&#34;只输出错误信息到日志文件&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/linux-nohup/#%e5%8f%aa%e8%be%93%e5%87%ba%e9%94%99%e8%af%af%e4%bf%a1%e6%81%af%e5%88%b0%e6%97%a5%e5%bf%97%e6%96%87%e4%bb%b6&#34;&gt;只输出错误信息到日志文件&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-Bash&#34; data-lang=&#34;Bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nohup ./program &amp;gt;/dev/null 2&amp;gt;log &amp;amp;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;什么信息都不输出&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/linux-nohup/#%e4%bb%80%e4%b9%88%e4%bf%a1%e6%81%af%e9%83%bd%e4%b8%8d%e8%be%93%e5%87%ba&#34;&gt;什么信息都不输出&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-Bash&#34; data-lang=&#34;Bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nohup ./program &amp;gt;/dev/null 2&amp;gt;&amp;amp;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &amp;amp;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1 id=&#34;linux的重定向&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/linux-nohup/#linux%e7%9a%84%e9%87%8d%e5%ae%9a%e5%90%91&#34;&gt;Linux的重定向&lt;/a&gt;
+&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;0:表示标准输入；&lt;/li&gt;
+&lt;li&gt;1:标准输出,在一般使用时，默认的是标准输出；&lt;/li&gt;
+&lt;li&gt;2:表示错误信息输出。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;关于devnull&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/linux-nohup/#%e5%85%b3%e4%ba%8edevnull&#34;&gt;关于/dev/null&lt;/a&gt;
+&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;/dev/null属于字符特殊文件，它属于空设备，是一个特殊的设备文件，它会丢弃一切写入其中的数据，
+写入它的内容都会永远丢失，而且没有任何可以读取的内容。它就像一个黑洞，
+我们一般会把/dev/null当成一个垃圾站，不要的东西丢进去。比如来清除文件中的内容。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    <item>
+      <title>Springboot Sbscan Test</title>
+      <link>https://blog.ttbt.work/post/springboot-sbscan-test/</link>
+      <pubDate>Mon, 11 Dec 2023 16:05:04 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/springboot-sbscan-test/</guid>
+      <description>&lt;h1 id=&#34;sbscan是一款专注于spring框架的渗透测试工具&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/springboot-sbscan-test/#sbscan%e6%98%af%e4%b8%80%e6%ac%be%e4%b8%93%e6%b3%a8%e4%ba%8espring%e6%a1%86%e6%9e%b6%e7%9a%84%e6%b8%97%e9%80%8f%e6%b5%8b%e8%af%95%e5%b7%a5%e5%85%b7&#34;&gt;SBSCAN是一款专注于spring框架的渗透测试工具&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;可以对指定站点进行spring boot敏感信息扫描以及进行spring相关漏洞的扫描与验证。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;最全的敏感路径字典：最全的spring boot站点敏感路径字典，帮你全面检测站点是否存在敏感信息泄漏&lt;/li&gt;
+&lt;li&gt;支持指纹检测：
+&lt;ul&gt;
+&lt;li&gt;检测是否为spring站点：支持指纹识别，只有存在spring指纹的站点才进行下一步扫描，节约资源与时间&lt;/li&gt;
+&lt;li&gt;敏感路径页面指纹检测：最大程度解决误报情况，达到同类型工具检出准确率最高，不用再人工确认是否为真的敏感页面而不是首页或者其他跳转的页面&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;最全的spring漏洞检测POC： spring相关cve漏洞的检测poc全部给你集成到这款工具里，同类型最全&lt;/li&gt;
+&lt;li&gt;无回显漏洞解决： 无回显漏洞检测光看响应状态码不太靠谱？支持–dnslog参数指定dnslog域名，看到dnslog记录才是真的成功验证漏洞存在&lt;/li&gt;
+&lt;li&gt;其他一些常规支持：单个url扫描/ url文件扫描 / 支持指定代理 / 支持多线程&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    <item>
+      <title>kotlin学习之ktor(2.3.6)-ApplicationCall</title>
+      <link>https://blog.ttbt.work/post/kotlin_ktor_study_applicationcall/</link>
+      <pubDate>Sun, 26 Nov 2023 12:16:05 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/kotlin_ktor_study_applicationcall/</guid>
+      <description>&lt;h1 id=&#34;applicationcall-简介&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/kotlin_ktor_study_applicationcall/#applicationcall-%e7%ae%80%e4%bb%8b&#34;&gt;ApplicationCall 简介&lt;/a&gt;
+&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;当处理路由或直接拦截管道时，将获得ApplicationCall的上下文。
+ApplicationCall提供对两个主要属性ApplicationRequest和ApplicationResponse的访问。对应于传入的请求和传出的响应。
+除此之外，它还提供了一个应用程序环境和一些有用的功能来帮助响应客户端请求。鉴于管道可以异步执行，ApplicationCall还表示带有属性的逻辑执行上下文，以在管道的各个部分之间传递数据。
+将拦截器安装到管道中是改变ApplicationCall处理的主要方法。几乎所有Ktor功能都是拦截器，在应用程序调用处理的不同阶段执行各种操作。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;intercept(ApplicationCallPipeline.Call) { 
+    if (call.request.uri == &amp;#34;/&amp;#34;)
+        call.respondText(&amp;#34;Test String&amp;#34;)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;上述代码将拦截器安装到ApplicationCall处理的呼叫阶段，并在请求根页面时以纯文本响应。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这只是一个例子，通常，页面请求不会以这种方式处理，因为有一个路由机制可以做到这一点，还有更多。此外，如前所述，定义拦截器通常使用具有安装功能的功能完成。
+ApplicationCall上可用的大多数函数（如上面的响应文本）都是暂停函数，表明它们可能会异步执行。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;处理http请求&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/kotlin_ktor_study_applicationcall/#%e5%a4%84%e7%90%86http%e8%af%b7%e6%b1%82&#34;&gt;处理HTTP请求&lt;/a&gt;
+&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在处理路由或直接拦截管道时，您可以使用ApplicationCall获得上下文。该调用包含一个名为request的属性，该属性包含有关请求的信息。
+此外，调用本身具有一些有用的便利属性和方法，这些属性和方法依赖于请求。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;介绍&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/kotlin_ktor_study_applicationcall/#%e4%bb%8b%e7%bb%8d&#34;&gt;介绍&lt;/a&gt;
+&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;当使用路由功能或拦截请求时，可以访问 &lt;code&gt;call&lt;/code&gt; 内部的调用属性。该调用包括一个带有 &lt;code&gt;request&lt;/code&gt; 相关信息的请求属性：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-Kotlin&#34; data-lang=&#34;Kotlin&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;routing {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;get&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; uri = call.request.uri
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        call.respondText(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Request uri: &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;$uri&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    } 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;intercept(&lt;span style=&#34;color:#a6e22e&#34;&gt;ApplicationCallPipeline&lt;/span&gt;.Call) { 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (call.request.uri &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        call.respondText(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Test String&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;request-信息&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/kotlin_ktor_study_applicationcall/#request-%e4%bf%a1%e6%81%af&#34;&gt;Request 信息&lt;/a&gt;
+&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;作为&lt;code&gt;request&lt;/code&gt;的一部分，您可以访问其内部上下文：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;url-method-scheme-protocol-host-path-httpversion-remotehost-clientip&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/kotlin_ktor_study_applicationcall/#url-method-scheme-protocol-host-path-httpversion-remotehost-clientip&#34;&gt;URL, method, scheme, protocol, host, path, httpVersion, remoteHost, clientIp&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-Kotlin&#34; data-lang=&#34;Kotlin&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; version: String = request.httpVersion &lt;span style=&#34;color:#75715e&#34;&gt;// &amp;#34;HTTP/1.1&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; httpMethod: HttpMethod = request.httpMethod &lt;span style=&#34;color:#75715e&#34;&gt;// GET, POST... 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; uri: String = request.uri &lt;span style=&#34;color:#75715e&#34;&gt;// Short cut for `origin.uri`
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; scheme: String = request.origin.scheme &lt;span style=&#34;color:#75715e&#34;&gt;// &amp;#34;http&amp;#34; or &amp;#34;https&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; host: String? = request.host() &lt;span style=&#34;color:#75715e&#34;&gt;// The host part without the port 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; port: Int = request.port() &lt;span style=&#34;color:#75715e&#34;&gt;// Port of request
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; path: String = request.path() &lt;span style=&#34;color:#75715e&#34;&gt;// The uri without the query string
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; document: String = request.document() &lt;span style=&#34;color:#75715e&#34;&gt;// The last component after &amp;#39;/&amp;#39; of the uri
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; remoteHost: String = request.origin.remoteHost &lt;span style=&#34;color:#75715e&#34;&gt;// The IP address of the client doing the request&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;反向代理支持源和本地origin-and-local&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/kotlin_ktor_study_applicationcall/#%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86%e6%94%af%e6%8c%81%e6%ba%90%e5%92%8c%e6%9c%ac%e5%9c%b0origin-and-local&#34;&gt;反向代理支持：源和本地(origin and local)&lt;/a&gt;
+&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;当在反向代理（例如nginx或负载均衡器）后面时，接收到的请求不是由最终用户执行的，而是由该反向代理执行的。
+这意味着连接的客户端IP地址将是代理的IP地址，而不是客户端的IP地址。
+此外，反向代理可能通过HTTPS提供服务，并通过HTTP向服务器请求。流行的反向代理发送X-Forwarded-头，
+以便能够访问这些信息。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;请注意，为了在反向代理下工作，您必须安装&lt;a href=&#34;https://ktor.kotlincn.net/servers/features/forward-headers.html&#34;&gt;XForwardedHeaderSupport&lt;/a&gt;功能。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;处理-get--query-parameters&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/kotlin_ktor_study_applicationcall/#%e5%a4%84%e7%90%86-get--query-parameters&#34;&gt;处理 GET / Query parameters&lt;/a&gt;
+&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果需要访问查询参数&lt;code&gt;?param1=value&amp;amp;param2=value&lt;/code&gt;作为一个集合，您可以使用&lt;code&gt;queryParameters&lt;/code&gt;。
+它实现了&lt;code&gt;StringValues&lt;/code&gt;接口，其中每个键都可以有一个与其关联的字符串列表。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-Kotlin&#34; data-lang=&#34;Kotlin&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; queryParameters: Parameters = request.queryParameters
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; param1: String? = request.queryParameters[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;param1&amp;#34;&lt;/span&gt;] &lt;span style=&#34;color:#75715e&#34;&gt;// To access a single parameter (first one if repeated)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; repeatedParam: List&amp;lt;String&amp;gt;? = request.queryParameters.getAll(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;repeatedParam&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#75715e&#34;&gt;// Multiple values&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;您还可以访问原始&lt;code&gt;queryString&lt;/code&gt; (param1=value&amp;amp;param2=value)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-Kotlin&#34; data-lang=&#34;Kotlin&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; queryString: String = request.queryString()&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;处理-post-put-patch&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/kotlin_ktor_study_applicationcall/#%e5%a4%84%e7%90%86-post-put-patch&#34;&gt;处理 POST PUT PATCH&lt;/a&gt;
+&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;所有的接收方法都会消耗客户端发送的全部有效负载，因此尝试两次接收请求正文将导致&lt;code&gt;RequestAlreadyConsumedException&lt;/code&gt;错误，
+除非您安装了&lt;code&gt;DoubleReceive&lt;/code&gt;功能。&lt;code&gt;install(DoubleReceive)&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;接收类型化对象内容类型和json&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/kotlin_ktor_study_applicationcall/#%e6%8e%a5%e6%94%b6%e7%b1%bb%e5%9e%8b%e5%8c%96%e5%af%b9%e8%b1%a1%e5%86%85%e5%ae%b9%e7%b1%bb%e5%9e%8b%e5%92%8cjson&#34;&gt;接收类型化对象、内容类型和JSON&lt;/a&gt;
+&lt;/h4&gt;
+&lt;p&gt;该调用还支持接收通用对象：&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-Kotlin&#34; data-lang=&#34;Kotlin&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; obj: T = call.receive&amp;lt;T&amp;gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;val&lt;/span&gt; obj: T? = call.receiveOrNull&amp;lt;T&amp;gt;()&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;为了从负载中接收自定义对象，您必须使用ContentNegotiation功能。例如，这对于在RESTAPI中接收和发送JSON有效载荷非常有用。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这里需要注意导入gson时要注意ktor版本大于2.0和之前的不同，这里是&lt;a href=&#34;https://ktor.io/docs/migrating-2.html#serialization&#34;&gt;迁移注意事项&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;使用gson&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-Kotlin&#34; data-lang=&#34;Kotlin&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;implementation(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;io.ktor:ktor-server-content-negotiation:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;$ktor&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;_version&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;implementation(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;io.ktor:ktor-serialization-gson:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;$ktor&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;_version&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; io.ktor.server.plugins.contentnegotiation.*
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; io.ktor.serialization.gson.*
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;install(ContentNegotiation) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    gson {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        setDateFormat(&lt;span style=&#34;color:#a6e22e&#34;&gt;DateFormat&lt;/span&gt;.LONG)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        setPrettyPrinting()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;使用json&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-Kotlin&#34; data-lang=&#34;Kotlin&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;implementation(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;io.ktor:ktor-server-content-negotiation:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;$ktor&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;_version&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; io.ktor.serialization.kotlinx.json.*
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; io.ktor.server.plugins.contentnegotiation.*
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;install(ContentNegotiation) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    json()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    <item>
+      <title>记一次pod install 错误解决方案</title>
+      <link>https://blog.ttbt.work/post/pod_install_error1/</link>
+      <pubDate>Fri, 24 Nov 2023 09:47:55 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/pod_install_error1/</guid>
+      <description>&lt;h2 id=&#34;错误展示&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/pod_install_error1/#%e9%94%99%e8%af%af%e5%b1%95%e7%a4%ba&#34;&gt;错误展示&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;执行完pod install 后的报错信息&lt;/p&gt;
+
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[//]: # (pod install)
+
+[//]: # (Analyzing dependencies)
+
+[//]: # ()
+[//]: # (――― MARKDOWN TEMPLATE ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――)
+
+[//]: # ()
+[//]: # (### Command)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/bin/pod install)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Report)
+
+[//]: # ()
+[//]: # (* What did you do?)
+
+[//]: # ()
+[//]: # (* What did you expect to happen?)
+
+[//]: # ()
+[//]: # (* What happened instead?)
+
+[//]: # ()
+[//]: # ()
+[//]: # (### Stack)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (   CocoaPods : 1.14.3)
+
+[//]: # (        Ruby : ruby 3.2.2 &amp;amp;#40;2023-03-30 revision e51014f9c0&amp;amp;#41; [arm64-darwin22])
+
+[//]: # (    RubyGems : 3.4.10)
+
+[//]: # (        Host : macOS 13.6 &amp;amp;#40;22G120&amp;amp;#41;)
+
+[//]: # (       Xcode : 14.3.1 &amp;amp;#40;14E300c&amp;amp;#41;)
+
+[//]: # (         Git : git version 2.39.2 &amp;amp;#40;Apple Git-143&amp;amp;#41;)
+
+[//]: # (Ruby lib dir : /opt/homebrew/Cellar/ruby/3.2.2_1/lib)
+
+[//]: # (Repositories : trunk - CDN - https://cdn.cocoapods.org/)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Plugins)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (cocoapods-deintegrate : 1.0.5)
+
+[//]: # (cocoapods-plugins     : 1.0.0)
+
+[//]: # (cocoapods-search      : 1.0.1)
+
+[//]: # (cocoapods-trunk       : 1.6.0)
+
+[//]: # (cocoapods-try         : 1.2.0)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Podfile)
+
+[//]: # ()
+[//]: # (```ruby)
+
+[//]: # (target &amp;#39;iosApp&amp;#39; do)
+
+[//]: # (  use_frameworks!)
+
+[//]: # (  platform :ios, &amp;#39;12.0&amp;#39;)
+
+[//]: # (  pod &amp;#39;shared&amp;#39;, :path =&amp;gt; &amp;#39;../shared&amp;#39;)
+
+[//]: # (end)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Error)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (NoMethodError - undefined method `[]&amp;#39; for nil:NilClass)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/xcodeproj-1.23.0/lib/xcodeproj/project.rb:232:in `initialize_from_file&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/xcodeproj-1.23.0/lib/xcodeproj/project.rb:113:in `open&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1194:in `block &amp;amp;#40;2 levels&amp;amp;#41; in inspect_targets_to_integrate&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1193:in `each&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1193:in `block in inspect_targets_to_integrate&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/user_interface.rb:64:in `section&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1188:in `inspect_targets_to_integrate&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:107:in `analyze&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:422:in `analyze&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:244:in `block in resolve_dependencies&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/user_interface.rb:64:in `section&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:243:in `resolve_dependencies&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:162:in `install!&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/command/install.rb:52:in `run&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/claide-1.1.0/lib/claide/command.rb:334:in `run&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/command.rb:52:in `run&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/bin/pod:55:in `&amp;lt;top &amp;amp;#40;required&amp;amp;#41;&amp;gt;&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/bin/pod:25:in `load&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/bin/pod:25:in `&amp;lt;main&amp;gt;&amp;#39;)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (――― TEMPLATE END ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――)
+
+[//]: # ()
+[//]: # ([!] Oh no, an error occurred.)
+
+[//]: # ()
+[//]: # (Search for existing GitHub issues similar to yours:)
+
+[//]: # (https://github.com/CocoaPods/CocoaPods/search?q=undefined+method+%60%5B%5D%27+for+nil%3ANilClass&amp;amp;type=Issues)
+
+[//]: # ()
+[//]: # (If none exists, create a ticket, with the template displayed above, on:)
+
+[//]: # (https://github.com/CocoaPods/CocoaPods/issues/new)
+
+[//]: # ()
+[//]: # (Be sure to first read the contributing guide for details on how to properly submit a ticket:)
+
+[//]: # (https://github.com/CocoaPods/CocoaPods/blob/master/CONTRIBUTING.md)
+
+[//]: # ()
+[//]: # (Don&amp;#39;t forget to anonymize any private data!)
+
+[//]: # ()
+[//]: # (Looking for related issues on cocoapods/cocoapods...)
+
+[//]: # (- pod list throw NoMethodError - undefined method `version&amp;#39; for nil:NilClass)
+
+[//]: # (  https://github.com/CocoaPods/CocoaPods/issues/11780 [open] [1 comment])
+
+[//]: # (  10 May 2023)
+
+[//]: # ()
+[//]: # (- Searching for inspections failed: undefined method `map&amp;#39; for nil:NilClass)
+
+[//]: # (  https://github.com/CocoaPods/CocoaPods/issues/11584 [open] [4 comments])
+
+[//]: # (  14 Nov 2022)
+
+[//]: # ()
+[//]: # (- Intel cpu  undefined method `map&amp;#39; for nil:NilClass)
+
+[//]: # (  https://github.com/CocoaPods/CocoaPods/issues/11366 [open] [3 comments])
+
+[//]: # (  18 May 2022)
+
+[//]: # ()
+[//]: # (and 345 more at:)
+
+[//]: # (https://github.com/cocoapods/cocoapods/search?q=undefined%20method%20%60%5B%5D%27%20for%20nil&amp;amp;type=Issues&amp;amp;utf8=✓)
+
+[//]: # (tong@tongMacBook-Pro &amp;amp;#40;master&amp;amp;#41; [1] % pod update                                                                                                                                                      ~/work/code/weeder-app/iosApp)
+
+[//]: # (Update all pods)
+
+[//]: # (Updating local specs repositories)
+
+[//]: # (Analyzing dependencies)
+
+[//]: # ()
+[//]: # (――― MARKDOWN TEMPLATE ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――)
+
+[//]: # ()
+[//]: # (### Command)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/bin/pod update)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Report)
+
+[//]: # ()
+[//]: # (* What did you do?)
+
+[//]: # ()
+[//]: # (* What did you expect to happen?)
+
+[//]: # ()
+[//]: # (* What happened instead?)
+
+[//]: # ()
+[//]: # ()
+[//]: # (### Stack)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (   CocoaPods : 1.14.3)
+
+[//]: # (        Ruby : ruby 3.2.2 &amp;amp;#40;2023-03-30 revision e51014f9c0&amp;amp;#41; [arm64-darwin22])
+
+[//]: # (    RubyGems : 3.4.10)
+
+[//]: # (        Host : macOS 13.6 &amp;amp;#40;22G120&amp;amp;#41;)
+
+[//]: # (       Xcode : 14.3.1 &amp;amp;#40;14E300c&amp;amp;#41;)
+
+[//]: # (         Git : git version 2.39.2 &amp;amp;#40;Apple Git-143&amp;amp;#41;)
+
+[//]: # (Ruby lib dir : /opt/homebrew/Cellar/ruby/3.2.2_1/lib)
+
+[//]: # (Repositories : trunk - CDN - https://cdn.cocoapods.org/)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Plugins)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (cocoapods-deintegrate : 1.0.5)
+
+[//]: # (cocoapods-plugins     : 1.0.0)
+
+[//]: # (cocoapods-search      : 1.0.1)
+
+[//]: # (cocoapods-trunk       : 1.6.0)
+
+[//]: # (cocoapods-try         : 1.2.0)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Podfile)
+
+[//]: # ()
+[//]: # (```ruby)
+
+[//]: # (target &amp;#39;iosApp&amp;#39; do)
+
+[//]: # (  use_frameworks!)
+
+[//]: # (  platform :ios, &amp;#39;12.0&amp;#39;)
+
+[//]: # (  pod &amp;#39;shared&amp;#39;, :path =&amp;gt; &amp;#39;../shared&amp;#39;)
+
+[//]: # (end)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Error)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (NoMethodError - undefined method `[]&amp;#39; for nil:NilClass)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/xcodeproj-1.23.0/lib/xcodeproj/project.rb:232:in `initialize_from_file&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/xcodeproj-1.23.0/lib/xcodeproj/project.rb:113:in `open&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1194:in `block &amp;amp;#40;2 levels&amp;amp;#41; in inspect_targets_to_integrate&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1193:in `each&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1193:in `block in inspect_targets_to_integrate&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/user_interface.rb:64:in `section&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1188:in `inspect_targets_to_integrate&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:107:in `analyze&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:422:in `analyze&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:244:in `block in resolve_dependencies&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/user_interface.rb:64:in `section&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:243:in `resolve_dependencies&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:162:in `install!&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/command/update.rb:63:in `run&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/claide-1.1.0/lib/claide/command.rb:334:in `run&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/command.rb:52:in `run&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/bin/pod:55:in `&amp;lt;top &amp;amp;#40;required&amp;amp;#41;&amp;gt;&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/bin/pod:25:in `load&amp;#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/bin/pod:25:in `&amp;lt;main&amp;gt;&amp;#39;)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (――― TEMPLATE END ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――)
+
+[//]: # ()
+[//]: # ([!] Oh no, an error occurred.)
+
+[//]: # ()
+[//]: # (Search for existing GitHub issues similar to yours:)
+
+[//]: # (https://github.com/CocoaPods/CocoaPods/search?q=undefined+method+%60%5B%5D%27+for+nil%3ANilClass&amp;amp;type=Issues)
+
+[//]: # ()
+[//]: # (If none exists, create a ticket, with the template displayed above, on:)
+
+[//]: # (https://github.com/CocoaPods/CocoaPods/issues/new)
+
+[//]: # ()
+[//]: # (Be sure to first read the contributing guide for details on how to properly submit a ticket:)
+
+[//]: # (https://github.com/CocoaPods/CocoaPods/blob/master/CONTRIBUTING.md)
+
+[//]: # ()
+[//]: # (Don&amp;#39;t forget to anonymize any private data!)
+
+[//]: # ()
+[//]: # (Looking for related issues on cocoapods/cocoapods...)
+
+[//]: # (- pod list throw NoMethodError - undefined method `version&amp;#39; for nil:NilClass)
+
+[//]: # (  https://github.com/CocoaPods/CocoaPods/issues/11780 [open] [1 comment])
+
+[//]: # (  10 May 2023)
+
+[//]: # ()
+[//]: # (- Searching for inspections failed: undefined method `map&amp;#39; for nil:NilClass)
+
+[//]: # (  https://github.com/CocoaPods/CocoaPods/issues/11584 [open] [4 comments])
+
+[//]: # (  14 Nov 2022)
+
+[//]: # ()
+[//]: # (- Intel cpu  undefined method `map&amp;#39; for nil:NilClass)
+
+[//]: # (  https://github.com/CocoaPods/CocoaPods/issues/11366 [open] [3 comments])
+
+[//]: # (  18 May 2022)
+
+[//]: # ()
+[//]: # (and 345 more at:)
+
+[//]: # (https://github.com/cocoapods/cocoapods/search?q=undefined%20method%20%60%5B%5D%27%20for%20nil&amp;amp;type=Issues&amp;amp;utf8=✓)&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;最终解决方法&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/pod_install_error1/#%e6%9c%80%e7%bb%88%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95&#34;&gt;最终解决方法&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;前几天修改了下面两个文件，把这两个文件修改回来就可以正常了，具体原因不清楚&lt;/p&gt;
+&lt;p&gt;iosApp/iosApp.xcodeproj/xcshareddata/xcschemes/iosApp.xcscheme
+iosApp/iosApp.xcodeproj/project.pbxproj&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Nginx部署前后端项目配置</title>
+      <link>https://blog.ttbt.work/post/nginx_front_back/</link>
+      <pubDate>Thu, 23 Nov 2023 14:15:51 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/nginx_front_back/</guid>
+      <description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-nginx&#34; data-lang=&#34;nginx&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;server&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;listen&lt;/span&gt;  &lt;span style=&#34;color:#ae81ff&#34;&gt;8000&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;server_name&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;localhost&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# ssl配置
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;ssl&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;on&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;ssl_certificate&lt;/span&gt;     &lt;span style=&#34;color:#e6db74&#34;&gt;/opt/ssl/xxxx.pem&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;ssl_certificate_key&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/opt/ssl/xxxx.key&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;ssl_protocols&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;TLSv1&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;TLSv1.1&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;TLSv1.2&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;TLSv1.3&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;ssl_ciphers&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-SHA384:DHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA256&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;ssl_prefer_server_ciphers&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;on&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;location&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;root&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/opt/html&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;index&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;index.html&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;index.htm&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;try_files&lt;/span&gt; $uri $uri/ &lt;span style=&#34;color:#e6db74&#34;&gt;@router&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;location&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;@router&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;rewrite&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;^.*&lt;/span&gt;$ &lt;span style=&#34;color:#e6db74&#34;&gt;/index.html&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;last&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;location&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/api&lt;/span&gt; {	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;proxy_pass&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;http://127.0.0.1:8085&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;proxy_connect_timeout&lt;/span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;proxy_send_timeout&lt;/span&gt;		&lt;span style=&#34;color:#ae81ff&#34;&gt;30&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;proxy_read_timeout&lt;/span&gt;		&lt;span style=&#34;color:#ae81ff&#34;&gt;30&lt;/span&gt;;			
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;proxy_set_header&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;Host&lt;/span&gt; $proxy_host;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;proxy_set_header&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;X-Real-IP&lt;/span&gt; $remote_addr;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;proxy_set_header&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;X-Forwarded-Host&lt;/span&gt; $host;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;proxy_set_header&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;X-Forwarded-Server&lt;/span&gt; $host;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;proxy_set_header&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;X-Forwarded-For&lt;/span&gt; $proxy_add_x_forwarded_for; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;client_max_body_size&lt;/span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;100m&lt;/span&gt;;		
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;wget &lt;a href=&#34;https://daxingfire.htcxcloud.com/&#34;&gt;https://daxingfire.htcxcloud.com/&lt;/a&gt; &amp;ndash;user-agent=&amp;ldquo;Mozilla/5.0 (X11;U;Linux i686;en-US;rv:1.9.0.3) Geco/2008092416 Firefox/3.0.3&amp;rdquo; &amp;ndash;no-check-certificate&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Linux_lvm挂在磁盘</title>
+      <link>https://blog.ttbt.work/post/linux_lvm/</link>
+      <pubDate>Mon, 20 Nov 2023 15:01:03 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/linux_lvm/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;磁盘格式化（创建分区）&lt;/li&gt;
+&lt;li&gt;转换类型为 LinuxLVM&lt;/li&gt;
+&lt;li&gt;创建物理卷&lt;/li&gt;
+&lt;li&gt;扩展卷组&lt;/li&gt;
+&lt;li&gt;扩展逻辑卷&lt;/li&gt;
+&lt;li&gt;查看磁盘卷组信息&lt;/li&gt;
+&lt;li&gt;调整文件系统大小&lt;/li&gt;
+&lt;li&gt;创建卷组&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;fdisk -l&lt;/p&gt;
+&lt;p&gt;fdisk /dev/vdb&lt;/p&gt;
+&lt;p&gt;操作：n（添加新分区）→→p（打印分区表）→→1（选择分区号1）→→回车（起始扇区默认最小）→→回车（终止扇区默认最大）→→t（更改分区类型）→→8e（分区“Linux”的类型更改为“Linux LVM”）→→p（打印分区表）→→w（将分区表写入磁盘并退出）&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Kylin Server 10 SP2 安装MySql</title>
+      <link>https://blog.ttbt.work/post/install-mysql/</link>
+      <pubDate>Mon, 20 Nov 2023 10:01:42 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/install-mysql/</guid>
+      <description>&lt;h1 id=&#34;系统基于什么版本开发&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/install-mysql/#%e7%b3%bb%e7%bb%9f%e5%9f%ba%e4%ba%8e%e4%bb%80%e4%b9%88%e7%89%88%e6%9c%ac%e5%bc%80%e5%8f%91&#34;&gt;系统基于什么版本开发&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;麒麟系统KylinV10SP系列内核版本与主流的redhat/centos内核版本有以下映射关系：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;麒麟系统KylinV10SP1的内核版本对应的是Red Hat Enterprise Linux 7.6的内核版本。&lt;/li&gt;
+&lt;li&gt;麒麟系统KylinV10SP2的内核版本对应的是Red Hat Enterprise Linux 7.7的内核版本。&lt;/li&gt;
+&lt;li&gt;麒麟系统KylinV10SP3的内核版本对应的是Red Hat Enterprise Linux 7.8的内核版本。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;需要注意的是，虽然麒麟系统是基于Red Hat Enterprise Linux开发的，但是麒麟系统并不是纯粹的Red Hat Enterprise Linux，因此在使用过程中可能会存在一些差异。此外，国产操作系统和麒麟操作系统在保险行业中的应用也需要根据具体的业务场景和需求进行评估和选择。&lt;/p&gt;
+&lt;h1 id=&#34;下载mysql安装包使用red-hat&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/install-mysql/#%e4%b8%8b%e8%bd%bdmysql%e5%ae%89%e8%a3%85%e5%8c%85%e4%bd%bf%e7%94%a8red-hat&#34;&gt;下载MySql安装包，使用red hat&lt;/a&gt;
+&lt;/h1&gt;
+&lt;h2 id=&#34;安装顺序&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/install-mysql/#%e5%ae%89%e8%a3%85%e9%a1%ba%e5%ba%8f&#34;&gt;安装顺序&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;rpm -ivh mysql-community-common-8.0.35-1.el7.x86_64.rpm
+rpm -ivh mysql-community-client-plugins-8.0.35-1.el7.x86_64.rpm
+rpm -ivh mysql-community-libs-8.0.35-1.el7.x86_64.rpm
+rpm -ivh mysql-community-libs-compat-8.0.35-1.el7.x86_64.rpm
+rpm -ivh mysql-community-client-8.0.35-1.el7.x86_64.rpm
+rpm -ivh mysql-community-icu-data-files-8.0.35-1.el7.x86_64.rpm
+rpm -ivh mysql-community-server-8.0.35-1.el7.x86_64.rpm&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;启动mysql&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/install-mysql/#%e5%90%af%e5%8a%a8mysql&#34;&gt;启动mysql&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;service mysqld start&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;查看默认数据库密码&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/install-mysql/#%e6%9f%a5%e7%9c%8b%e9%bb%98%e8%ae%a4%e6%95%b0%e6%8d%ae%e5%ba%93%e5%af%86%e7%a0%81&#34;&gt;查看默认数据库密码&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cat /var/log/mysqld.log | grep password&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;rpm-包的安装&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/install-mysql/#rpm-%e5%8c%85%e7%9a%84%e5%ae%89%e8%a3%85&#34;&gt;RPM 包的安装&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;rpm -ivh 包全名&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;此命令中各选项参数的含义为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;-i：安装（install）;&lt;/li&gt;
+&lt;li&gt;-v：显示更详细的信息（verbose）;&lt;/li&gt;
+&lt;li&gt;-h：打印 #，显示安装进度（hash）;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;rpm包的升级&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/install-mysql/#rpm%e5%8c%85%e7%9a%84%e5%8d%87%e7%ba%a7&#34;&gt;RPM包的升级&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;rpm -Uvh 包全名&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;linux解压tar文件的命令&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/install-mysql/#linux%e8%a7%a3%e5%8e%8btar%e6%96%87%e4%bb%b6%e7%9a%84%e5%91%bd%e4%bb%a4&#34;&gt;linux解压tar文件的命令&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;tar  &lt;code&gt;tar -xvf xxx.tag -C 指定目录&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;tar.gz  &lt;code&gt; tar -zxvf xxx.tar.gz -C 指定目录&lt;/code&gt;
+tar.bz2 &lt;code&gt;tar -jxvf xxxx.tar.bz2 -C 指定目录&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Docker使用 Mysql5.6</title>
+      <link>https://blog.ttbt.work/post/docker-mysql-used/</link>
+      <pubDate>Mon, 13 Nov 2023 10:32:57 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/docker-mysql-used/</guid>
+      <description>&lt;p&gt;操作失败&lt;/p&gt;
+&lt;p&gt;x-S+*dri0+ZhcT6&lt;/p&gt;
+&lt;h1 id=&#34;拉去镜像&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/docker-mysql-used/#%e6%8b%89%e5%8e%bb%e9%95%9c%e5%83%8f&#34;&gt;拉去镜像&lt;/a&gt;
+&lt;/h1&gt;
+
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker pull mysql:5.6&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;启动操作&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/docker-mysql-used/#%e5%90%af%e5%8a%a8%e6%93%8d%e4%bd%9c&#34;&gt;启动操作&lt;/a&gt;
+&lt;/h1&gt;
+
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=&amp;#34;设置你的mysql的密码&amp;#34;-d mysql:5.6&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;解析：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;--name   给容器取名字为mysql
+-p   端口1:端口2     端口1是对外暴露的端口（即宿主机的端口），端口2 使我们的mysql端口
+-e MYSQL_ROOT_PASSWORD=密码   即root用户的密码
+-d mysql:5.6     代表后台运行我们的mysql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker run  --privileged=true --name mysql -p 3306:3306 -v /mysql/data:/var/lib/mysql -v /mydata/mysql/conf:/etc/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.6  &lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    <item>
+      <title>mac新电脑安装开发环境工具</title>
+      <link>https://blog.ttbt.work/post/mac_os_dev_env/</link>
+      <pubDate>Fri, 06 Oct 2023 19:18:30 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/mac_os_dev_env/</guid>
+      <description>&lt;h1 id=&#34;brew安装&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/mac_os_dev_env/#brew%e5%ae%89%e8%a3%85&#34;&gt;brew安装&lt;/a&gt;
+&lt;/h1&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;/bin/bash -c &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;curl -fsSL https://gitee.com/ineo6/homebrew-install/raw/master/install.sh&lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;oh-my-zsh安装&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sh -c &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;curl -fsSL https://gitee.com/mirrors/oh-my-zsh/raw/master/tools/install.sh&lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;item2安装&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install item2 --cask&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;node安装&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install node
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;npm install -g n
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo n install 12.13.1
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew uninstall node&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;watchman安装&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install watchman&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;cocoapods安装&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install cocoapods&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;go安装&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install go&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;hugo安装&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install hugo&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;xcode 命令行切换&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo xcode-select -r
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo xcode-select --switch /Library/Developer/CommandLineTools&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    <item>
+      <title>Esp32c3 flash 分区最大化的OTA分区表</title>
+      <link>https://blog.ttbt.work/post/esp32c3_flash_partition_table/</link>
+      <pubDate>Tue, 11 Jul 2023 17:28:51 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/esp32c3_flash_partition_table/</guid>
+      <description>&lt;p&gt;测试环境为esp32c3 4MB flash&lt;/p&gt;
+
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# ESP-IDF Partition Table
+# Name,   Type, SubType, Offset,  Size, Flags
+nvs,      data, nvs,     0x9000,  0x4000,
+otadata,  data, ota,     0xd000,  0x2000,
+phy_init, data, phy,     0xf000,  0x1000,
+ota_0,  app,  ota_0,   0x10000, 1980K,
+ota_1,    app,  ota_1,   0x200000, 1980K,&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;*******************************************************************************
+# ESP-IDF Partition Table
+# Name, Type, SubType, Offset, Size, Flags
+nvs,data,nvs,0x9000,16K,
+otadata,data,ota,0xd000,8K,
+phy_init,data,phy,0xf000,4K,
+ota_0,app,ota_0,0x10000,1980K,
+ota_1,app,ota_1,0x200000,1980K,
+*******************************************************************************&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;0x8000，位置烧录分区表&lt;/p&gt;
+&lt;p&gt;0x0,烧录bootloader&lt;/p&gt;
+&lt;p&gt;0x0: bootloader.bin&lt;/p&gt;
+&lt;p&gt;0x8000: partition-table.bin&lt;/p&gt;
+&lt;p&gt;0xd000: ota_data_initial.bin&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Golang_platform_name</title>
+      <link>https://blog.ttbt.work/post/golang_platform_name/</link>
+      <pubDate>Mon, 10 Jul 2023 16:02:33 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/golang_platform_name/</guid>
+      <description>&lt;p&gt;Golang文件名命名规则&lt;/p&gt;
+&lt;p&gt;在golang源代码中，经常看到各种文件名，比如： bolt_windows.go。&lt;/p&gt;
+&lt;p&gt;下面对文件名命令规则的说明：
+1、平台区分
+文件名_平台。&lt;/p&gt;
+&lt;p&gt;例： file_windows.go, file_unix.go&lt;/p&gt;
+&lt;p&gt;可选为：windows, unix, posix, plan9, darwin, bsd, linux, freebsd, nacl, netbsd, openbsd, solaris, dragonfly, bsd, notbsd， android，stubs&lt;/p&gt;
+&lt;p&gt;2、测试单元
+文件名&lt;em&gt;test.go或者 文件名&lt;/em&gt;平台_test.go。
+例： path_test.go, path_windows_test.go&lt;/p&gt;
+&lt;p&gt;3、版本区分(猜测)
+文件名_版本号等。
+例：trap_windows_1.4.go&lt;/p&gt;
+&lt;p&gt;4、CPU类型区分, 汇编用的多
+文件名_(平台:可选)_CPU类型.
+例：vdso_linux_amd64.go
+可选：amd64, none, 386, arm, arm64, mips64, s390,mips64x,ppc64x, nonppc64x, s390x, x86,amd64p32&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Esp32c3烧写</title>
+      <link>https://blog.ttbt.work/post/esp32c3_fresh/</link>
+      <pubDate>Wed, 21 Jun 2023 09:41:09 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/esp32c3_fresh/</guid>
+      <description>
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;//察除
+esptool.py --chip esp32c3 --port /dev/ttyUSB0 erase_flash
+
+// 烧录
+esptool.py --chip esp32c3 --port /dev/ttyUSB0 --baud 460800 write_flash -z 0x0 esp32c3-20220117-v1.18.bin&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;idf.py set-target esp32c3&lt;/p&gt;
+&lt;p&gt;idf.py menuconfig&lt;/p&gt;
+&lt;p&gt;idf.py build&lt;/p&gt;
+&lt;p&gt;idf.py -p PORT [-b BAUD]&lt;/p&gt;
+&lt;p&gt;idf.py -p PORT monitor&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Linux发送UDP报文</title>
+      <link>https://blog.ttbt.work/post/linux_udp/</link>
+      <pubDate>Tue, 20 Jun 2023 13:09:51 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/linux_udp/</guid>
+      <description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello&amp;#34;&lt;/span&gt; | socat - udp4-datagram:192.168.31.229:8011&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;apt install socat&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;tcpdump -D 获取网络适配器列表，以下是在Ubuntu上获取到的结果：&lt;/p&gt;
+&lt;p&gt;tcpdump -i &amp;lt;需要监控的网络适配器编号&amp;gt;，例如我想监控我的无线网卡wlan0，则使用tcpdump -i 2。&lt;/p&gt;
+&lt;p&gt;使用无线网卡wlan0监控IP地址为172.16.86.111上443端口的tcp协议：
+　　tcpdump -i 2 host 172.16.86.111 and tcp port 443&lt;/p&gt;
+&lt;p&gt;如果想要显示数据包的内容，需要使用-X参数，如，我想要显示捕获的https数据包http header的内容：
+　　tcpdump -X -i 2 host 172.16.86.111 and tcp port 443&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Golang gorm 解决更新无法将外键设置为NULL</title>
+      <link>https://blog.ttbt.work/post/golang_gorm_set_fk_null/</link>
+      <pubDate>Thu, 01 Jun 2023 18:04:48 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/golang_gorm_set_fk_null/</guid>
+      <description>&lt;h3 id=&#34;解决方案&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/golang_gorm_set_fk_null/#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88&#34;&gt;解决方案&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;清楚外键引用的数据然后保存&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;gorm&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Model&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;User&lt;/span&gt;{}).&lt;span style=&#34;color:#a6e22e&#34;&gt;Association&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Role&amp;#34;&lt;/span&gt;).&lt;span style=&#34;color:#a6e22e&#34;&gt;Clear&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;gorm&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Save&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;user&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;查询时将Preload方法去掉&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;gorm&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Preload&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Role&amp;#34;&lt;/span&gt;).&lt;span style=&#34;color:#a6e22e&#34;&gt;Where&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;id = 1&amp;#34;&lt;/span&gt;).&lt;span style=&#34;color:#a6e22e&#34;&gt;First&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;user&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;gorm&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Where&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;id = 1&amp;#34;&lt;/span&gt;).&lt;span style=&#34;color:#a6e22e&#34;&gt;First&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;user&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    <item>
+      <title>Spring_boot使用Example对象做条件查询</title>
+      <link>https://blog.ttbt.work/post/spring_boot_example_used/</link>
+      <pubDate>Tue, 30 May 2023 17:30:10 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/spring_boot_example_used/</guid>
+      <description>&lt;h3 id=&#34;基本使用方法&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/spring_boot_example_used/#%e5%9f%ba%e6%9c%ac%e4%bd%bf%e7%94%a8%e6%96%b9%e6%b3%95&#34;&gt;基本使用方法&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;@GetMapping&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/subwayLines&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; ResponseListBase&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;SubwayLine&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;@RequestParam&lt;/span&gt;(required &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;false&lt;/span&gt;, defaultValue &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;0&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; page,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                             &lt;span style=&#34;color:#a6e22e&#34;&gt;@RequestParam&lt;/span&gt;(required &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;false&lt;/span&gt;, defaultValue &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;20&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; size,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                             &lt;span style=&#34;color:#a6e22e&#34;&gt;@RequestParam&lt;/span&gt;(required &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;false&lt;/span&gt;, defaultValue &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;) String lineNo,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                             &lt;span style=&#34;color:#a6e22e&#34;&gt;@RequestParam&lt;/span&gt;(required &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;false&lt;/span&gt;, defaultValue &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;) String lineName) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        SubwayLine subwayLine &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; SubwayLine();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ExampleMatcher em &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ExampleMatcher.&lt;span style=&#34;color:#a6e22e&#34;&gt;matching&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(lineNo &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;lineNo.&lt;span style=&#34;color:#a6e22e&#34;&gt;equals&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;)) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            subwayLine.&lt;span style=&#34;color:#a6e22e&#34;&gt;setLineNo&lt;/span&gt;(lineNo);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            em &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; em.&lt;span style=&#34;color:#a6e22e&#34;&gt;withMatcher&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;lineNo&amp;#34;&lt;/span&gt;, GenericPropertyMatcher::startsWith);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(lineName &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;lineName.&lt;span style=&#34;color:#a6e22e&#34;&gt;equals&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;)) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            subwayLine.&lt;span style=&#34;color:#a6e22e&#34;&gt;setLineName&lt;/span&gt;(lineName);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            em &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; em.&lt;span style=&#34;color:#a6e22e&#34;&gt;withMatcher&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;lineName&amp;#34;&lt;/span&gt;, GenericPropertyMatcher::startsWith);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Page&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;SubwayLine&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; subwayLinePage &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; repository.&lt;span style=&#34;color:#a6e22e&#34;&gt;findAll&lt;/span&gt;(Example.&lt;span style=&#34;color:#a6e22e&#34;&gt;of&lt;/span&gt;(subwayLine, em), PageRequest.&lt;span style=&#34;color:#a6e22e&#34;&gt;of&lt;/span&gt;(page, size));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; ResponseListBase&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;gt;&lt;/span&gt;(subwayLinePage);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意事项：官方用例写法：&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ExampleMatcher matcher &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ExampleMatcher.&lt;span style=&#34;color:#a6e22e&#34;&gt;matching&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;withMatcher&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;firstname&amp;#34;&lt;/span&gt;, match &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; match.&lt;span style=&#34;color:#a6e22e&#34;&gt;endsWith&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;withMatcher&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;firstname&amp;#34;&lt;/span&gt;, match &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; match.&lt;span style=&#34;color:#a6e22e&#34;&gt;startsWith&lt;/span&gt;());&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;自己的写法：&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ExampleMatcher em &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ExampleMatcher.&lt;span style=&#34;color:#a6e22e&#34;&gt;matching&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;em &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; exampleMatcher.&lt;span style=&#34;color:#a6e22e&#34;&gt;withMatcher&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;lineNo&amp;#34;&lt;/span&gt;, ExampleMatcher.&lt;span style=&#34;color:#a6e22e&#34;&gt;GenericPropertyMatcher&lt;/span&gt;::startsWith);&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;其中重新付值是必须的，查看withMatcher代码会发现，返回一个新的对象，如果不做赋值，会导致没有配置模糊查询&lt;/p&gt;
+&lt;p&gt;第二个注意点是其中的&lt;code&gt;lineNo&lt;/code&gt;必须和对象的名称一致，如果 &lt;code&gt;line_no&lt;/code&gt;导致模糊查询不生效。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    <item>
+      <title>Gin-swagger使用汇总</title>
+      <link>https://blog.ttbt.work/post/gin_swagger_used/</link>
+      <pubDate>Thu, 25 May 2023 09:32:55 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/gin_swagger_used/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SpringBoot3.0 使用Spring Security</title>
+      <link>https://blog.ttbt.work/post/springboot3.0_security_use/</link>
+      <pubDate>Tue, 16 May 2023 09:26:46 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/springboot3.0_security_use/</guid>
+      <description>&lt;h2 id=&#34;以前版本使用方式&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/springboot3.0_security_use/#%e4%bb%a5%e5%89%8d%e7%89%88%e6%9c%ac%e4%bd%bf%e7%94%a8%e6%96%b9%e5%bc%8f&#34;&gt;以前版本使用方式&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;@Configuration&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;SecurityConfiguration&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;extends&lt;/span&gt; WebSecurityConfigurerAdapter {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;@Override&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;configure&lt;/span&gt;(WebSecurity web) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        web.&lt;span style=&#34;color:#a6e22e&#34;&gt;ignoring&lt;/span&gt;().&lt;span style=&#34;color:#a6e22e&#34;&gt;antMatchers&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/ignore1&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/ignore2&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;@Override&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;configure&lt;/span&gt;(HttpSecurity http) &lt;span style=&#34;color:#66d9ef&#34;&gt;throws&lt;/span&gt; Exception {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        http
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            .&lt;span style=&#34;color:#a6e22e&#34;&gt;authorizeRequests&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            .&lt;span style=&#34;color:#a6e22e&#34;&gt;anyRequest&lt;/span&gt;().&lt;span style=&#34;color:#a6e22e&#34;&gt;authenticated&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            .&lt;span style=&#34;color:#a6e22e&#34;&gt;and&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            .&lt;span style=&#34;color:#a6e22e&#34;&gt;httpBasic&lt;/span&gt;(withDefaults());
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;新版使用&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/springboot3.0_security_use/#%e6%96%b0%e7%89%88%e4%bd%bf%e7%94%a8&#34;&gt;新版使用&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;@Configuration&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 不需要继承WebSecurityConfigurerAdapter&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;SecurityConfiguration&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;@Bean&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; WebSecurityCustomizer &lt;span style=&#34;color:#a6e22e&#34;&gt;webSecurityCustomizer&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; (web) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; web.&lt;span style=&#34;color:#a6e22e&#34;&gt;ignoring&lt;/span&gt;().&lt;span style=&#34;color:#a6e22e&#34;&gt;requestMatchers&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/ignore1&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/ignore2&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;@Bean&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; SecurityFilterChain &lt;span style=&#34;color:#a6e22e&#34;&gt;filterChain&lt;/span&gt;(HttpSecurity http) &lt;span style=&#34;color:#66d9ef&#34;&gt;throws&lt;/span&gt; Exception {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        http
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            .&lt;span style=&#34;color:#a6e22e&#34;&gt;authorizeHttpRequests&lt;/span&gt;((authz) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; authz
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                .&lt;span style=&#34;color:#a6e22e&#34;&gt;anyRequest&lt;/span&gt;().&lt;span style=&#34;color:#a6e22e&#34;&gt;authenticated&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            .&lt;span style=&#34;color:#a6e22e&#34;&gt;httpBasic&lt;/span&gt;(withDefaults());
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; http.&lt;span style=&#34;color:#a6e22e&#34;&gt;build&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    <item>
+      <title>Android 新建工程报错 Could not resolve com.android.tools.build:gradle:8.0.1.</title>
+      <link>https://blog.ttbt.work/post/android_gradle_could_not_resolve/</link>
+      <pubDate>Sun, 07 May 2023 15:12:30 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/android_gradle_could_not_resolve/</guid>
+      <description>&lt;p&gt;解决方法修改Gradle JDK版本&lt;/p&gt;
+&lt;p&gt;File &amp;gt; Settings &amp;gt; Build, Execution, Deployment &amp;gt; build tools &amp;gt; gradle Then Change Gradle JDK from the dropdown and select Android Studio java home&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Spring boot 实现定时任务</title>
+      <link>https://blog.ttbt.work/post/spring_boot_scheduled/</link>
+      <pubDate>Sat, 06 May 2023 11:57:47 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/spring_boot_scheduled/</guid>
+      <description>&lt;ol&gt;
+&lt;li&gt;主类添加&lt;code&gt;@EnableScheduling&lt;/code&gt;注解&lt;/li&gt;
+&lt;li&gt;实现类添加&lt;code&gt;@Component&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;具体方法添加&lt;code&gt;@Scheduled&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;@EnableScheduling&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;@SpringBootApplication&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;SpringBootApplication&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(String&lt;span style=&#34;color:#f92672&#34;&gt;[]&lt;/span&gt; args) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        SpringApplication.&lt;span style=&#34;color:#a6e22e&#34;&gt;run&lt;/span&gt;(SpringBootApplication.&lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;@Component&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ScheduledTask&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;@Scheduled&lt;/span&gt;(cron &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;0 * * * * ?&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;run&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        System.&lt;span style=&#34;color:#a6e22e&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;现在时间：&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; dateFormat.&lt;span style=&#34;color:#a6e22e&#34;&gt;format&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Date()));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.bejson.com/othertools/cron/&#34;&gt;Cron表达式在线生成工具&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Golang_解析hugo生成的sitemap提交百度搜索</title>
+      <link>https://blog.ttbt.work/post/golang_parse_sitemap_submit_baidu/</link>
+      <pubDate>Sat, 06 May 2023 11:00:10 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/golang_parse_sitemap_submit_baidu/</guid>
+      <description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;package&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;encoding/hex&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;encoding/xml&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;os&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;strings&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;testing&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Node&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;Loc&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;`xml:&amp;#34;loc&amp;#34;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Root&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;XMLName&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;xml&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Name&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;`xml:&amp;#34;urlset&amp;#34;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;Nodes&lt;/span&gt;   []&lt;span style=&#34;color:#a6e22e&#34;&gt;Node&lt;/span&gt;   &lt;span style=&#34;color:#e6db74&#34;&gt;`xml:&amp;#34;url&amp;#34;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;file&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;os&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Open&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;../public/sitemap.xml&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		panic(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;defer&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;file&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Close&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;root&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Root&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;decoder&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;xml&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;NewDecoder&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;file&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;decoder&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Decode&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;root&lt;/span&gt;); &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		panic(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;_&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;node&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;range&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;root&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Nodes&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;node&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Loc&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;以下是sitemap.xml的文件获取路径&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://codebeautiful.gitee.io/sitemap.xml&#34;&gt;https://codebeautiful.gitee.io/sitemap.xml&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     <item>
       <title>Qt开发https请求报 qt.tlsbackend.ossl: Failed to load libssl/libcrypto.</title>
       <link>https://blog.ttbt.work/post/qt_https_failed_to_load_libssl_libcrypto/</link>
@@ -42,6 +1339,232 @@ INCLUDEPATH += /opt/homebrew/Cellar/openssl@1.1/1.1.1s/include&lt;/code&gt;&lt;/
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;NotificationCenter.&lt;span style=&#34;color:#66d9ef&#34;&gt;default&lt;/span&gt;.removeObserver(observer)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//发送通知&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;NotificationCenter.&lt;span style=&#34;color:#66d9ef&#34;&gt;default&lt;/span&gt;.post(name: Notification.Name(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Notify&amp;#34;&lt;/span&gt;), object: &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    <item>
+      <title>Spring boot Data JPA注解使用教程</title>
+      <link>https://blog.ttbt.work/post/spring_boot_jpa_annotation/</link>
+      <pubDate>Fri, 05 May 2023 10:14:10 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/spring_boot_jpa_annotation/</guid>
+      <description>&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;注解&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;详情&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;@Entity&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Table&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Id&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@GeneratedValue&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Basic&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Column&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;@Column(name=&amp;ldquo;name&amp;rdquo;, nullable=false)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Transient&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Temporal&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Enumerated&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Embedded&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Embeddable&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@ElementCollection&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@CreatedDate&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@CreatedBy&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@LastModifiedDate&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@LastModifiedBy&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@MappedSuperclass&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;多表设计注解&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/spring_boot_jpa_annotation/#%e5%a4%9a%e8%a1%a8%e8%ae%be%e8%ae%a1%e6%b3%a8%e8%a7%a3&#34;&gt;多表设计注解&lt;/a&gt;
+&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;注解&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;详情&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;@OneToOne&lt;/td&gt;
+&lt;td&gt;在单向关系中, 用于关系的发起者&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@OneToMany&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@ManyToMany&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;参数校验注解&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/spring_boot_jpa_annotation/#%e5%8f%82%e6%95%b0%e6%a0%a1%e9%aa%8c%e6%b3%a8%e8%a7%a3&#34;&gt;参数校验注解&lt;/a&gt;
+&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;注解&lt;/th&gt;
+&lt;th&gt;作用类型&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;@Null&lt;/td&gt;
+&lt;td&gt;任何类型&lt;/td&gt;
+&lt;td&gt;属性必须为null&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@NotNull&lt;/td&gt;
+&lt;td&gt;任何类型&lt;/td&gt;
+&lt;td&gt;属性不能为null&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@NotEmpty&lt;/td&gt;
+&lt;td&gt;集合&lt;/td&gt;
+&lt;td&gt;集合不能为null，且size大于0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@NotBlank&lt;/td&gt;
+&lt;td&gt;字符串、字符&lt;/td&gt;
+&lt;td&gt;字符类不能为null，且去掉空格之后长度大于0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@AssertTrue&lt;/td&gt;
+&lt;td&gt;Boolean、boolean&lt;/td&gt;
+&lt;td&gt;布尔属性必须是true&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Min&lt;/td&gt;
+&lt;td&gt;数字类型&lt;/td&gt;
+&lt;td&gt;限定数字的最小值（整型）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Max&lt;/td&gt;
+&lt;td&gt;同@Min&lt;/td&gt;
+&lt;td&gt;限定数字的最大值（整型）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@DecimalMin&lt;/td&gt;
+&lt;td&gt;同@Min&lt;/td&gt;
+&lt;td&gt;限定数字的最小值（字符串，可以是小数）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@DecimalMax&lt;/td&gt;
+&lt;td&gt;同@Min&lt;/td&gt;
+&lt;td&gt;限定数字的最大值（字符串，可以是小数）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Range&lt;/td&gt;
+&lt;td&gt;数字类型&lt;/td&gt;
+&lt;td&gt;限定数字范围（长整型）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Length(min=,max=)&lt;/td&gt;
+&lt;td&gt;字符串&lt;/td&gt;
+&lt;td&gt;限定字符串长度&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Size&lt;/td&gt;
+&lt;td&gt;集合&lt;/td&gt;
+&lt;td&gt;限定集合大小&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Past&lt;/td&gt;
+&lt;td&gt;时间、日期&lt;/td&gt;
+&lt;td&gt;必须是一个过去的时间或日期&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Future&lt;/td&gt;
+&lt;td&gt;时期、时间&lt;/td&gt;
+&lt;td&gt;必须是一个未来的时间或日期&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Email&lt;/td&gt;
+&lt;td&gt;字符串&lt;/td&gt;
+&lt;td&gt;必须是一个邮箱格式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;@Pattern&lt;/td&gt;
+&lt;td&gt;字符串、字符&lt;/td&gt;
+&lt;td&gt;正则匹配字符串&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 </description>
     </item>
     <item>
@@ -82,6 +1605,207 @@ INCLUDEPATH += /opt/homebrew/Cellar/openssl@1.1/1.1.1s/include&lt;/code&gt;&lt;/
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;self&lt;/span&gt;.navigationController == &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    		&lt;span style=&#34;color:#75715e&#34;&gt;// todo 调用蓝牙断开方法&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    <item>
+      <title>小米xmodem协议crc32 crc16 crc8 使用</title>
+      <link>https://blog.ttbt.work/post/xiaomi_xmodem_crc32_crc16_crc8/</link>
+      <pubDate>Fri, 21 Apr 2023 10:04:27 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/xiaomi_xmodem_crc32_crc16_crc8/</guid>
+      <description>&lt;h3 id=&#34;crc8校验&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/xiaomi_xmodem_crc32_crc16_crc8/#crc8%e6%a0%a1%e9%aa%8c&#34;&gt;crc8校验&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;stdint.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;uint8_t&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;crc8&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;uint8_t&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;p_buffer, &lt;span style=&#34;color:#66d9ef&#34;&gt;uint16_t&lt;/span&gt; buf_size);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;uint8_t&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;crc8&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;uint8_t&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;p_buffer, &lt;span style=&#34;color:#66d9ef&#34;&gt;uint16_t&lt;/span&gt; buf_size)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;uint8_t&lt;/span&gt; crc &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;uint8_t&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(buf_size &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; crc;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt;( buf_size&lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt; )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (  i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x80&lt;/span&gt;; i &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i &lt;span style=&#34;color:#f92672&#34;&gt;/=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; ( (crc &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x80&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                crc &lt;span style=&#34;color:#f92672&#34;&gt;*=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                crc &lt;span style=&#34;color:#f92672&#34;&gt;^=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x07&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                crc &lt;span style=&#34;color:#f92672&#34;&gt;*=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; ( (&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;p_buffer &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; i) &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                crc &lt;span style=&#34;color:#f92672&#34;&gt;^=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x07&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        p_buffer&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; crc;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;crc16&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/xiaomi_xmodem_crc32_crc16_crc8/#crc16&#34;&gt;crc16&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/* CRC16 implementation acording to CCITT standards */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;short&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;crc16_ccitt_check&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;buf, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; len);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;short&lt;/span&gt; crc16tab[&lt;span style=&#34;color:#ae81ff&#34;&gt;256&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0x0000&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x1021&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x2042&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x3063&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x4084&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x50a5&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x60c6&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x70e7&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0x8108&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x9129&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xa14a&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xb16b&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xc18c&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xd1ad&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xe1ce&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xf1ef&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0x1231&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x0210&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x3273&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x2252&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x52b5&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x4294&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x72f7&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x62d6&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0x9339&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x8318&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xb37b&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xa35a&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xd3bd&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xc39c&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xf3ff&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xe3de&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0x2462&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x3443&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x0420&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x1401&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x64e6&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x74c7&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x44a4&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x5485&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0xa56a&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xb54b&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x8528&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x9509&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xe5ee&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xf5cf&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xc5ac&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xd58d&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0x3653&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x2672&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x1611&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x0630&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x76d7&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x66f6&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x5695&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x46b4&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0xb75b&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xa77a&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x9719&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x8738&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xf7df&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xe7fe&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xd79d&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xc7bc&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0x48c4&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x58e5&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x6886&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x78a7&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x0840&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x1861&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x2802&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x3823&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0xc9cc&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xd9ed&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xe98e&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xf9af&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x8948&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x9969&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xa90a&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xb92b&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0x5af5&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x4ad4&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x7ab7&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x6a96&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x1a71&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x0a50&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x3a33&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x2a12&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0xdbfd&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xcbdc&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xfbbf&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xeb9e&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x9b79&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x8b58&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xbb3b&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xab1a&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0x6ca6&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x7c87&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x4ce4&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x5cc5&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x2c22&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x3c03&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x0c60&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x1c41&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0xedae&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xfd8f&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xcdec&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xddcd&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xad2a&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xbd0b&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x8d68&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x9d49&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0x7e97&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x6eb6&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x5ed5&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x4ef4&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x3e13&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x2e32&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x1e51&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x0e70&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0xff9f&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xefbe&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xdfdd&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xcffc&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xbf1b&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xaf3a&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x9f59&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x8f78&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0x9188&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x81a9&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xb1ca&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xa1eb&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xd10c&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xc12d&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xf14e&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xe16f&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0x1080&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x00a1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x30c2&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x20e3&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x5004&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x4025&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x7046&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x6067&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0x83b9&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x9398&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xa3fb&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xb3da&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xc33d&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xd31c&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xe37f&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xf35e&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0x02b1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x1290&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x22f3&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x32d2&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x4235&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x5214&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x6277&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x7256&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0xb5ea&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xa5cb&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x95a8&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x8589&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xf56e&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xe54f&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xd52c&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xc50d&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0x34e2&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x24c3&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x14a0&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x0481&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x7466&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x6447&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x5424&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x4405&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0xa7db&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xb7fa&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x8799&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x97b8&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xe75f&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xf77e&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xc71d&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xd73c&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0x26d3&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x36f2&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x0691&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x16b0&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x6657&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x7676&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x4615&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x5634&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0xd94c&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xc96d&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xf90e&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xe92f&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x99c8&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x89e9&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xb98a&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xa9ab&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0x5844&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x4865&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x7806&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x6827&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x18c0&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x08e1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x3882&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x28a3&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0xcb7d&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xdb5c&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xeb3f&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xfb1e&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x8bf9&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x9bd8&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xabbb&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xbb9a&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0x4a75&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x5a54&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x6a37&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x7a16&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x0af1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x1ad0&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x2ab3&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x3a92&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0xfd2e&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xed0f&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xdd6c&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xcd4d&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xbdaa&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xad8b&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x9de8&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x8dc9&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0x7c26&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x6c07&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x5c64&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x4c45&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x3ca2&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x2c83&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x1ce0&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x0cc1&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0xef1f&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xff3e&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xcf5d&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xdf7c&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xaf9b&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0xbfba&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x8fd9&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x9ff8&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#ae81ff&#34;&gt;0x6e17&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x7e36&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x4e55&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x5e74&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x2e93&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x3eb2&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x0ed1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0x1ef0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;short&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;crc16_ccitt_check&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;buf, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; len)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;register&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; counter;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;register&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;short&lt;/span&gt; crc &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; data &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;)buf;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;( counter &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; counter &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; len; counter&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		crc &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (crc&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;^&lt;/span&gt; crc16tab[((crc&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;^&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;data&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x00FF&lt;/span&gt;];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; crc;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;crc32&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/xiaomi_xmodem_crc32_crc16_crc8/#crc32&#34;&gt;crc32&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;stdint.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;uint32_t&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;soft_crc32&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;__data, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; data_size, &lt;span style=&#34;color:#66d9ef&#34;&gt;uint32_t&lt;/span&gt; crc);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;soft_crc32_init&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define TABLE_SIZE 256
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;uint32_t&lt;/span&gt; crc_table[TABLE_SIZE];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; rcrc32 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0xEDB88320&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;soft_crc32_init&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; crc &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; i;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; j;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (j &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; j &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; TABLE_SIZE; j&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		crc &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x01&lt;/span&gt;; i &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x00&lt;/span&gt;; i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; ((crc &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x00000001&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;				crc &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;				crc &lt;span style=&#34;color:#f92672&#34;&gt;^=&lt;/span&gt; rcrc32;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			} &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;				crc &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; ((j &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; i) &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;				crc &lt;span style=&#34;color:#f92672&#34;&gt;^=&lt;/span&gt; rcrc32;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		crc_table[j] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; crc;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#75715e&#34;&gt;//printf(&amp;#34;%08x\r\n&amp;#34;, crc);
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;uint32_t&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;soft_crc32&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;__data, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; data_size, &lt;span style=&#34;color:#66d9ef&#34;&gt;uint32_t&lt;/span&gt; crc)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;uint8_t&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;data &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;uint8_t&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;) __data;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; crc;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; crc_H8;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;soft_crc32_init&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;//printf(&amp;#34;soft_crc32 data_size= %d\r\n&amp;#34;, data_size);
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (data_size&lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		crc_H8 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt;)(result &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x000000FF&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		result &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		result &lt;span style=&#34;color:#f92672&#34;&gt;^=&lt;/span&gt; crc_table[crc_H8 &lt;span style=&#34;color:#f92672&#34;&gt;^&lt;/span&gt; (&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;data)];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		data&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    <item>
+      <title>Switch使用for forEach map</title>
+      <link>https://blog.ttbt.work/post/swift_for_and_foreach_map/</link>
+      <pubDate>Thu, 20 Apr 2023 16:19:01 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/swift_for_and_foreach_map/</guid>
+      <description>&lt;h3 id=&#34;区间用法&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/swift_for_and_foreach_map/#%e5%8c%ba%e9%97%b4%e7%94%a8%e6%b3%95&#34;&gt;区间用法&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;区间运算符 (&amp;hellip; 和 ..&amp;lt;) ，分别表示&lt;/p&gt;
+&lt;p&gt;0 &amp;hellip; 3	表示 [0,1,2,3]，数学表达式[0,3]&lt;/p&gt;
+&lt;p&gt;0 ..&amp;lt; 3   表示[0,1,2],数学表达式[0,3)&lt;/p&gt;
+&lt;h3 id=&#34;代码如下&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/swift_for_and_foreach_map/#%e4%bb%a3%e7%a0%81%e5%a6%82%e4%b8%8b&#34;&gt;代码如下&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; ... &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  print(i)&lt;span style=&#34;color:#75715e&#34;&gt;// 0,1,2,3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; ..&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  print(i)&lt;span style=&#34;color:#75715e&#34;&gt;// 0,1,2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 倒序遍历&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; (&lt;span style=&#34;color:#ae81ff&#34;&gt;0.&lt;/span&gt;..&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;).reversed() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  print(i)&lt;span style=&#34;color:#75715e&#34;&gt;// 3,2,1,0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 条件遍历&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.&lt;/span&gt;..&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;where&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; == &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  print(i)&lt;span style=&#34;color:#75715e&#34;&gt;// 0,2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;数组遍历方法&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/swift_for_and_foreach_map/#%e6%95%b0%e7%bb%84%e9%81%8d%e5%8e%86%e6%96%b9%e6%b3%95&#34;&gt;数组遍历方法&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; arr = [&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 元素遍历&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; a &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; arr {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    print(a)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 索引遍历&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.&lt;/span&gt;.&amp;lt;arr.count {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    print(arr[i])
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// forEach&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;arr.forEach { a &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    print(a)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 迭代器遍历&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (index, element) &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; arr.enumerated() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    print(index, element)&lt;span style=&#34;color:#75715e&#34;&gt;// 0 1, 1 2, 2 3&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
     </item>
@@ -302,6 +2026,55 @@ INCLUDEPATH += /opt/homebrew/Cellar/openssl@1.1/1.1.1s/include&lt;/code&gt;&lt;/
 </description>
     </item>
     <item>
+      <title>macOS使用随笔记录</title>
+      <link>https://blog.ttbt.work/post/mac_essay_recording/</link>
+      <pubDate>Thu, 13 Apr 2023 23:16:50 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/mac_essay_recording/</guid>
+      <description>&lt;h1 id=&#34;快捷键&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/mac_essay_recording/#%e5%bf%ab%e6%8d%b7%e9%94%ae&#34;&gt;快捷键&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Command+Shift+Y ：快速将当前选中的文字添加到便笺中df&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>下一步的软件开发计划</title>
+      <link>https://blog.ttbt.work/post/next_software_developer/</link>
+      <pubDate>Thu, 13 Apr 2023 23:10:30 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/next_software_developer/</guid>
+      <description>&lt;h1 id=&#34;小米串口工具开发&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/next_software_developer/#%e5%b0%8f%e7%b1%b3%e4%b8%b2%e5%8f%a3%e5%b7%a5%e5%85%b7%e5%bc%80%e5%8f%91&#34;&gt;小米串口工具开发&lt;/a&gt;
+&lt;/h1&gt;
+&lt;h1 id=&#34;配料表信息查看app&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/next_software_developer/#%e9%85%8d%e6%96%99%e8%a1%a8%e4%bf%a1%e6%81%af%e6%9f%a5%e7%9c%8bapp&#34;&gt;配料表信息查看APP&lt;/a&gt;
+&lt;/h1&gt;
+&lt;h1 id=&#34;docset离线文档移植android平台&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/next_software_developer/#docset%e7%a6%bb%e7%ba%bf%e6%96%87%e6%a1%a3%e7%a7%bb%e6%a4%8dandroid%e5%b9%b3%e5%8f%b0&#34;&gt;docset离线文档移植Android平台&lt;/a&gt;
+&lt;/h1&gt;
+&lt;h1 id=&#34;制作docset离线文档&#34;&gt;
+  &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/next_software_developer/#%e5%88%b6%e4%bd%9cdocset%e7%a6%bb%e7%ba%bf%e6%96%87%e6%a1%a3&#34;&gt;制作docset离线文档&lt;/a&gt;
+&lt;/h1&gt;
+</description>
+    </item>
+    <item>
+      <title>Swift中主线程中执行UI任务记录</title>
+      <link>https://blog.ttbt.work/post/swift_main_thread/</link>
+      <pubDate>Thu, 13 Apr 2023 22:45:26 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/swift_main_thread/</guid>
+      <description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;methodUI&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; Thread.current.isMainThread {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// ui action&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  } &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    DispatchQueue.main.async {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      methodUI()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    <item>
       <title>Android NDK 引入外部动态库.so报错 missing and no known rule</title>
       <link>https://blog.ttbt.work/post/android_ndk_missing_and_no_known_rule/</link>
       <pubDate>Sat, 01 Apr 2023 07:08:32 +0800</pubDate>
@@ -329,6 +2102,20 @@ INCLUDEPATH += /opt/homebrew/Cellar/openssl@1.1/1.1.1s/include&lt;/code&gt;&lt;/
 &lt;ul&gt;
 &lt;li&gt;关键点在这里，这个路径必须为绝对路径，报错原因是因为使用了相对路径&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+    </item>
+    <item>
+      <title>Storyboard下设置UIView圆角</title>
+      <link>https://blog.ttbt.work/post/uiview_cornerradius_setting/</link>
+      <pubDate>Fri, 31 Mar 2023 16:08:53 +0800</pubDate>
+      <guid>https://blog.ttbt.work/post/uiview_cornerradius_setting/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;如图UIView的宽度为8，高度为8，圆角设置为宽高的一半
+&lt;img src=&#34;https://blog.ttbt.work/images/UIView_cornerRadius.png&#34; alt=&#34;UIView设置圆角&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;第二个属性可以不用设置  layer.masksToBounds&lt;/p&gt;
+&lt;/blockquote&gt;
 </description>
     </item>
     <item>
@@ -740,7 +2527,7 @@ killasgroup=true&lt;/code&gt;&lt;/pre&gt;
   &lt;a class=&#34;Heading-link u-clickable&#34; href=&#34;https://blog.ttbt.work/post/config/#%e9%83%a8%e7%bd%b2&#34;&gt;部署&lt;/a&gt;
 &lt;/h3&gt;
 
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo --theme&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;hugo-flex --baseUrl&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://blog.ttbt.work&amp;#34;&lt;/span&gt; --buildDrafts
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo --theme&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;hugo-flex --baseURL&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://blog.ttbt.work&amp;#34;&lt;/span&gt; --buildDrafts
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo --theme&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;hugo-flex --baseUrl&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://codebeautiful.gitee.io&amp;#34;&lt;/span&gt; --buildDrafts&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>

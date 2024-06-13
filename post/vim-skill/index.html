@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+    <meta name="description" content="vim 是一个很好用的编辑器，应用十分广泛。但关于 vim，总有一些你不知道的事情，我们需要持续不断的学习。
+我经常使用 vim，也经常在各大社区、论坛看到 vim 专家用户分享经验，今天我们就总结其中常用的一部分，分享给大家。
+1，使用内置帮助（built-in help） 使用 vim 的内置帮助是一个好习惯（虽然很多朋友更喜欢在网上搜索相关的使用方法）。查看帮助的语法如下表格所示：
+:help :w	有关 :w 命令的帮助 :help j	有关“j”键在正常模式上下文中的帮助 :help v_J	有关在上下文中使用“J”键到视觉模式的帮助 :help i_&lt;Esc&gt;	有关在上下文中使用“Esc”键插入模式的帮助 :help /\n	有关搜索模式“\n”的帮助 2，以普通用户身份打开，以 root 用户身份保存 在编辑系统文件或者受权限保护的文件的时候，很容易会忘记在 vim 编辑之前添加 sudo，这样将会以只读模式打开文件，也就是编辑后不能保存。
+但是这时候，你可能已经对文件做了一些修改（尚未保存），很显然，强制退出不是一个好选择。
+在这些情况下，在 vim 中键入以下命令： :w !sudo tee % 键入此命令后，将要求您输入sudo命令的密码，然后文件就可以保存了。
+注：我们应该使用 sudo edit 命令而不是 sudo vim 来编辑需要超级用户权限的文件。
+我们将上述命令拆解来看下：
+:w - 这是写入命令。由于没有给出参数，vim 将把整个文件写入标准输出； !sudo - 将 sudo 命令作为 shell 命令而不是 vim 命令运行； tee - tee命令用于读取标准输入并将其写入标准输出或文件； % - vim 将其替换为您正在编辑的当前文件的名称。 :w 命令将整个文件写入 STDOUT（标准输出）；然后，我们使用sudo命令（因为我们编辑的毕竟是一个系统文件）来获得临时权限。 百分号（%）表示文件名，tee 命令从 STDOUT 获取 vim 的输出并将其写入 % 文件。">
+  
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.124.1">
+
+<meta content="" name="keywords">
+<meta content="Vim Skill - 通通不同-博客" property="og:title">
+<meta content="开发的乐趣在于相通而不同 - " property="og:description">
+
+<meta name="msvalidate.01" content="F56ED94B7E86941E3DACEF208F07D329" />
+
+  <title>
+    
+    Vim Skill
+     - 通通不同-博客
+    
+</title>
+
+  <link rel="canonical" href="https://blog.ttbt.work/post/vim-skill/">
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+  <link rel="stylesheet" href="/css/base.min.4f231885947d13c748c815d93da49f07ab89afb67629f9970b7c054610e88e0b.css" integrity="sha256-TyMYhZR9E8dIyBXZPaSfB6uJr7Z2KfmXC3wFRhDojgs=" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <h1 class="Banner-heading">
+          <a class="Banner-link u-clickable" href="/">通通不同-博客</a>
+        </h1>
+      </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">全部</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">分类</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">标签</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <article>
+    <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/vim-skill/" rel="bookmark">Vim Skill</a>
+  </h2>
+  
+    <time datetime="2023-12-22T10:45:53&#43;08:00">22 December, 2023</time>
+  
+</header>
+
+    <p>vim 是一个很好用的编辑器，应用十分广泛。但关于 vim，总有一些你不知道的事情，我们需要持续不断的学习。</p>
+<p>我经常使用 vim，也经常在各大社区、论坛看到 vim 专家用户分享经验，今天我们就总结其中常用的一部分，分享给大家。</p>
+<h1 id="1使用内置帮助built-in-help">
+  <a class="Heading-link u-clickable" href="/post/vim-skill/#1%e4%bd%bf%e7%94%a8%e5%86%85%e7%bd%ae%e5%b8%ae%e5%8a%a9built-in-help">1，使用内置帮助（built-in help）</a>
+</h1>
+<p>使用 vim 的内置帮助是一个好习惯（虽然很多朋友更喜欢在网上搜索相关的使用方法）。查看帮助的语法如下表格所示：</p>
+
+<pre tabindex="0"><code>:help :w	有关 :w 命令的帮助
+
+:help j	有关“j”键在正常模式上下文中的帮助
+
+:help v_J	有关在上下文中使用“J”键到视觉模式的帮助
+
+:help i_&lt;Esc&gt;	有关在上下文中使用“Esc”键插入模式的帮助
+
+:help /\n	有关搜索模式“\n”的帮助</code></pre>
+<h1 id="2以普通用户身份打开以-root-用户身份保存">
+  <a class="Heading-link u-clickable" href="/post/vim-skill/#2%e4%bb%a5%e6%99%ae%e9%80%9a%e7%94%a8%e6%88%b7%e8%ba%ab%e4%bb%bd%e6%89%93%e5%bc%80%e4%bb%a5-root-%e7%94%a8%e6%88%b7%e8%ba%ab%e4%bb%bd%e4%bf%9d%e5%ad%98">2，以普通用户身份打开，以 root 用户身份保存</a>
+</h1>
+<p>在编辑系统文件或者受权限保护的文件的时候，很容易会忘记在 vim 编辑之前添加 sudo，这样将会以只读模式打开文件，也就是编辑后不能保存。</p>
+<p>但是这时候，你可能已经对文件做了一些修改（尚未保存），很显然，强制退出不是一个好选择。</p>
+<p>在这些情况下，在 vim 中键入以下命令：
+:w !sudo tee %
+键入此命令后，将要求您输入sudo命令的密码，然后文件就可以保存了。</p>
+<p>注：我们应该使用 sudo edit 命令而不是 sudo vim 来编辑需要超级用户权限的文件。</p>
+<p>我们将上述命令拆解来看下：</p>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>:w - 这是写入命令。由于没有给出参数，vim 将把整个文件写入标准输出；
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>!sudo - 将 sudo 命令作为 shell 命令而不是 vim 命令运行；
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tee - tee命令用于读取标准输入并将其写入标准输出或文件；
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>% - vim 将其替换为您正在编辑的当前文件的名称。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>:w 命令将整个文件写入 STDOUT（标准输出）；然后，我们使用sudo命令（因为我们编辑的毕竟是一个系统文件）来获得临时权限。</span></span></code></pre></div>
+<p>百分号（%）表示文件名，tee 命令从 STDOUT 获取 vim 的输出并将其写入 % 文件。</p>
+<p>这基本上适用于 &lt;Vim&rsquo;s STDOUT&gt; | sudo tee /etc/ssh/sshd_config，有点复杂&hellip;</p>
+<h1 id="3将所有空格转为制表符或者反过来">
+  <a class="Heading-link u-clickable" href="/post/vim-skill/#3%e5%b0%86%e6%89%80%e6%9c%89%e7%a9%ba%e6%a0%bc%e8%bd%ac%e4%b8%ba%e5%88%b6%e8%a1%a8%e7%ac%a6%e6%88%96%e8%80%85%e5%8f%8d%e8%bf%87%e6%9d%a5">3，将所有空格转为制表符（或者反过来）</a>
+</h1>
+<p>我们都喜欢使用制表符(tab)或者空格，但是，如果我们正在编辑的文本其缩进使用的符号正好与我们的习惯相反，该怎么办？</p>
+<p>3.1 将所有空格转换为制表符</p>
+<p>如果当前文件使用空格缩进文本，希望将它们转换为制表符时，需要运行如下两个 vim 命令：</p>
+<p>:set noexpandtab
+:retab!
+这样做会将所有空格转换为其等效的制表符。如果文档使用两个空格作为缩进宽度，它们将转换为1个制表符。如果 4 个空格用作单个缩进宽度时，这 4 个制表位将替换为 1 个制表字符。
+3.2 将所有制表符转换为空格</p>
+<p>如果要编辑的文件使用制表符缩进，并且要将制表符转换为空格，则需要运行如下4个 vim 命令：</p>
+<p>:set expandtab
+:set tabstop=4
+:set shiftwidth=4
+:retab
+第一个命令（expandtab）告诉 vim 使用空格展开 tab，第二个命令（tabstop）设置使用多少个空格用作一个“缩进块”。
+在我们的例子中，我们定义了“1个tab=4个空格”；当使用&raquo;运算符时，shiftwidth 命令用于控制缩进，这也被设置为4个空格。</p>
+<p>最后，retab 命令将所有制表符（用于缩进）转换为空格。</p>
+<p>4，缩进所有行</p>
+<p>错误的缩进，在 python 或者 YAML 程序中会报错，导致程序不能正确运行。</p>
+<p>要缩进所有行，按 gg 键到达文件顶部，然后按 = 键表示“缩进”，最后按 G 键表示到“最后一行”。</p>
+<p>这样将会自动缩进，从第一行到最后一行。</p>
+<p>如下图所示，我使用 :gg=G命令缩进的演示：
+图片</p>
+<p>正如你所看到的（从这个有限的预览中），所有行都正确缩进。</p>
+<p>5，粘贴代码时保留缩进</p>
+<p>我们都有过在互联网上复制代码的时候。当将代码粘贴到文件中时，缩进都给弄乱了，这时候需要怎样做呢？</p>
+<p>为了避免这种情况，请在 .vimrc 文件中添加以下代码：</p>
+<p>set pastetoggle=<!-- raw HTML omitted -->
+对 vimrc 文件进行如上更改后，在粘贴代码之前按 F2 键，这样做将确保代码粘贴正确的缩进。
+6，以正确的缩进深度开始书写</p>
+<p>假设光标在第一行第一列，但是所要写的内容需要缩进，那在不按下制表符（tab）和空格键的情况下，应该怎样做呢？</p>
+<p>答案是在正常模式下按下 S 键。</p>
+<p>当光标位于行的第一列时，按 Esc 键进入正常模式。然后按 S（大写）键，这会将光标移动到适当的缩进深度，并自动进入“插入”模式，以便开始键入。
+图片</p>
+<p>上图，我的光标位于第一列，通过按S键，光标移动到正确的缩进深度，Vim从正常模式切换到插入模式。</p>
+<p>7，保存文件前显示差异</p>
+<p>我们可能遇到过这样的情况：我修改了这个文件，但是忘记都做了哪些修改了，并且我担心其中有些地方可能修改错了。</p>
+<p>解决此问题的方法是查看缓冲区和文件之间的差异。可在 vim 中执行如下命令：</p>
+<p>:w !diff % -
+我们将上述命令拆解来看：</p>
+<p>:w  用于保存/写入，在这个特定场景中，如果命令中没有指定文件名，则输出将写入STDIN（标准输入）文件；</p>
+<p>:!<!-- raw HTML omitted -->  是执行 shell 命令的语法，在这个例子中，我们在 shell 中运行 diff 命令；</p>
+<p>%  表示未修改的当前文件的名称；试试这个：:!echo %</p>
+<ul>
+<li>是 diff 命令的 STDIN 文件。</li>
+</ul>
+<p>因此，该命令首先将所有[未保存]内容写入STDIN文件。然后diff命令读取当前文件（%）并将其与STDIN（-）文件进行比较。</p>
+<p>这个命令大致等同于这个shell命令：diff <!-- raw HTML omitted --> &lt;Vim&rsquo;s STDOUT&gt;</p>
+<p>8，显示拼写错误</p>
+<p>我们应该都使用过 Microsoft word，其拼写检查器在拼写错误的单词下会有一条红色的波浪线。</p>
+<p>vim 也内置了拼写检查器，但默认情况下是关闭的。我们可以使用如下命令启用它：</p>
+<p>:set spell
+这样，你可能会看到拼写错误的单词被突出显示，其突出显示的方式取决于你的 vim 颜色方案。我在拼写错误的单词下面有一条白色下划线，如下图所示：
+图片
+要将这设置为 vim 的默认，可在 .vimrc 文件中添加如下配置：</p>
+<p>set spell
+9，显示行号
+与许多 vim 用户一样，你可能喜欢在 vim 中显示行号。</p>
+<p>有两种方法可以显示行号。一种是绝对行编号，在这种情况下，每行显示绝对行号，就像任何其他代码编辑器或IDE一样。</p>
+<p>第二种是相对行号。在这种情况下，当前行的行号为0，其他行的行号为相比于光标所在行的相对数字。</p>
+<p>这两种情况，也并不是只能选择一个，事实上，可以两种都要。</p>
+<p>通过在 .vimrc 中添加以下行，可以在 vim 中启用“混合行编号”：</p>
+<p>set number relativenumber
+这将在光标所在行显示绝对行号，在其他行显示相对行号。如下图所示：</p>
+<p>图片</p>
+<p>当前光标位于第44行，因此该行显示绝对行号；其他行（光标上方和下方的行）显示相对行号。</p>
+<p>10，使用 vim 打开文件的同时将光标定位在某一行</p>
+<p>默认情况下，我们使用 vim 打开文件，光标总会在第一行。在某些时候，我们希望光标能够定位在我们指定的某一行，而不是第一行。</p>
+<p>可以通过使用 +n（n为行号）选项来实现这一点，当然前提是你需要知道打开的文件总行数应大于或等于 n，如下：</p>
+<p>vim +n <!-- raw HTML omitted -->
+11，使用可读的配色方案
+当谈到使用配色方案时，人们通常会选择他们觉得最吸引人或最美观的配色方案。但是，当你作为一个代码编辑器兼 IDE 的 vim 时，最好放弃一些引人注目的东西，转而使用具有更好视觉指导的配色方案。</p>
+<p>一个好的配色方案看起来很好，但是一个优秀的配色可以帮助你在颜色的帮助下轻松识别关键词、变量和其他标识符。</p>
+<p>当然，每个人的喜好是不同的，配色当然也是不同的。我们在下图中贴出几个大家都觉得顺眼的方案，可以作为参考：</p>
+<p>图片</p>
+<p>图片</p>
+<p>图片</p>
+<p>12，在插入模式下删除文本</p>
+<p>我们都知道，在正常模式（normal mode）下，可以使用 d 和 x 键删除文本，那么在插入模式下如何执行相同的操作（比如 dd）呢？</p>
+<p>以下是常用的一些方案：
+ctrl + w 删除前一个单词（字）（相当于正常模式下的 db）；</p>
+<p>ctrl + h 删除前一个字符；</p>
+<p>ctrl  + u 删除当前行所有前面的字符（相当于正常模式下的 d0 ）；</p>
+<p>ctrl  + k 删除当前行中所有主要字符（相当于正常模式下的 d$）。</p>
+
+    
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    
+  
+
+  </article>
+
+
+      </div>
+    </div>
+  </main>
+  
+  <footer class="Footer">
+    <div class="u-wrapper">
+      <div class="u-padding">
+        开发的乐趣在于相通而不同
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d08a2ad355cb7a065a41be081b43297e";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

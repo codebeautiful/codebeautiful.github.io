@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+    <meta name="description" content="server { listen 8000; server_name localhost; # ssl配置 ssl on; ssl_certificate /opt/ssl/xxxx.pem; ssl_certificate_key /opt/ssl/xxxx.key; ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3; ssl_ciphers &#34;ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-SHA384:DHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA256&#34;; ssl_prefer_server_ciphers on; location / { root /opt/html; index index.html index.htm; try_files $uri $uri/ @router; } location @router { rewrite ^.*$ /index.html last; } location /api {	proxy_pass http://127.0.0.1:8085; proxy_connect_timeout	3; proxy_send_timeout	30; proxy_read_timeout	30;	proxy_set_header Host $proxy_host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-Host $host; proxy_set_header X-Forwarded-Server $host; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; client_max_body_size	100m;	} } wget https://daxingfire.">
+  
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.124.1">
+
+<meta content="" name="keywords">
+<meta content="Nginx部署前后端项目配置 - 通通不同-博客" property="og:title">
+<meta content="开发的乐趣在于相通而不同 - " property="og:description">
+
+<meta name="msvalidate.01" content="F56ED94B7E86941E3DACEF208F07D329" />
+
+  <title>
+    
+    Nginx部署前后端项目配置
+     - 通通不同-博客
+    
+</title>
+
+  <link rel="canonical" href="https://blog.ttbt.work/post/nginx_front_back/">
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+  <link rel="stylesheet" href="/css/base.min.4f231885947d13c748c815d93da49f07ab89afb67629f9970b7c054610e88e0b.css" integrity="sha256-TyMYhZR9E8dIyBXZPaSfB6uJr7Z2KfmXC3wFRhDojgs=" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <h1 class="Banner-heading">
+          <a class="Banner-link u-clickable" href="/">通通不同-博客</a>
+        </h1>
+      </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">全部</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">分类</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">标签</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <article>
+    <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/nginx_front_back/" rel="bookmark">Nginx部署前后端项目配置</a>
+  </h2>
+  
+    <time datetime="2023-11-23T14:15:51&#43;08:00">23 November, 2023</time>
+  
+</header>
+
+    
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">listen</span>  <span style="color:#ae81ff">8000</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">server_name</span> <span style="color:#e6db74">localhost</span>;
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># ssl配置
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#f92672">ssl</span> <span style="color:#66d9ef">on</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ssl_certificate</span>     <span style="color:#e6db74">/opt/ssl/xxxx.pem</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ssl_certificate_key</span> <span style="color:#e6db74">/opt/ssl/xxxx.key</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ssl_protocols</span> <span style="color:#e6db74">TLSv1</span> <span style="color:#e6db74">TLSv1.1</span> <span style="color:#e6db74">TLSv1.2</span> <span style="color:#e6db74">TLSv1.3</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ssl_ciphers</span> <span style="color:#e6db74">&#34;ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-SHA384:DHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA256&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ssl_prefer_server_ciphers</span> <span style="color:#66d9ef">on</span>;
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">root</span> <span style="color:#e6db74">/opt/html</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">index</span> <span style="color:#e6db74">index.html</span> <span style="color:#e6db74">index.htm</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">try_files</span> $uri $uri/ <span style="color:#e6db74">@router</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">location</span> <span style="color:#e6db74">@router</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">rewrite</span> <span style="color:#e6db74">^.*</span>$ <span style="color:#e6db74">/index.html</span> <span style="color:#e6db74">last</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">location</span> <span style="color:#e6db74">/api</span> {	
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://127.0.0.1:8085</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proxy_connect_timeout</span>	<span style="color:#ae81ff">3</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proxy_send_timeout</span>		<span style="color:#ae81ff">30</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proxy_read_timeout</span>		<span style="color:#ae81ff">30</span>;			
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $proxy_host;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-Host</span> $host;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-Server</span> $host;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for; 
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">client_max_body_size</span>	<span style="color:#ae81ff">100m</span>;		
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>wget <a href="https://daxingfire.htcxcloud.com/">https://daxingfire.htcxcloud.com/</a> &ndash;user-agent=&ldquo;Mozilla/5.0 (X11;U;Linux i686;en-US;rv:1.9.0.3) Geco/2008092416 Firefox/3.0.3&rdquo; &ndash;no-check-certificate</p>
+
+    
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    
+  
+
+  </article>
+
+
+      </div>
+    </div>
+  </main>
+  
+  <footer class="Footer">
+    <div class="u-wrapper">
+      <div class="u-padding">
+        开发的乐趣在于相通而不同
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d08a2ad355cb7a065a41be081b43297e";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+    <meta name="description" content="错误展示 执行完pod install 后的报错信息
+[//]: # (pod install) [//]: # (Analyzing dependencies) [//]: # () [//]: # (――― MARKDOWN TEMPLATE ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――) [//]: # () [//]: # (### Command) [//]: # () [//]: # (```) [//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/bin/pod install) [//]: # (```) [//]: # () [//]: # (### Report) [//]: # () [//]: # (* What did you do?) [//]: # () [//]: # (* What did you expect to happen?">
+  
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.124.1">
+
+<meta content="" name="keywords">
+<meta content="记一次pod install 错误解决方案 - 通通不同-博客" property="og:title">
+<meta content="开发的乐趣在于相通而不同 - " property="og:description">
+
+<meta name="msvalidate.01" content="F56ED94B7E86941E3DACEF208F07D329" />
+
+  <title>
+    
+    记一次pod install 错误解决方案
+     - 通通不同-博客
+    
+</title>
+
+  <link rel="canonical" href="https://blog.ttbt.work/post/pod_install_error1/">
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+  <link rel="stylesheet" href="/css/base.min.4f231885947d13c748c815d93da49f07ab89afb67629f9970b7c054610e88e0b.css" integrity="sha256-TyMYhZR9E8dIyBXZPaSfB6uJr7Z2KfmXC3wFRhDojgs=" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <h1 class="Banner-heading">
+          <a class="Banner-link u-clickable" href="/">通通不同-博客</a>
+        </h1>
+      </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">全部</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">分类</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">标签</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <article>
+    <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/pod_install_error1/" rel="bookmark">记一次pod install 错误解决方案</a>
+  </h2>
+  
+    <time datetime="2023-11-24T09:47:55&#43;08:00">24 November, 2023</time>
+  
+</header>
+
+    <h2 id="错误展示">
+  <a class="Heading-link u-clickable" href="/post/pod_install_error1/#%e9%94%99%e8%af%af%e5%b1%95%e7%a4%ba">错误展示</a>
+</h2>
+<p>执行完pod install 后的报错信息</p>
+
+<pre tabindex="0"><code>[//]: # (pod install)
+
+[//]: # (Analyzing dependencies)
+
+[//]: # ()
+[//]: # (――― MARKDOWN TEMPLATE ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――)
+
+[//]: # ()
+[//]: # (### Command)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/bin/pod install)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Report)
+
+[//]: # ()
+[//]: # (* What did you do?)
+
+[//]: # ()
+[//]: # (* What did you expect to happen?)
+
+[//]: # ()
+[//]: # (* What happened instead?)
+
+[//]: # ()
+[//]: # ()
+[//]: # (### Stack)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (   CocoaPods : 1.14.3)
+
+[//]: # (        Ruby : ruby 3.2.2 &amp;#40;2023-03-30 revision e51014f9c0&amp;#41; [arm64-darwin22])
+
+[//]: # (    RubyGems : 3.4.10)
+
+[//]: # (        Host : macOS 13.6 &amp;#40;22G120&amp;#41;)
+
+[//]: # (       Xcode : 14.3.1 &amp;#40;14E300c&amp;#41;)
+
+[//]: # (         Git : git version 2.39.2 &amp;#40;Apple Git-143&amp;#41;)
+
+[//]: # (Ruby lib dir : /opt/homebrew/Cellar/ruby/3.2.2_1/lib)
+
+[//]: # (Repositories : trunk - CDN - https://cdn.cocoapods.org/)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Plugins)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (cocoapods-deintegrate : 1.0.5)
+
+[//]: # (cocoapods-plugins     : 1.0.0)
+
+[//]: # (cocoapods-search      : 1.0.1)
+
+[//]: # (cocoapods-trunk       : 1.6.0)
+
+[//]: # (cocoapods-try         : 1.2.0)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Podfile)
+
+[//]: # ()
+[//]: # (```ruby)
+
+[//]: # (target &#39;iosApp&#39; do)
+
+[//]: # (  use_frameworks!)
+
+[//]: # (  platform :ios, &#39;12.0&#39;)
+
+[//]: # (  pod &#39;shared&#39;, :path =&gt; &#39;../shared&#39;)
+
+[//]: # (end)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Error)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (NoMethodError - undefined method `[]&#39; for nil:NilClass)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/xcodeproj-1.23.0/lib/xcodeproj/project.rb:232:in `initialize_from_file&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/xcodeproj-1.23.0/lib/xcodeproj/project.rb:113:in `open&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1194:in `block &amp;#40;2 levels&amp;#41; in inspect_targets_to_integrate&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1193:in `each&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1193:in `block in inspect_targets_to_integrate&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/user_interface.rb:64:in `section&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1188:in `inspect_targets_to_integrate&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:107:in `analyze&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:422:in `analyze&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:244:in `block in resolve_dependencies&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/user_interface.rb:64:in `section&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:243:in `resolve_dependencies&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:162:in `install!&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/command/install.rb:52:in `run&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/claide-1.1.0/lib/claide/command.rb:334:in `run&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/command.rb:52:in `run&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/bin/pod:55:in `&lt;top &amp;#40;required&amp;#41;&gt;&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/bin/pod:25:in `load&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/bin/pod:25:in `&lt;main&gt;&#39;)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (――― TEMPLATE END ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――)
+
+[//]: # ()
+[//]: # ([!] Oh no, an error occurred.)
+
+[//]: # ()
+[//]: # (Search for existing GitHub issues similar to yours:)
+
+[//]: # (https://github.com/CocoaPods/CocoaPods/search?q=undefined+method+%60%5B%5D%27+for+nil%3ANilClass&amp;type=Issues)
+
+[//]: # ()
+[//]: # (If none exists, create a ticket, with the template displayed above, on:)
+
+[//]: # (https://github.com/CocoaPods/CocoaPods/issues/new)
+
+[//]: # ()
+[//]: # (Be sure to first read the contributing guide for details on how to properly submit a ticket:)
+
+[//]: # (https://github.com/CocoaPods/CocoaPods/blob/master/CONTRIBUTING.md)
+
+[//]: # ()
+[//]: # (Don&#39;t forget to anonymize any private data!)
+
+[//]: # ()
+[//]: # (Looking for related issues on cocoapods/cocoapods...)
+
+[//]: # (- pod list throw NoMethodError - undefined method `version&#39; for nil:NilClass)
+
+[//]: # (  https://github.com/CocoaPods/CocoaPods/issues/11780 [open] [1 comment])
+
+[//]: # (  10 May 2023)
+
+[//]: # ()
+[//]: # (- Searching for inspections failed: undefined method `map&#39; for nil:NilClass)
+
+[//]: # (  https://github.com/CocoaPods/CocoaPods/issues/11584 [open] [4 comments])
+
+[//]: # (  14 Nov 2022)
+
+[//]: # ()
+[//]: # (- Intel cpu  undefined method `map&#39; for nil:NilClass)
+
+[//]: # (  https://github.com/CocoaPods/CocoaPods/issues/11366 [open] [3 comments])
+
+[//]: # (  18 May 2022)
+
+[//]: # ()
+[//]: # (and 345 more at:)
+
+[//]: # (https://github.com/cocoapods/cocoapods/search?q=undefined%20method%20%60%5B%5D%27%20for%20nil&amp;type=Issues&amp;utf8=✓)
+
+[//]: # (tong@tongMacBook-Pro &amp;#40;master&amp;#41; [1] % pod update                                                                                                                                                      ~/work/code/weeder-app/iosApp)
+
+[//]: # (Update all pods)
+
+[//]: # (Updating local specs repositories)
+
+[//]: # (Analyzing dependencies)
+
+[//]: # ()
+[//]: # (――― MARKDOWN TEMPLATE ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――)
+
+[//]: # ()
+[//]: # (### Command)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/bin/pod update)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Report)
+
+[//]: # ()
+[//]: # (* What did you do?)
+
+[//]: # ()
+[//]: # (* What did you expect to happen?)
+
+[//]: # ()
+[//]: # (* What happened instead?)
+
+[//]: # ()
+[//]: # ()
+[//]: # (### Stack)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (   CocoaPods : 1.14.3)
+
+[//]: # (        Ruby : ruby 3.2.2 &amp;#40;2023-03-30 revision e51014f9c0&amp;#41; [arm64-darwin22])
+
+[//]: # (    RubyGems : 3.4.10)
+
+[//]: # (        Host : macOS 13.6 &amp;#40;22G120&amp;#41;)
+
+[//]: # (       Xcode : 14.3.1 &amp;#40;14E300c&amp;#41;)
+
+[//]: # (         Git : git version 2.39.2 &amp;#40;Apple Git-143&amp;#41;)
+
+[//]: # (Ruby lib dir : /opt/homebrew/Cellar/ruby/3.2.2_1/lib)
+
+[//]: # (Repositories : trunk - CDN - https://cdn.cocoapods.org/)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Plugins)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (cocoapods-deintegrate : 1.0.5)
+
+[//]: # (cocoapods-plugins     : 1.0.0)
+
+[//]: # (cocoapods-search      : 1.0.1)
+
+[//]: # (cocoapods-trunk       : 1.6.0)
+
+[//]: # (cocoapods-try         : 1.2.0)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Podfile)
+
+[//]: # ()
+[//]: # (```ruby)
+
+[//]: # (target &#39;iosApp&#39; do)
+
+[//]: # (  use_frameworks!)
+
+[//]: # (  platform :ios, &#39;12.0&#39;)
+
+[//]: # (  pod &#39;shared&#39;, :path =&gt; &#39;../shared&#39;)
+
+[//]: # (end)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Error)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (NoMethodError - undefined method `[]&#39; for nil:NilClass)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/xcodeproj-1.23.0/lib/xcodeproj/project.rb:232:in `initialize_from_file&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/xcodeproj-1.23.0/lib/xcodeproj/project.rb:113:in `open&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1194:in `block &amp;#40;2 levels&amp;#41; in inspect_targets_to_integrate&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1193:in `each&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1193:in `block in inspect_targets_to_integrate&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/user_interface.rb:64:in `section&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1188:in `inspect_targets_to_integrate&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:107:in `analyze&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:422:in `analyze&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:244:in `block in resolve_dependencies&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/user_interface.rb:64:in `section&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:243:in `resolve_dependencies&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:162:in `install!&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/command/update.rb:63:in `run&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/claide-1.1.0/lib/claide/command.rb:334:in `run&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/command.rb:52:in `run&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/bin/pod:55:in `&lt;top &amp;#40;required&amp;#41;&gt;&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/bin/pod:25:in `load&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/bin/pod:25:in `&lt;main&gt;&#39;)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (――― TEMPLATE END ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――)
+
+[//]: # ()
+[//]: # ([!] Oh no, an error occurred.)
+
+[//]: # ()
+[//]: # (Search for existing GitHub issues similar to yours:)
+
+[//]: # (https://github.com/CocoaPods/CocoaPods/search?q=undefined+method+%60%5B%5D%27+for+nil%3ANilClass&amp;type=Issues)
+
+[//]: # ()
+[//]: # (If none exists, create a ticket, with the template displayed above, on:)
+
+[//]: # (https://github.com/CocoaPods/CocoaPods/issues/new)
+
+[//]: # ()
+[//]: # (Be sure to first read the contributing guide for details on how to properly submit a ticket:)
+
+[//]: # (https://github.com/CocoaPods/CocoaPods/blob/master/CONTRIBUTING.md)
+
+[//]: # ()
+[//]: # (Don&#39;t forget to anonymize any private data!)
+
+[//]: # ()
+[//]: # (Looking for related issues on cocoapods/cocoapods...)
+
+[//]: # (- pod list throw NoMethodError - undefined method `version&#39; for nil:NilClass)
+
+[//]: # (  https://github.com/CocoaPods/CocoaPods/issues/11780 [open] [1 comment])
+
+[//]: # (  10 May 2023)
+
+[//]: # ()
+[//]: # (- Searching for inspections failed: undefined method `map&#39; for nil:NilClass)
+
+[//]: # (  https://github.com/CocoaPods/CocoaPods/issues/11584 [open] [4 comments])
+
+[//]: # (  14 Nov 2022)
+
+[//]: # ()
+[//]: # (- Intel cpu  undefined method `map&#39; for nil:NilClass)
+
+[//]: # (  https://github.com/CocoaPods/CocoaPods/issues/11366 [open] [3 comments])
+
+[//]: # (  18 May 2022)
+
+[//]: # ()
+[//]: # (and 345 more at:)
+
+[//]: # (https://github.com/cocoapods/cocoapods/search?q=undefined%20method%20%60%5B%5D%27%20for%20nil&amp;type=Issues&amp;utf8=✓)</code></pre>
+<h2 id="最终解决方法">
+  <a class="Heading-link u-clickable" href="/post/pod_install_error1/#%e6%9c%80%e7%bb%88%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95">最终解决方法</a>
+</h2>
+<p>前几天修改了下面两个文件，把这两个文件修改回来就可以正常了，具体原因不清楚</p>
+<p>iosApp/iosApp.xcodeproj/xcshareddata/xcschemes/iosApp.xcscheme
+iosApp/iosApp.xcodeproj/project.pbxproj</p>
+
+    
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    
+  
+
+  </article>
+
+
+      </div>
+    </div>
+  </main>
+  
+  <footer class="Footer">
+    <div class="u-wrapper">
+      <div class="u-padding">
+        开发的乐趣在于相通而不同
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d08a2ad355cb7a065a41be081b43297e";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

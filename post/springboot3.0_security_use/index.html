@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+    <meta name="description" content=" 以前版本使用方式 @Configuration public class SecurityConfiguration extends WebSecurityConfigurerAdapter { @Override public void configure(WebSecurity web) { web.ignoring().antMatchers(&#34;/ignore1&#34;, &#34;/ignore2&#34;); } @Override protected void configure(HttpSecurity http) throws Exception { http .authorizeRequests() .anyRequest().authenticated() .and() .httpBasic(withDefaults()); } } 新版使用 @Configuration // 不需要继承WebSecurityConfigurerAdapter public class SecurityConfiguration { @Bean public WebSecurityCustomizer webSecurityCustomizer() { return (web) -&gt; web.ignoring().requestMatchers(&#34;/ignore1&#34;, &#34;/ignore2&#34;); } @Bean public SecurityFilterChain filterChain(HttpSecurity http) throws Exception { http .authorizeHttpRequests((authz) -&gt; authz .anyRequest().authenticated() ) .httpBasic(withDefaults()); return http.build(); } } ">
+  
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.124.1">
+
+<meta content="" name="keywords">
+<meta content="SpringBoot3.0 使用Spring Security - 通通不同-博客" property="og:title">
+<meta content="开发的乐趣在于相通而不同 - " property="og:description">
+
+<meta name="msvalidate.01" content="F56ED94B7E86941E3DACEF208F07D329" />
+
+  <title>
+    
+    SpringBoot3.0 使用Spring Security
+     - 通通不同-博客
+    
+</title>
+
+  <link rel="canonical" href="https://blog.ttbt.work/post/springboot3.0_security_use/">
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+  <link rel="stylesheet" href="/css/base.min.4f231885947d13c748c815d93da49f07ab89afb67629f9970b7c054610e88e0b.css" integrity="sha256-TyMYhZR9E8dIyBXZPaSfB6uJr7Z2KfmXC3wFRhDojgs=" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <h1 class="Banner-heading">
+          <a class="Banner-link u-clickable" href="/">通通不同-博客</a>
+        </h1>
+      </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">全部</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">分类</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">标签</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <article>
+    <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/springboot3.0_security_use/" rel="bookmark">SpringBoot3.0 使用Spring Security</a>
+  </h2>
+  
+    <time datetime="2023-05-16T09:26:46&#43;08:00">16 May, 2023</time>
+  
+</header>
+
+    <h2 id="以前版本使用方式">
+  <a class="Heading-link u-clickable" href="/post/springboot3.0_security_use/#%e4%bb%a5%e5%89%8d%e7%89%88%e6%9c%ac%e4%bd%bf%e7%94%a8%e6%96%b9%e5%bc%8f">以前版本使用方式</a>
+</h2>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SecurityConfiguration</span> <span style="color:#66d9ef">extends</span> WebSecurityConfigurerAdapter {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">configure</span>(WebSecurity web) {
+</span></span><span style="display:flex;"><span>        web.<span style="color:#a6e22e">ignoring</span>().<span style="color:#a6e22e">antMatchers</span>(<span style="color:#e6db74">&#34;/ignore1&#34;</span>, <span style="color:#e6db74">&#34;/ignore2&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">configure</span>(HttpSecurity http) <span style="color:#66d9ef">throws</span> Exception {
+</span></span><span style="display:flex;"><span>        http
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">authorizeRequests</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">anyRequest</span>().<span style="color:#a6e22e">authenticated</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">and</span>()
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">httpBasic</span>(withDefaults());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<h2 id="新版使用">
+  <a class="Heading-link u-clickable" href="/post/springboot3.0_security_use/#%e6%96%b0%e7%89%88%e4%bd%bf%e7%94%a8">新版使用</a>
+</h2>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 不需要继承WebSecurityConfigurerAdapter</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SecurityConfiguration</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Bean</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> WebSecurityCustomizer <span style="color:#a6e22e">webSecurityCustomizer</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (web) <span style="color:#f92672">-&gt;</span> web.<span style="color:#a6e22e">ignoring</span>().<span style="color:#a6e22e">requestMatchers</span>(<span style="color:#e6db74">&#34;/ignore1&#34;</span>, <span style="color:#e6db74">&#34;/ignore2&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Bean</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> SecurityFilterChain <span style="color:#a6e22e">filterChain</span>(HttpSecurity http) <span style="color:#66d9ef">throws</span> Exception {
+</span></span><span style="display:flex;"><span>        http
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">authorizeHttpRequests</span>((authz) <span style="color:#f92672">-&gt;</span> authz
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">anyRequest</span>().<span style="color:#a6e22e">authenticated</span>()
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>            .<span style="color:#a6e22e">httpBasic</span>(withDefaults());
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> http.<span style="color:#a6e22e">build</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+
+    
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    
+  
+
+  </article>
+
+
+      </div>
+    </div>
+  </main>
+  
+  <footer class="Footer">
+    <div class="u-wrapper">
+      <div class="u-padding">
+        开发的乐趣在于相通而不同
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d08a2ad355cb7a065a41be081b43297e";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

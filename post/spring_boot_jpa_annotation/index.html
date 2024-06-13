@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="description" content="Spring boot Data JPA 注解使用">
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.124.1">
+
+<meta content="Spring Boot, JPA, 注解, annotation" name="keywords">
+<meta content="Spring boot Data JPA注解使用教程 - 通通不同-博客" property="og:title">
+<meta content="开发的乐趣在于相通而不同 - Spring boot Data JPA 注解使用" property="og:description">
+
+<meta name="msvalidate.01" content="F56ED94B7E86941E3DACEF208F07D329" />
+
+  <title>
+    
+    Spring boot Data JPA注解使用教程
+     - 通通不同-博客
+    
+</title>
+
+  <link rel="canonical" href="https://blog.ttbt.work/post/spring_boot_jpa_annotation/">
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+  <link rel="stylesheet" href="/css/base.min.4f231885947d13c748c815d93da49f07ab89afb67629f9970b7c054610e88e0b.css" integrity="sha256-TyMYhZR9E8dIyBXZPaSfB6uJr7Z2KfmXC3wFRhDojgs=" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <h1 class="Banner-heading">
+          <a class="Banner-link u-clickable" href="/">通通不同-博客</a>
+        </h1>
+      </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">全部</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">分类</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">标签</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <article>
+    <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/spring_boot_jpa_annotation/" rel="bookmark">Spring boot Data JPA注解使用教程</a>
+  </h2>
+  
+    <time datetime="2023-05-05T10:14:10&#43;08:00">5 May, 2023</time>
+  
+</header>
+
+    <table>
+<thead>
+<tr>
+<th>注解</th>
+<th>说明</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Entity</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>@Table</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>@Id</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>@GeneratedValue</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>@Basic</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>@Column</td>
+<td></td>
+<td>@Column(name=&ldquo;name&rdquo;, nullable=false)</td>
+</tr>
+<tr>
+<td>@Transient</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>@Temporal</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>@Enumerated</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>@Embedded</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>@Embeddable</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>@ElementCollection</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>@CreatedDate</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>@CreatedBy</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>@LastModifiedDate</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>@LastModifiedBy</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>@MappedSuperclass</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="多表设计注解">
+  <a class="Heading-link u-clickable" href="/post/spring_boot_jpa_annotation/#%e5%a4%9a%e8%a1%a8%e8%ae%be%e8%ae%a1%e6%b3%a8%e8%a7%a3">多表设计注解</a>
+</h3>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>说明</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@OneToOne</td>
+<td>在单向关系中, 用于关系的发起者</td>
+<td></td>
+</tr>
+<tr>
+<td>@OneToMany</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>@ManyToMany</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="参数校验注解">
+  <a class="Heading-link u-clickable" href="/post/spring_boot_jpa_annotation/#%e5%8f%82%e6%95%b0%e6%a0%a1%e9%aa%8c%e6%b3%a8%e8%a7%a3">参数校验注解</a>
+</h3>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>作用类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Null</td>
+<td>任何类型</td>
+<td>属性必须为null</td>
+</tr>
+<tr>
+<td>@NotNull</td>
+<td>任何类型</td>
+<td>属性不能为null</td>
+</tr>
+<tr>
+<td>@NotEmpty</td>
+<td>集合</td>
+<td>集合不能为null，且size大于0</td>
+</tr>
+<tr>
+<td>@NotBlank</td>
+<td>字符串、字符</td>
+<td>字符类不能为null，且去掉空格之后长度大于0</td>
+</tr>
+<tr>
+<td>@AssertTrue</td>
+<td>Boolean、boolean</td>
+<td>布尔属性必须是true</td>
+</tr>
+<tr>
+<td>@Min</td>
+<td>数字类型</td>
+<td>限定数字的最小值（整型）</td>
+</tr>
+<tr>
+<td>@Max</td>
+<td>同@Min</td>
+<td>限定数字的最大值（整型）</td>
+</tr>
+<tr>
+<td>@DecimalMin</td>
+<td>同@Min</td>
+<td>限定数字的最小值（字符串，可以是小数）</td>
+</tr>
+<tr>
+<td>@DecimalMax</td>
+<td>同@Min</td>
+<td>限定数字的最大值（字符串，可以是小数）</td>
+</tr>
+<tr>
+<td>@Range</td>
+<td>数字类型</td>
+<td>限定数字范围（长整型）</td>
+</tr>
+<tr>
+<td>@Length(min=,max=)</td>
+<td>字符串</td>
+<td>限定字符串长度</td>
+</tr>
+<tr>
+<td>@Size</td>
+<td>集合</td>
+<td>限定集合大小</td>
+</tr>
+<tr>
+<td>@Past</td>
+<td>时间、日期</td>
+<td>必须是一个过去的时间或日期</td>
+</tr>
+<tr>
+<td>@Future</td>
+<td>时期、时间</td>
+<td>必须是一个未来的时间或日期</td>
+</tr>
+<tr>
+<td>@Email</td>
+<td>字符串</td>
+<td>必须是一个邮箱格式</td>
+</tr>
+<tr>
+<td>@Pattern</td>
+<td>字符串、字符</td>
+<td>正则匹配字符串</td>
+</tr>
+</tbody>
+</table>
+
+    
+
+
+  
+
+  
+
+  
+
+
+
+
+
+  <footer>
+    
+      
+    
+      
+    
+      
+        <ul class="Tags">
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/spring/" rel="tag">Spring</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/springboot/" rel="tag">SpringBoot</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/jpa/" rel="tag">JPA</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/%E6%B3%A8%E8%A7%A3/" rel="tag">注解</a>
+            </li>
+          
+            <li class="Tags-item u-background">
+              <a class="Tags-link u-clickable" href="/tags/annotation/" rel="tag">Annotation</a>
+            </li>
+          
+        </ul>
+      
+    
+  </footer>
+
+    
+  
+
+  </article>
+
+
+      </div>
+    </div>
+  </main>
+  
+  <footer class="Footer">
+    <div class="u-wrapper">
+      <div class="u-padding">
+        开发的乐趣在于相通而不同
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d08a2ad355cb7a065a41be081b43297e";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+    <meta name="description" content=" 解决方案 清楚外键引用的数据然后保存 gorm.Model(&amp;User{}).Association(&#34;Role&#34;).Clear() gorm.Save(&amp;user) 查询时将Preload方法去掉 gorm.Preload(&#34;Role&#34;).Where(&#34;id = 1&#34;).First(&amp;user) gorm.Where(&#34;id = 1&#34;).First(&amp;user) ">
+  
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.124.1">
+
+<meta content="" name="keywords">
+<meta content="Golang gorm 解决更新无法将外键设置为NULL - 通通不同-博客" property="og:title">
+<meta content="开发的乐趣在于相通而不同 - " property="og:description">
+
+<meta name="msvalidate.01" content="F56ED94B7E86941E3DACEF208F07D329" />
+
+  <title>
+    
+    Golang gorm 解决更新无法将外键设置为NULL
+     - 通通不同-博客
+    
+</title>
+
+  <link rel="canonical" href="https://blog.ttbt.work/post/golang_gorm_set_fk_null/">
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+  <link rel="stylesheet" href="/css/base.min.4f231885947d13c748c815d93da49f07ab89afb67629f9970b7c054610e88e0b.css" integrity="sha256-TyMYhZR9E8dIyBXZPaSfB6uJr7Z2KfmXC3wFRhDojgs=" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <h1 class="Banner-heading">
+          <a class="Banner-link u-clickable" href="/">通通不同-博客</a>
+        </h1>
+      </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">全部</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">分类</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">标签</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <article>
+    <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/golang_gorm_set_fk_null/" rel="bookmark">Golang gorm 解决更新无法将外键设置为NULL</a>
+  </h2>
+  
+    <time datetime="2023-06-01T18:04:48&#43;08:00">1 June, 2023</time>
+  
+</header>
+
+    <h3 id="解决方案">
+  <a class="Heading-link u-clickable" href="/post/golang_gorm_set_fk_null/#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88">解决方案</a>
+</h3>
+<ol>
+<li>清楚外键引用的数据然后保存</li>
+</ol>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">gorm</span>.<span style="color:#a6e22e">Model</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">User</span>{}).<span style="color:#a6e22e">Association</span>(<span style="color:#e6db74">&#34;Role&#34;</span>).<span style="color:#a6e22e">Clear</span>()
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">gorm</span>.<span style="color:#a6e22e">Save</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">user</span>)</span></span></code></pre></div>
+<ol>
+<li>查询时将Preload方法去掉</li>
+</ol>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">gorm</span>.<span style="color:#a6e22e">Preload</span>(<span style="color:#e6db74">&#34;Role&#34;</span>).<span style="color:#a6e22e">Where</span>(<span style="color:#e6db74">&#34;id = 1&#34;</span>).<span style="color:#a6e22e">First</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">user</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">gorm</span>.<span style="color:#a6e22e">Where</span>(<span style="color:#e6db74">&#34;id = 1&#34;</span>).<span style="color:#a6e22e">First</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">user</span>)</span></span></code></pre></div>
+
+    
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    
+  
+
+  </article>
+
+
+      </div>
+    </div>
+  </main>
+  
+  <footer class="Footer">
+    <div class="u-wrapper">
+      <div class="u-padding">
+        开发的乐趣在于相通而不同
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d08a2ad355cb7a065a41be081b43297e";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

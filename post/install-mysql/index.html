@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+    <meta name="description" content="系统基于什么版本开发 麒麟系统KylinV10SP系列内核版本与主流的redhat/centos内核版本有以下映射关系：
+麒麟系统KylinV10SP1的内核版本对应的是Red Hat Enterprise Linux 7.6的内核版本。 麒麟系统KylinV10SP2的内核版本对应的是Red Hat Enterprise Linux 7.7的内核版本。 麒麟系统KylinV10SP3的内核版本对应的是Red Hat Enterprise Linux 7.8的内核版本。 需要注意的是，虽然麒麟系统是基于Red Hat Enterprise Linux开发的，但是麒麟系统并不是纯粹的Red Hat Enterprise Linux，因此在使用过程中可能会存在一些差异。此外，国产操作系统和麒麟操作系统在保险行业中的应用也需要根据具体的业务场景和需求进行评估和选择。
+下载MySql安装包，使用red hat 安装顺序 rpm -ivh mysql-community-common-8.0.35-1.el7.x86_64.rpm rpm -ivh mysql-community-client-plugins-8.0.35-1.el7.x86_64.rpm rpm -ivh mysql-community-libs-8.0.35-1.el7.x86_64.rpm rpm -ivh mysql-community-libs-compat-8.0.35-1.el7.x86_64.rpm rpm -ivh mysql-community-client-8.0.35-1.el7.x86_64.rpm rpm -ivh mysql-community-icu-data-files-8.0.35-1.el7.x86_64.rpm rpm -ivh mysql-community-server-8.0.35-1.el7.x86_64.rpm 启动mysql service mysqld start 查看默认数据库密码 cat /var/log/mysqld.log | grep password RPM 包的安装 rpm -ivh 包全名 此命令中各选项参数的含义为：
+-i：安装（install）; -v：显示更详细的信息（verbose）; -h：打印 #，显示安装进度（hash）; RPM包的升级 rpm -Uvh 包全名 linux解压tar文件的命令 tar tar -xvf xxx.">
+  
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.124.1">
+
+<meta content="" name="keywords">
+<meta content="Kylin Server 10 SP2 安装MySql - 通通不同-博客" property="og:title">
+<meta content="开发的乐趣在于相通而不同 - " property="og:description">
+
+<meta name="msvalidate.01" content="F56ED94B7E86941E3DACEF208F07D329" />
+
+  <title>
+    
+    Kylin Server 10 SP2 安装MySql
+     - 通通不同-博客
+    
+</title>
+
+  <link rel="canonical" href="https://blog.ttbt.work/post/install-mysql/">
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+  <link rel="stylesheet" href="/css/base.min.4f231885947d13c748c815d93da49f07ab89afb67629f9970b7c054610e88e0b.css" integrity="sha256-TyMYhZR9E8dIyBXZPaSfB6uJr7Z2KfmXC3wFRhDojgs=" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <h1 class="Banner-heading">
+          <a class="Banner-link u-clickable" href="/">通通不同-博客</a>
+        </h1>
+      </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">全部</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">分类</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">标签</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <article>
+    <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/install-mysql/" rel="bookmark">Kylin Server 10 SP2 安装MySql</a>
+  </h2>
+  
+    <time datetime="2023-11-20T10:01:42&#43;08:00">20 November, 2023</time>
+  
+</header>
+
+    <h1 id="系统基于什么版本开发">
+  <a class="Heading-link u-clickable" href="/post/install-mysql/#%e7%b3%bb%e7%bb%9f%e5%9f%ba%e4%ba%8e%e4%bb%80%e4%b9%88%e7%89%88%e6%9c%ac%e5%bc%80%e5%8f%91">系统基于什么版本开发</a>
+</h1>
+<p>麒麟系统KylinV10SP系列内核版本与主流的redhat/centos内核版本有以下映射关系：</p>
+<ul>
+<li>麒麟系统KylinV10SP1的内核版本对应的是Red Hat Enterprise Linux 7.6的内核版本。</li>
+<li>麒麟系统KylinV10SP2的内核版本对应的是Red Hat Enterprise Linux 7.7的内核版本。</li>
+<li>麒麟系统KylinV10SP3的内核版本对应的是Red Hat Enterprise Linux 7.8的内核版本。</li>
+</ul>
+<p>需要注意的是，虽然麒麟系统是基于Red Hat Enterprise Linux开发的，但是麒麟系统并不是纯粹的Red Hat Enterprise Linux，因此在使用过程中可能会存在一些差异。此外，国产操作系统和麒麟操作系统在保险行业中的应用也需要根据具体的业务场景和需求进行评估和选择。</p>
+<h1 id="下载mysql安装包使用red-hat">
+  <a class="Heading-link u-clickable" href="/post/install-mysql/#%e4%b8%8b%e8%bd%bdmysql%e5%ae%89%e8%a3%85%e5%8c%85%e4%bd%bf%e7%94%a8red-hat">下载MySql安装包，使用red hat</a>
+</h1>
+<h2 id="安装顺序">
+  <a class="Heading-link u-clickable" href="/post/install-mysql/#%e5%ae%89%e8%a3%85%e9%a1%ba%e5%ba%8f">安装顺序</a>
+</h2>
+
+<pre tabindex="0"><code>rpm -ivh mysql-community-common-8.0.35-1.el7.x86_64.rpm
+rpm -ivh mysql-community-client-plugins-8.0.35-1.el7.x86_64.rpm
+rpm -ivh mysql-community-libs-8.0.35-1.el7.x86_64.rpm
+rpm -ivh mysql-community-libs-compat-8.0.35-1.el7.x86_64.rpm
+rpm -ivh mysql-community-client-8.0.35-1.el7.x86_64.rpm
+rpm -ivh mysql-community-icu-data-files-8.0.35-1.el7.x86_64.rpm
+rpm -ivh mysql-community-server-8.0.35-1.el7.x86_64.rpm</code></pre>
+<h2 id="启动mysql">
+  <a class="Heading-link u-clickable" href="/post/install-mysql/#%e5%90%af%e5%8a%a8mysql">启动mysql</a>
+</h2>
+
+<pre tabindex="0"><code>service mysqld start</code></pre>
+<h2 id="查看默认数据库密码">
+  <a class="Heading-link u-clickable" href="/post/install-mysql/#%e6%9f%a5%e7%9c%8b%e9%bb%98%e8%ae%a4%e6%95%b0%e6%8d%ae%e5%ba%93%e5%af%86%e7%a0%81">查看默认数据库密码</a>
+</h2>
+
+<pre tabindex="0"><code>cat /var/log/mysqld.log | grep password</code></pre>
+<h2 id="rpm-包的安装">
+  <a class="Heading-link u-clickable" href="/post/install-mysql/#rpm-%e5%8c%85%e7%9a%84%e5%ae%89%e8%a3%85">RPM 包的安装</a>
+</h2>
+
+<pre tabindex="0"><code>rpm -ivh 包全名</code></pre>
+<p>此命令中各选项参数的含义为：</p>
+<ul>
+<li>-i：安装（install）;</li>
+<li>-v：显示更详细的信息（verbose）;</li>
+<li>-h：打印 #，显示安装进度（hash）;</li>
+</ul>
+<h2 id="rpm包的升级">
+  <a class="Heading-link u-clickable" href="/post/install-mysql/#rpm%e5%8c%85%e7%9a%84%e5%8d%87%e7%ba%a7">RPM包的升级</a>
+</h2>
+
+<pre tabindex="0"><code>rpm -Uvh 包全名</code></pre>
+<h3 id="linux解压tar文件的命令">
+  <a class="Heading-link u-clickable" href="/post/install-mysql/#linux%e8%a7%a3%e5%8e%8btar%e6%96%87%e4%bb%b6%e7%9a%84%e5%91%bd%e4%bb%a4">linux解压tar文件的命令</a>
+</h3>
+<p>tar  <code>tar -xvf xxx.tag -C 指定目录</code></p>
+<p>tar.gz  <code> tar -zxvf xxx.tar.gz -C 指定目录</code>
+tar.bz2 <code>tar -jxvf xxxx.tar.bz2 -C 指定目录</code></p>
+
+    
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    
+  
+
+  </article>
+
+
+      </div>
+    </div>
+  </main>
+  
+  <footer class="Footer">
+    <div class="u-wrapper">
+      <div class="u-padding">
+        开发的乐趣在于相通而不同
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d08a2ad355cb7a065a41be081b43297e";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

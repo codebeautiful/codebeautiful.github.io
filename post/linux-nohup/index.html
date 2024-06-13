@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+    <meta name="description" content="nohup不输出日志文件 只输出错误信息到日志文件 nohup ./program &gt;/dev/null 2&gt;log &amp; 什么信息都不输出 nohup ./program &gt;/dev/null 2&gt;&amp;1 &amp; Linux的重定向 0:表示标准输入； 1:标准输出,在一般使用时，默认的是标准输出； 2:表示错误信息输出。 关于/dev/null /dev/null属于字符特殊文件，它属于空设备，是一个特殊的设备文件，它会丢弃一切写入其中的数据， 写入它的内容都会永远丢失，而且没有任何可以读取的内容。它就像一个黑洞， 我们一般会把/dev/null当成一个垃圾站，不要的东西丢进去。比如来清除文件中的内容。">
+  
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.124.1">
+
+<meta content="" name="keywords">
+<meta content="Linux nohup用法 - 通通不同-博客" property="og:title">
+<meta content="开发的乐趣在于相通而不同 - " property="og:description">
+
+<meta name="msvalidate.01" content="F56ED94B7E86941E3DACEF208F07D329" />
+
+  <title>
+    
+    Linux nohup用法
+     - 通通不同-博客
+    
+</title>
+
+  <link rel="canonical" href="https://blog.ttbt.work/post/linux-nohup/">
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+  <link rel="stylesheet" href="/css/base.min.4f231885947d13c748c815d93da49f07ab89afb67629f9970b7c054610e88e0b.css" integrity="sha256-TyMYhZR9E8dIyBXZPaSfB6uJr7Z2KfmXC3wFRhDojgs=" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <h1 class="Banner-heading">
+          <a class="Banner-link u-clickable" href="/">通通不同-博客</a>
+        </h1>
+      </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">全部</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">分类</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">标签</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <article>
+    <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/linux-nohup/" rel="bookmark">Linux nohup用法</a>
+  </h2>
+  
+    <time datetime="2023-12-15T12:10:03&#43;08:00">15 December, 2023</time>
+  
+</header>
+
+    <h1 id="nohup不输出日志文件">
+  <a class="Heading-link u-clickable" href="/post/linux-nohup/#nohup%e4%b8%8d%e8%be%93%e5%87%ba%e6%97%a5%e5%bf%97%e6%96%87%e4%bb%b6">nohup不输出日志文件</a>
+</h1>
+<h2 id="只输出错误信息到日志文件">
+  <a class="Heading-link u-clickable" href="/post/linux-nohup/#%e5%8f%aa%e8%be%93%e5%87%ba%e9%94%99%e8%af%af%e4%bf%a1%e6%81%af%e5%88%b0%e6%97%a5%e5%bf%97%e6%96%87%e4%bb%b6">只输出错误信息到日志文件</a>
+</h2>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span>nohup ./program &gt;/dev/null 2&gt;log &amp;</span></span></code></pre></div>
+<h2 id="什么信息都不输出">
+  <a class="Heading-link u-clickable" href="/post/linux-nohup/#%e4%bb%80%e4%b9%88%e4%bf%a1%e6%81%af%e9%83%bd%e4%b8%8d%e8%be%93%e5%87%ba">什么信息都不输出</a>
+</h2>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span>nohup ./program &gt;/dev/null 2&gt;&amp;<span style="color:#ae81ff">1</span> &amp;</span></span></code></pre></div>
+<h1 id="linux的重定向">
+  <a class="Heading-link u-clickable" href="/post/linux-nohup/#linux%e7%9a%84%e9%87%8d%e5%ae%9a%e5%90%91">Linux的重定向</a>
+</h1>
+<ul>
+<li>0:表示标准输入；</li>
+<li>1:标准输出,在一般使用时，默认的是标准输出；</li>
+<li>2:表示错误信息输出。</li>
+</ul>
+<h1 id="关于devnull">
+  <a class="Heading-link u-clickable" href="/post/linux-nohup/#%e5%85%b3%e4%ba%8edevnull">关于/dev/null</a>
+</h1>
+<blockquote>
+<p>/dev/null属于字符特殊文件，它属于空设备，是一个特殊的设备文件，它会丢弃一切写入其中的数据，
+写入它的内容都会永远丢失，而且没有任何可以读取的内容。它就像一个黑洞，
+我们一般会把/dev/null当成一个垃圾站，不要的东西丢进去。比如来清除文件中的内容。</p>
+</blockquote>
+
+    
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    
+  
+
+  </article>
+
+
+      </div>
+    </div>
+  </main>
+  
+  <footer class="Footer">
+    <div class="u-wrapper">
+      <div class="u-padding">
+        开发的乐趣在于相通而不同
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d08a2ad355cb7a065a41be081b43297e";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

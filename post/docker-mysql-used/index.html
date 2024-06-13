@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+    <meta name="description" content="操作失败
+x-S&#43;*dri0&#43;ZhcT6
+拉去镜像 docker pull mysql:5.6 启动操作 docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=&#34;设置你的mysql的密码&#34;-d mysql:5.6 解析：
+--name 给容器取名字为mysql -p 端口1:端口2 端口1是对外暴露的端口（即宿主机的端口），端口2 使我们的mysql端口 -e MYSQL_ROOT_PASSWORD=密码 即root用户的密码 -d mysql:5.6 代表后台运行我们的mysql docker run --privileged=true --name mysql -p 3306:3306 -v /mysql/data:/var/lib/mysql -v /mydata/mysql/conf:/etc/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.6 ">
+  
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.124.1">
+
+<meta content="" name="keywords">
+<meta content="Docker使用 Mysql5.6 - 通通不同-博客" property="og:title">
+<meta content="开发的乐趣在于相通而不同 - " property="og:description">
+
+<meta name="msvalidate.01" content="F56ED94B7E86941E3DACEF208F07D329" />
+
+  <title>
+    
+    Docker使用 Mysql5.6
+     - 通通不同-博客
+    
+</title>
+
+  <link rel="canonical" href="https://blog.ttbt.work/post/docker-mysql-used/">
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+  <link rel="stylesheet" href="/css/base.min.4f231885947d13c748c815d93da49f07ab89afb67629f9970b7c054610e88e0b.css" integrity="sha256-TyMYhZR9E8dIyBXZPaSfB6uJr7Z2KfmXC3wFRhDojgs=" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <h1 class="Banner-heading">
+          <a class="Banner-link u-clickable" href="/">通通不同-博客</a>
+        </h1>
+      </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">全部</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">分类</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">标签</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <article>
+    <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/docker-mysql-used/" rel="bookmark">Docker使用 Mysql5.6</a>
+  </h2>
+  
+    <time datetime="2023-11-13T10:32:57&#43;08:00">13 November, 2023</time>
+  
+</header>
+
+    <p>操作失败</p>
+<p>x-S+*dri0+ZhcT6</p>
+<h1 id="拉去镜像">
+  <a class="Heading-link u-clickable" href="/post/docker-mysql-used/#%e6%8b%89%e5%8e%bb%e9%95%9c%e5%83%8f">拉去镜像</a>
+</h1>
+
+<pre tabindex="0"><code>docker pull mysql:5.6</code></pre>
+<h1 id="启动操作">
+  <a class="Heading-link u-clickable" href="/post/docker-mysql-used/#%e5%90%af%e5%8a%a8%e6%93%8d%e4%bd%9c">启动操作</a>
+</h1>
+
+<pre tabindex="0"><code>docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=&#34;设置你的mysql的密码&#34;-d mysql:5.6</code></pre>
+<p>解析：</p>
+<pre><code>--name   给容器取名字为mysql
+-p   端口1:端口2     端口1是对外暴露的端口（即宿主机的端口），端口2 使我们的mysql端口
+-e MYSQL_ROOT_PASSWORD=密码   即root用户的密码
+-d mysql:5.6     代表后台运行我们的mysql
+</code></pre>
+
+<pre tabindex="0"><code>docker run  --privileged=true --name mysql -p 3306:3306 -v /mysql/data:/var/lib/mysql -v /mydata/mysql/conf:/etc/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.6  </code></pre>
+
+    
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    
+  
+
+  </article>
+
+
+      </div>
+    </div>
+  </main>
+  
+  <footer class="Footer">
+    <div class="u-wrapper">
+      <div class="u-padding">
+        开发的乐趣在于相通而不同
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d08a2ad355cb7a065a41be081b43297e";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

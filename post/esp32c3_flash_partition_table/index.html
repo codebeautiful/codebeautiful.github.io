@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+    <meta name="description" content="测试环境为esp32c3 4MB flash
+# ESP-IDF Partition Table # Name, Type, SubType, Offset, Size, Flags nvs, data, nvs, 0x9000, 0x4000, otadata, data, ota, 0xd000, 0x2000, phy_init, data, phy, 0xf000, 0x1000, ota_0, app, ota_0, 0x10000, 1980K, ota_1, app, ota_1, 0x200000, 1980K, ******************************************************************************* # ESP-IDF Partition Table # Name, Type, SubType, Offset, Size, Flags nvs,data,nvs,0x9000,16K, otadata,data,ota,0xd000,8K, phy_init,data,phy,0xf000,4K, ota_0,app,ota_0,0x10000,1980K, ota_1,app,ota_1,0x200000,1980K, ******************************************************************************* 0x8000，位置烧录分区表
+0x0,烧录bootloader
+0x0: bootloader.bin
+0x8000: partition-table.bin
+0xd000: ota_data_initial.bin">
+  
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.124.1">
+
+<meta content="" name="keywords">
+<meta content="Esp32c3 flash 分区最大化的OTA分区表 - 通通不同-博客" property="og:title">
+<meta content="开发的乐趣在于相通而不同 - " property="og:description">
+
+<meta name="msvalidate.01" content="F56ED94B7E86941E3DACEF208F07D329" />
+
+  <title>
+    
+    Esp32c3 flash 分区最大化的OTA分区表
+     - 通通不同-博客
+    
+</title>
+
+  <link rel="canonical" href="https://blog.ttbt.work/post/esp32c3_flash_partition_table/">
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+  <link rel="stylesheet" href="/css/base.min.4f231885947d13c748c815d93da49f07ab89afb67629f9970b7c054610e88e0b.css" integrity="sha256-TyMYhZR9E8dIyBXZPaSfB6uJr7Z2KfmXC3wFRhDojgs=" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <h1 class="Banner-heading">
+          <a class="Banner-link u-clickable" href="/">通通不同-博客</a>
+        </h1>
+      </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">全部</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">分类</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">标签</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <article>
+    <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/esp32c3_flash_partition_table/" rel="bookmark">Esp32c3 flash 分区最大化的OTA分区表</a>
+  </h2>
+  
+    <time datetime="2023-07-11T17:28:51&#43;08:00">11 July, 2023</time>
+  
+</header>
+
+    <p>测试环境为esp32c3 4MB flash</p>
+
+<pre tabindex="0"><code># ESP-IDF Partition Table
+# Name,   Type, SubType, Offset,  Size, Flags
+nvs,      data, nvs,     0x9000,  0x4000,
+otadata,  data, ota,     0xd000,  0x2000,
+phy_init, data, phy,     0xf000,  0x1000,
+ota_0,  app,  ota_0,   0x10000, 1980K,
+ota_1,    app,  ota_1,   0x200000, 1980K,</code></pre>
+
+<pre tabindex="0"><code>*******************************************************************************
+# ESP-IDF Partition Table
+# Name, Type, SubType, Offset, Size, Flags
+nvs,data,nvs,0x9000,16K,
+otadata,data,ota,0xd000,8K,
+phy_init,data,phy,0xf000,4K,
+ota_0,app,ota_0,0x10000,1980K,
+ota_1,app,ota_1,0x200000,1980K,
+*******************************************************************************</code></pre>
+<p>0x8000，位置烧录分区表</p>
+<p>0x0,烧录bootloader</p>
+<p>0x0: bootloader.bin</p>
+<p>0x8000: partition-table.bin</p>
+<p>0xd000: ota_data_initial.bin</p>
+
+    
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    
+  
+
+  </article>
+
+
+      </div>
+    </div>
+  </main>
+  
+  <footer class="Footer">
+    <div class="u-wrapper">
+      <div class="u-padding">
+        开发的乐趣在于相通而不同
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d08a2ad355cb7a065a41be081b43297e";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

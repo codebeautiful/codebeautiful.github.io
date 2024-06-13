@@ -30,7 +30,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.111.2">
+<meta name="generator" content="Hugo 0.124.1">
 
 <meta content="" name="keywords">
 <meta content="通通不同-博客" property="og:title">
@@ -64,8 +64,11 @@
     
     
     
-      
-      
+    
+    
+  
+    
+    
     
     
     
@@ -82,8 +85,11 @@
     
     
     
-      
-      
+    
+    
+  
+    
+    
     
     
     
@@ -91,35 +97,11 @@
     
     
     
-      
-      
-    
     
     
   
     
     
-    
-      
-      
-    
-    
-    
-  
-    
-    
-    
-      
-      
-    
-    
-    
-  
-    
-    
-    
-      
-      
     
     
     
@@ -199,346 +181,138 @@
     <article>
       <header class="Heading">
   <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/qt_https_failed_to_load_libssl_libcrypto/" rel="bookmark">Qt开发https请求报 qt.tlsbackend.ossl: Failed to load libssl/libcrypto.</a>
+    <a class="Heading-link u-clickable" href="/post/vim-skill/" rel="bookmark">Vim Skill</a>
   </h2>
   
-    <time datetime="2023-05-06T09:36:26&#43;08:00">6 May, 2023</time>
+    <time datetime="2023-12-22T10:45:53&#43;08:00">22 December, 2023</time>
   
 </header>
 
       
-        <p>使用环境是 macOS13  Qt Creator版本是9.0</p>
-<p>错误原因分析：未导入 ssl 和 crypto 相关库</p>
-<p>解决方法：在 .pro 文件中加入一下代码</p>
+        <p>vim 是一个很好用的编辑器，应用十分广泛。但关于 vim，总有一些你不知道的事情，我们需要持续不断的学习。</p>
+<p>我经常使用 vim，也经常在各大社区、论坛看到 vim 专家用户分享经验，今天我们就总结其中常用的一部分，分享给大家。</p>
+<h1 id="1使用内置帮助built-in-help">
+  <a class="Heading-link u-clickable" href="/post/vim-skill/#1%e4%bd%bf%e7%94%a8%e5%86%85%e7%bd%ae%e5%b8%ae%e5%8a%a9built-in-help">1，使用内置帮助（built-in help）</a>
+</h1>
+<p>使用 vim 的内置帮助是一个好习惯（虽然很多朋友更喜欢在网上搜索相关的使用方法）。查看帮助的语法如下表格所示：</p>
 
-<pre tabindex="0"><code>LIBS += -lssl
-LIBS += -lcrypto
+<pre tabindex="0"><code>:help :w	有关 :w 命令的帮助
 
-LIBS    += -L&#34;/opt/homebrew/Cellar/openssl@1.1/1.1.1s/lib&#34;
-INCLUDEPATH += /opt/homebrew/Cellar/openssl@1.1/1.1.1s/include</code></pre>
-<p>其中openssl的路径依据安装路径不同存在不一致的情况，我自己的openssl是通过  brew install openssl  如果是M系列可能需要使用  arch -arm64 brew install openssl</p>
+:help j	有关“j”键在正常模式上下文中的帮助
 
-      
-      
+:help v_J	有关在上下文中使用“J”键到视觉模式的帮助
 
+:help i_&lt;Esc&gt;	有关在上下文中使用“Esc”键插入模式的帮助
 
-  
+:help /\n	有关搜索模式“\n”的帮助</code></pre>
+<h1 id="2以普通用户身份打开以-root-用户身份保存">
+  <a class="Heading-link u-clickable" href="/post/vim-skill/#2%e4%bb%a5%e6%99%ae%e9%80%9a%e7%94%a8%e6%88%b7%e8%ba%ab%e4%bb%bd%e6%89%93%e5%bc%80%e4%bb%a5-root-%e7%94%a8%e6%88%b7%e8%ba%ab%e4%bb%bd%e4%bf%9d%e5%ad%98">2，以普通用户身份打开，以 root 用户身份保存</a>
+</h1>
+<p>在编辑系统文件或者受权限保护的文件的时候，很容易会忘记在 vim 编辑之前添加 sudo，这样将会以只读模式打开文件，也就是编辑后不能保存。</p>
+<p>但是这时候，你可能已经对文件做了一些修改（尚未保存），很显然，强制退出不是一个好选择。</p>
+<p>在这些情况下，在 vim 中键入以下命令：
+:w !sudo tee %
+键入此命令后，将要求您输入sudo命令的密码，然后文件就可以保存了。</p>
+<p>注：我们应该使用 sudo edit 命令而不是 sudo vim 来编辑需要超级用户权限的文件。</p>
+<p>我们将上述命令拆解来看下：</p>
 
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-    
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/qt/" rel="tag">Qt</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/ssl/" rel="tag">ssl</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/https/" rel="tag">https</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/crypto/" rel="tag">crypto</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/brew/" rel="tag">brew</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/openssl/" rel="tag">openssl</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/swift_notification_usage/" rel="bookmark">Swift Notification使用</a>
-  </h2>
-  
-    <time datetime="2023-05-05T15:46:32&#43;08:00">5 May, 2023</time>
-  
-</header>
-
-      
-        <h3 id="简单使用记录">
-  <a class="Heading-link u-clickable" href="/post/swift_notification_usage/#%e7%ae%80%e5%8d%95%e4%bd%bf%e7%94%a8%e8%ae%b0%e5%bd%95">简单使用记录</a>
-</h3>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#75715e">//注册监听</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> observer = NotificationCenter.<span style="color:#66d9ef">default</span>.addObserver(forName: Notification.Name(rawValue: <span style="color:#e6db74">&#34;Notify&#34;</span>), object: <span style="color:#66d9ef">nil</span>, queue: OperationQueue.main) {<span style="color:#66d9ef">_</span> <span style="color:#66d9ef">in</span>
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//移除监听</span>
-</span></span><span style="display:flex;"><span>NotificationCenter.<span style="color:#66d9ef">default</span>.removeObserver(observer)
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//发送通知</span>
-</span></span><span style="display:flex;"><span>NotificationCenter.<span style="color:#66d9ef">default</span>.post(name: Notification.Name(<span style="color:#e6db74">&#34;Notify&#34;</span>), object: <span style="color:#66d9ef">nil</span>)</span></span></code></pre></div>
-
-      
-      
-
-
-  
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-    
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/swift/" rel="tag">swift</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/notification/" rel="tag">Notification</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/ios_upload_ipa_solve_bluetooth_permission/" rel="bookmark">iOS上架ipa，解决蓝牙权限申请问题</a>
-  </h2>
-  
-    <time datetime="2023-04-25T21:01:58&#43;08:00">25 April, 2023</time>
-  
-</header>
-
-      
-        <h3 id="收到错误的邮件信息">
-  <a class="Heading-link u-clickable" href="/post/ios_upload_ipa_solve_bluetooth_permission/#%e6%94%b6%e5%88%b0%e9%94%99%e8%af%af%e7%9a%84%e9%82%ae%e4%bb%b6%e4%bf%a1%e6%81%af">收到错误的邮件信息</a>
-</h3>
-<p><strong>ITMS-90683: Missing purpose string in Info.plist</strong> - Your app’s code references one or more APIs that access sensitive user data, or the app has one or more entitlements that permit such access. The Info.plist file for the “iosApp.app” bundle should contain a <em>NSBluetoothPeripheralUsageDescription</em> key with a user-facing purpose string explaining clearly and completely why your app needs the data. If you’re using external libraries or SDKs, they may reference APIs that require a purpose string. While your app might not use these APIs, a purpose string is still required. For details, visit:</p>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;key&gt;</span>NSBluetoothPeripheralUsageDescription<span style="color:#f92672">&lt;/key&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;string&gt;</span>Bluetooth is used to communicate with BLE devices.<span style="color:#f92672">&lt;/string&gt;</span></span></span></code></pre></div>
-<p><img src="/images/image-20230425210600856.png" alt="image-20230425210600856"></p>
-
-      
-      
-
-
-  
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-    
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/ios/" rel="tag">iOS</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/nsbluetoothperipheralusagedescription/" rel="tag">NSBluetoothPeripheralUsageDescription</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/%E4%B8%8A%E6%9E%B6app/" rel="tag">上架APP</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/%E8%93%9D%E7%89%99/" rel="tag">蓝牙</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/ios_viewdiddisappear_without_destroying_objects/" rel="bookmark">iOS navigationController 跳转页面不销毁对象，退出销毁对象</a>
-  </h2>
-  
-    <time datetime="2023-04-21T11:49:45&#43;08:00">21 April, 2023</time>
-  
-</header>
-
-      
-        <h3 id="需求分析">
-  <a class="Heading-link u-clickable" href="/post/ios_viewdiddisappear_without_destroying_objects/#%e9%9c%80%e6%b1%82%e5%88%86%e6%9e%90">需求分析</a>
-</h3>
-<ol>
-<li>进入界面开启蓝牙连接</li>
-<li>中间有跳转其他页面，需要再其他页面保持蓝牙连接状态</li>
-<li>退出界面后需要断开蓝牙连接</li>
-</ol>
-<h3 id="解决办法">
-  <a class="Heading-link u-clickable" href="/post/ios_viewdiddisappear_without_destroying_objects/#%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95">解决办法</a>
-</h3>
-<p>在viewDidDisappear中处理连接断开问题</p>
-<p>在该方法中，如果是跳转界面self.navigationController不为空，如果退出当前界面得到的值为nil</p>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">viewDidDisappear</span>(<span style="color:#66d9ef">_</span> animated: Bool) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">self</span>.navigationController == <span style="color:#66d9ef">nil</span> {
-</span></span><span style="display:flex;"><span>    		<span style="color:#75715e">// todo 调用蓝牙断开方法</span>
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
-
-      
-      
-
-
-  
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-    
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/ios/" rel="tag">iOS</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/uinavigationcontroller/" rel="tag">UINavigationController</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/%E5%AF%B9%E8%B1%A1%E9%94%80%E6%AF%81/" rel="tag">对象销毁</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/%E5%AF%B9%E8%B1%A1%E4%BF%9D%E7%95%99/" rel="tag">对象保留</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/%E8%93%9D%E7%89%99/" rel="tag">蓝牙</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/kotlin_nsdata_to_bytearray/" rel="bookmark">Kotlin Native 开发 NSData转ByteArray</a>
-  </h2>
-  
-    <time datetime="2023-04-20T13:02:36&#43;08:00">20 April, 2023</time>
-  
-</header>
-
-      
-        <h3 id="string转nsdata">
-  <a class="Heading-link u-clickable" href="/post/kotlin_nsdata_to_bytearray/#string%e8%bd%acnsdata">String转NSData</a>
-</h3>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> nsdata = (<span style="color:#e6db74">&#34;Hello&#34;</span> <span style="color:#66d9ef">as</span> NSString).dataUsingEncoding(NSUTF8StringEncoding)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>:w - 这是写入命令。由于没有给出参数，vim 将把整个文件写入标准输出；
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> hello = <span style="color:#e6db74">&#34;Hello&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">NSData</span>.create(bytes = hello.cstr.ptr, length = hello.length)</span></span></code></pre></div>
-<h3 id="nsdata转bytearray">
-  <a class="Heading-link u-clickable" href="/post/kotlin_nsdata_to_bytearray/#nsdata%e8%bd%acbytearray">NSData转ByteArray</a>
-</h3>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#75715e">// 实现1
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> (nsdata <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">val</span> byteArray = ByteArray(nsdata.length.toInt())
-</span></span><span style="display:flex;"><span>    byteArray.usePinned {
-</span></span><span style="display:flex;"><span>        memcpy(<span style="color:#66d9ef">it</span>.addressOf(<span style="color:#ae81ff">0</span>), nsdata.bytes, nsdata.length)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 实现2
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">val</span> byteArray = ByteArray(<span style="color:#66d9ef">data</span>.length.toInt())
-</span></span><span style="display:flex;"><span>byteArray.apply {
-</span></span><span style="display:flex;"><span>  usePinned {
-</span></span><span style="display:flex;"><span>  		memcpy(<span style="color:#66d9ef">it</span>.addressOf(<span style="color:#ae81ff">0</span>), <span style="color:#66d9ef">data</span>.bytes, <span style="color:#66d9ef">data</span>.length)
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 实现3
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">val</span> byteArray = <span style="color:#66d9ef">data</span>.bytes<span style="color:#f92672">?.</span>readBytes(<span style="color:#66d9ef">data</span>.length.toInt())</span></span></code></pre></div>
-<h3 id="bytearray-转-nsdata">
-  <a class="Heading-link u-clickable" href="/post/kotlin_nsdata_to_bytearray/#bytearray-%e8%bd%ac-nsdata">ByteArray 转 NSData</a>
-</h3>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> nsdata: NSData
-</span></span><span style="display:flex;"><span>byteArray<span style="color:#f92672">?.</span>usePinned {
-</span></span><span style="display:flex;"><span>    nsdata = <span style="color:#a6e22e">NSData</span>.dataWithBytes(<span style="color:#66d9ef">it</span>.addressOf(<span style="color:#ae81ff">0</span>), <span style="color:#66d9ef">it</span>.<span style="color:#66d9ef">get</span>().size.toULong())
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>!sudo - 将 sudo 命令作为 shell 命令而不是 vim 命令运行；
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tee - tee命令用于读取标准输入并将其写入标准输出或文件；
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>% - vim 将其替换为您正在编辑的当前文件的名称。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>:w 命令将整个文件写入 STDOUT（标准输出）；然后，我们使用sudo命令（因为我们编辑的毕竟是一个系统文件）来获得临时权限。</span></span></code></pre></div>
+<p>百分号（%）表示文件名，tee 命令从 STDOUT 获取 vim 的输出并将其写入 % 文件。</p>
+<p>这基本上适用于 &lt;Vim&rsquo;s STDOUT&gt; | sudo tee /etc/ssh/sshd_config，有点复杂&hellip;</p>
+<h1 id="3将所有空格转为制表符或者反过来">
+  <a class="Heading-link u-clickable" href="/post/vim-skill/#3%e5%b0%86%e6%89%80%e6%9c%89%e7%a9%ba%e6%a0%bc%e8%bd%ac%e4%b8%ba%e5%88%b6%e8%a1%a8%e7%ac%a6%e6%88%96%e8%80%85%e5%8f%8d%e8%bf%87%e6%9d%a5">3，将所有空格转为制表符（或者反过来）</a>
+</h1>
+<p>我们都喜欢使用制表符(tab)或者空格，但是，如果我们正在编辑的文本其缩进使用的符号正好与我们的习惯相反，该怎么办？</p>
+<p>3.1 将所有空格转换为制表符</p>
+<p>如果当前文件使用空格缩进文本，希望将它们转换为制表符时，需要运行如下两个 vim 命令：</p>
+<p>:set noexpandtab
+:retab!
+这样做会将所有空格转换为其等效的制表符。如果文档使用两个空格作为缩进宽度，它们将转换为1个制表符。如果 4 个空格用作单个缩进宽度时，这 4 个制表位将替换为 1 个制表字符。
+3.2 将所有制表符转换为空格</p>
+<p>如果要编辑的文件使用制表符缩进，并且要将制表符转换为空格，则需要运行如下4个 vim 命令：</p>
+<p>:set expandtab
+:set tabstop=4
+:set shiftwidth=4
+:retab
+第一个命令（expandtab）告诉 vim 使用空格展开 tab，第二个命令（tabstop）设置使用多少个空格用作一个“缩进块”。
+在我们的例子中，我们定义了“1个tab=4个空格”；当使用&raquo;运算符时，shiftwidth 命令用于控制缩进，这也被设置为4个空格。</p>
+<p>最后，retab 命令将所有制表符（用于缩进）转换为空格。</p>
+<p>4，缩进所有行</p>
+<p>错误的缩进，在 python 或者 YAML 程序中会报错，导致程序不能正确运行。</p>
+<p>要缩进所有行，按 gg 键到达文件顶部，然后按 = 键表示“缩进”，最后按 G 键表示到“最后一行”。</p>
+<p>这样将会自动缩进，从第一行到最后一行。</p>
+<p>如下图所示，我使用 :gg=G命令缩进的演示：
+图片</p>
+<p>正如你所看到的（从这个有限的预览中），所有行都正确缩进。</p>
+<p>5，粘贴代码时保留缩进</p>
+<p>我们都有过在互联网上复制代码的时候。当将代码粘贴到文件中时，缩进都给弄乱了，这时候需要怎样做呢？</p>
+<p>为了避免这种情况，请在 .vimrc 文件中添加以下代码：</p>
+<p>set pastetoggle=<!-- raw HTML omitted -->
+对 vimrc 文件进行如上更改后，在粘贴代码之前按 F2 键，这样做将确保代码粘贴正确的缩进。
+6，以正确的缩进深度开始书写</p>
+<p>假设光标在第一行第一列，但是所要写的内容需要缩进，那在不按下制表符（tab）和空格键的情况下，应该怎样做呢？</p>
+<p>答案是在正常模式下按下 S 键。</p>
+<p>当光标位于行的第一列时，按 Esc 键进入正常模式。然后按 S（大写）键，这会将光标移动到适当的缩进深度，并自动进入“插入”模式，以便开始键入。
+图片</p>
+<p>上图，我的光标位于第一列，通过按S键，光标移动到正确的缩进深度，Vim从正常模式切换到插入模式。</p>
+<p>7，保存文件前显示差异</p>
+<p>我们可能遇到过这样的情况：我修改了这个文件，但是忘记都做了哪些修改了，并且我担心其中有些地方可能修改错了。</p>
+<p>解决此问题的方法是查看缓冲区和文件之间的差异。可在 vim 中执行如下命令：</p>
+<p>:w !diff % -
+我们将上述命令拆解来看：</p>
+<p>:w  用于保存/写入，在这个特定场景中，如果命令中没有指定文件名，则输出将写入STDIN（标准输入）文件；</p>
+<p>:!<!-- raw HTML omitted -->  是执行 shell 命令的语法，在这个例子中，我们在 shell 中运行 diff 命令；</p>
+<p>%  表示未修改的当前文件的名称；试试这个：:!echo %</p>
+<ul>
+<li>是 diff 命令的 STDIN 文件。</li>
+</ul>
+<p>因此，该命令首先将所有[未保存]内容写入STDIN文件。然后diff命令读取当前文件（%）并将其与STDIN（-）文件进行比较。</p>
+<p>这个命令大致等同于这个shell命令：diff <!-- raw HTML omitted --> &lt;Vim&rsquo;s STDOUT&gt;</p>
+<p>8，显示拼写错误</p>
+<p>我们应该都使用过 Microsoft word，其拼写检查器在拼写错误的单词下会有一条红色的波浪线。</p>
+<p>vim 也内置了拼写检查器，但默认情况下是关闭的。我们可以使用如下命令启用它：</p>
+<p>:set spell
+这样，你可能会看到拼写错误的单词被突出显示，其突出显示的方式取决于你的 vim 颜色方案。我在拼写错误的单词下面有一条白色下划线，如下图所示：
+图片
+要将这设置为 vim 的默认，可在 .vimrc 文件中添加如下配置：</p>
+<p>set spell
+9，显示行号
+与许多 vim 用户一样，你可能喜欢在 vim 中显示行号。</p>
+<p>有两种方法可以显示行号。一种是绝对行编号，在这种情况下，每行显示绝对行号，就像任何其他代码编辑器或IDE一样。</p>
+<p>第二种是相对行号。在这种情况下，当前行的行号为0，其他行的行号为相比于光标所在行的相对数字。</p>
+<p>这两种情况，也并不是只能选择一个，事实上，可以两种都要。</p>
+<p>通过在 .vimrc 中添加以下行，可以在 vim 中启用“混合行编号”：</p>
+<p>set number relativenumber
+这将在光标所在行显示绝对行号，在其他行显示相对行号。如下图所示：</p>
+<p>图片</p>
+<p>当前光标位于第44行，因此该行显示绝对行号；其他行（光标上方和下方的行）显示相对行号。</p>
+<p>10，使用 vim 打开文件的同时将光标定位在某一行</p>
+<p>默认情况下，我们使用 vim 打开文件，光标总会在第一行。在某些时候，我们希望光标能够定位在我们指定的某一行，而不是第一行。</p>
+<p>可以通过使用 +n（n为行号）选项来实现这一点，当然前提是你需要知道打开的文件总行数应大于或等于 n，如下：</p>
+<p>vim +n <!-- raw HTML omitted -->
+11，使用可读的配色方案
+当谈到使用配色方案时，人们通常会选择他们觉得最吸引人或最美观的配色方案。但是，当你作为一个代码编辑器兼 IDE 的 vim 时，最好放弃一些引人注目的东西，转而使用具有更好视觉指导的配色方案。</p>
+<p>一个好的配色方案看起来很好，但是一个优秀的配色可以帮助你在颜色的帮助下轻松识别关键词、变量和其他标识符。</p>
+<p>当然，每个人的喜好是不同的，配色当然也是不同的。我们在下图中贴出几个大家都觉得顺眼的方案，可以作为参考：</p>
+<p>图片</p>
+<p>图片</p>
+<p>图片</p>
+<p>12，在插入模式下删除文本</p>
+<p>我们都知道，在正常模式（normal mode）下，可以使用 d 和 x 键删除文本，那么在插入模式下如何执行相同的操作（比如 dd）呢？</p>
+<p>以下是常用的一些方案：
+ctrl + w 删除前一个单词（字）（相当于正常模式下的 db）；</p>
+<p>ctrl + h 删除前一个字符；</p>
+<p>ctrl  + u 删除当前行所有前面的字符（相当于正常模式下的 d0 ）；</p>
+<p>ctrl  + k 删除当前行中所有主要字符（相当于正常模式下的 d$）。</p>
 
       
       
@@ -553,52 +327,6 @@ INCLUDEPATH += /opt/homebrew/Cellar/openssl@1.1/1.1.1s/include</code></pre>
 
 
 
-
-  <footer>
-    
-      
-    
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/kotlin/" rel="tag">Kotlin</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/native/" rel="tag">Native</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/nsdata/" rel="tag">NSData</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/bytearray/" rel="tag">ByteArray</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/string/" rel="tag">String</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/string%E8%BD%ACnsdata/" rel="tag">String转NSData</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/nsdata%E8%BD%ACbytearray/" rel="tag">NSData转ByteArray</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/bytearray-%E8%BD%AC-nsdata/" rel="tag">ByteArray 转 NSData</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
 
     </article>
     
@@ -608,21 +336,74 @@ INCLUDEPATH += /opt/homebrew/Cellar/openssl@1.1/1.1.1s/include</code></pre>
     <article>
       <header class="Heading">
   <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/golang_value_reference_type/" rel="bookmark">golang中的值类型和引用类型</a>
+    <a class="Heading-link u-clickable" href="/post/protothreads/" rel="bookmark">Protothreads</a>
   </h2>
   
-    <time datetime="2023-04-19T00:48:08&#43;08:00">19 April, 2023</time>
+    <time datetime="2023-12-19T12:27:51&#43;08:00">19 December, 2023</time>
   
 </header>
 
       
         <ul>
-<li>值类型分别有：int系列、float系列、bool、string、数组和结构体</li>
-<li>引用类型有：指针、slice切片、管道channel、接口interface、map、函数等</li>
+<li>通过链接 <a href="http://dunkels.com/adam/pt/download.html">http://dunkels.com/adam/pt/download.html</a> 进行下载相关版本的ptthread库</li>
 </ul>
-<p>值类型的特点是：变量直接存储值，内存通常在栈中分配</p>
-<p>引用类型的特点是：变量存储的是一个地址，这个地址对应的空间里才是真正存储的值，内存通常在堆中分配</p>
-<p>对interface，map，函数 类型最好不要使用指针定义或取地址操作</p>
+<h1 id="主要特点">
+  <a class="Heading-link u-clickable" href="/post/protothreads/#%e4%b8%bb%e8%a6%81%e7%89%b9%e7%82%b9">主要特点：</a>
+</h1>
+<blockquote>
+<ul>
+<li>非常小的RAM开销-每个protothread只有两个字节，没有额外的堆栈</li>
+<li>高度可移植性-protothreads库是100%纯C，没有特定于体系结构的汇编代码</li>
+<li>可以与操作系统一起使用，也可以不使用操作系统</li>
+<li>提供阻塞等待，无需完全多线程或堆栈切换</li>
+<li>在类似BSD的开源许可证下免费提供</li>
+</ul>
+</blockquote>
+<h1 id="使用场景">
+  <a class="Heading-link u-clickable" href="/post/protothreads/#%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af">使用场景</a>
+</h1>
+<blockquote>
+<ul>
+<li>内存受限系统</li>
+<li>事件驱动协议栈</li>
+<li>小型嵌入式系统</li>
+<li>传感器网络节点</li>
+<li>便携式C应用程序</li>
+</ul>
+</blockquote>
+<h2 id="注意事项">
+  <a class="Heading-link u-clickable" href="/post/protothreads/#%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9">注意事项：</a>
+</h2>
+<blockquote>
+<p>由于原线程不会在阻塞调用中保存堆栈上下文，因此当原线程阻塞时，不会保留局部变量。这意味着应该非常小心地使用局部变量——如果有疑问，不要在protothread中使用局部变量！
+一个原线程是由对运行该原线程的函数的重复调用驱动的。每次调用函数时，原线程都会运行，直到它阻塞或退出。因此，原线程的调度由使用原线程的应用程序完成。</p>
+</blockquote>
+<h2 id="相关头文件">
+  <a class="Heading-link u-clickable" href="/post/protothreads/#%e7%9b%b8%e5%85%b3%e5%a4%b4%e6%96%87%e4%bb%b6">相关头文件</a>
+</h2>
+<ol>
+<li>lc-addrlabels.h        用GCC语法扩展实现的协程基础</li>
+<li>lc-switch.h            用switch语句实现的协程基础</li>
+<li>lc.h                   该文件存在的意义仅仅为了选择以上两者之一</li>
+<li>pt.h                   基于lc.h的协程设施的真正实现</li>
+<li>pt-sem.h               协程间通信（信号量）的实现</li>
+</ol>
+<h2 id="相关api">
+  <a class="Heading-link u-clickable" href="/post/protothreads/#%e7%9b%b8%e5%85%b3api">相关API：</a>
+</h2>
+<ul>
+<li>void PT_INIT(struct pt *pt);//初始化一个protothread。</li>
+<li>void PT_BEGIN(struct pt *pt);// C函数中声明协程的开始。</li>
+<li>void PT_WAIT_UNTIL(struct pt *pt, condition);//阻塞并等待条件为真。</li>
+<li>void PT_WAIT_WHILE(struct pt *pt, condition);//条件为真时，阻塞并等待。</li>
+<li>void PT_WAIT_THREAD(struct pt *pt, thread);//阻塞并等待协程完成。</li>
+<li>void PT_SPAWN(struct pt *pt, struct pt *child, thread);//生成一个协程并等待它退出。</li>
+<li>void PT_RESTART(struct pt *pt);//重新启动协程。</li>
+<li>void PT_EXIT(struct pt *pt);//退出协程序</li>
+<li>void PT_END(struct pt *pt);//声明协程的结束。</li>
+<li>int PT_SCHEDULE(protothread);//创建一个协程</li>
+<li>void PT_YIELD(struct pt *pt);//当前原线程的产量。</li>
+</ul>
 
       
       
@@ -637,32 +418,6 @@ INCLUDEPATH += /opt/homebrew/Cellar/openssl@1.1/1.1.1s/include</code></pre>
 
 
 
-
-  <footer>
-    
-      
-    
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/go/" rel="tag">go</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/%E5%80%BC%E7%B1%BB%E5%9E%8B/" rel="tag">值类型</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/" rel="tag">引用类型</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
 
     </article>
     
@@ -672,27 +427,752 @@ INCLUDEPATH += /opt/homebrew/Cellar/openssl@1.1/1.1.1s/include</code></pre>
     <article>
       <header class="Heading">
   <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/golang_response_body_close/" rel="bookmark">GO http请求完成后需要关闭response.Body.Close()</a>
+    <a class="Heading-link u-clickable" href="/post/linux-nohup/" rel="bookmark">Linux nohup用法</a>
   </h2>
   
-    <time datetime="2023-04-19T00:43:08&#43;08:00">19 April, 2023</time>
+    <time datetime="2023-12-15T12:10:03&#43;08:00">15 December, 2023</time>
+  
+</header>
+
+      
+        <h1 id="nohup不输出日志文件">
+  <a class="Heading-link u-clickable" href="/post/linux-nohup/#nohup%e4%b8%8d%e8%be%93%e5%87%ba%e6%97%a5%e5%bf%97%e6%96%87%e4%bb%b6">nohup不输出日志文件</a>
+</h1>
+<h2 id="只输出错误信息到日志文件">
+  <a class="Heading-link u-clickable" href="/post/linux-nohup/#%e5%8f%aa%e8%be%93%e5%87%ba%e9%94%99%e8%af%af%e4%bf%a1%e6%81%af%e5%88%b0%e6%97%a5%e5%bf%97%e6%96%87%e4%bb%b6">只输出错误信息到日志文件</a>
+</h2>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span>nohup ./program &gt;/dev/null 2&gt;log &amp;</span></span></code></pre></div>
+<h2 id="什么信息都不输出">
+  <a class="Heading-link u-clickable" href="/post/linux-nohup/#%e4%bb%80%e4%b9%88%e4%bf%a1%e6%81%af%e9%83%bd%e4%b8%8d%e8%be%93%e5%87%ba">什么信息都不输出</a>
+</h2>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span>nohup ./program &gt;/dev/null 2&gt;&amp;<span style="color:#ae81ff">1</span> &amp;</span></span></code></pre></div>
+<h1 id="linux的重定向">
+  <a class="Heading-link u-clickable" href="/post/linux-nohup/#linux%e7%9a%84%e9%87%8d%e5%ae%9a%e5%90%91">Linux的重定向</a>
+</h1>
+<ul>
+<li>0:表示标准输入；</li>
+<li>1:标准输出,在一般使用时，默认的是标准输出；</li>
+<li>2:表示错误信息输出。</li>
+</ul>
+<h1 id="关于devnull">
+  <a class="Heading-link u-clickable" href="/post/linux-nohup/#%e5%85%b3%e4%ba%8edevnull">关于/dev/null</a>
+</h1>
+<blockquote>
+<p>/dev/null属于字符特殊文件，它属于空设备，是一个特殊的设备文件，它会丢弃一切写入其中的数据，
+写入它的内容都会永远丢失，而且没有任何可以读取的内容。它就像一个黑洞，
+我们一般会把/dev/null当成一个垃圾站，不要的东西丢进去。比如来清除文件中的内容。</p>
+</blockquote>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/springboot-sbscan-test/" rel="bookmark">Springboot Sbscan Test</a>
+  </h2>
+  
+    <time datetime="2023-12-11T16:05:04&#43;08:00">11 December, 2023</time>
+  
+</header>
+
+      
+        <h1 id="sbscan是一款专注于spring框架的渗透测试工具">
+  <a class="Heading-link u-clickable" href="/post/springboot-sbscan-test/#sbscan%e6%98%af%e4%b8%80%e6%ac%be%e4%b8%93%e6%b3%a8%e4%ba%8espring%e6%a1%86%e6%9e%b6%e7%9a%84%e6%b8%97%e9%80%8f%e6%b5%8b%e8%af%95%e5%b7%a5%e5%85%b7">SBSCAN是一款专注于spring框架的渗透测试工具</a>
+</h1>
+<p>可以对指定站点进行spring boot敏感信息扫描以及进行spring相关漏洞的扫描与验证。</p>
+<ul>
+<li>最全的敏感路径字典：最全的spring boot站点敏感路径字典，帮你全面检测站点是否存在敏感信息泄漏</li>
+<li>支持指纹检测：
+<ul>
+<li>检测是否为spring站点：支持指纹识别，只有存在spring指纹的站点才进行下一步扫描，节约资源与时间</li>
+<li>敏感路径页面指纹检测：最大程度解决误报情况，达到同类型工具检出准确率最高，不用再人工确认是否为真的敏感页面而不是首页或者其他跳转的页面</li>
+</ul>
+</li>
+<li>最全的spring漏洞检测POC： spring相关cve漏洞的检测poc全部给你集成到这款工具里，同类型最全</li>
+<li>无回显漏洞解决： 无回显漏洞检测光看响应状态码不太靠谱？支持–dnslog参数指定dnslog域名，看到dnslog记录才是真的成功验证漏洞存在</li>
+<li>其他一些常规支持：单个url扫描/ url文件扫描 / 支持指定代理 / 支持多线程</li>
+</ul>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/kotlin_ktor_study_applicationcall/" rel="bookmark">kotlin学习之ktor(2.3.6)-ApplicationCall</a>
+  </h2>
+  
+    <time datetime="2023-11-26T12:16:05&#43;08:00">26 November, 2023</time>
+  
+</header>
+
+      
+        <h1 id="applicationcall-简介">
+  <a class="Heading-link u-clickable" href="/post/kotlin_ktor_study_applicationcall/#applicationcall-%e7%ae%80%e4%bb%8b">ApplicationCall 简介</a>
+</h1>
+<blockquote>
+<p>当处理路由或直接拦截管道时，将获得ApplicationCall的上下文。
+ApplicationCall提供对两个主要属性ApplicationRequest和ApplicationResponse的访问。对应于传入的请求和传出的响应。
+除此之外，它还提供了一个应用程序环境和一些有用的功能来帮助响应客户端请求。鉴于管道可以异步执行，ApplicationCall还表示带有属性的逻辑执行上下文，以在管道的各个部分之间传递数据。
+将拦截器安装到管道中是改变ApplicationCall处理的主要方法。几乎所有Ktor功能都是拦截器，在应用程序调用处理的不同阶段执行各种操作。</p>
+</blockquote>
+
+<pre tabindex="0"><code>intercept(ApplicationCallPipeline.Call) { 
+    if (call.request.uri == &#34;/&#34;)
+        call.respondText(&#34;Test String&#34;)
+}</code></pre>
+<blockquote>
+<p>上述代码将拦截器安装到ApplicationCall处理的呼叫阶段，并在请求根页面时以纯文本响应。</p>
+</blockquote>
+<blockquote>
+<p>这只是一个例子，通常，页面请求不会以这种方式处理，因为有一个路由机制可以做到这一点，还有更多。此外，如前所述，定义拦截器通常使用具有安装功能的功能完成。
+ApplicationCall上可用的大多数函数（如上面的响应文本）都是暂停函数，表明它们可能会异步执行。</p>
+</blockquote>
+<h2 id="处理http请求">
+  <a class="Heading-link u-clickable" href="/post/kotlin_ktor_study_applicationcall/#%e5%a4%84%e7%90%86http%e8%af%b7%e6%b1%82">处理HTTP请求</a>
+</h2>
+<blockquote>
+<p>在处理路由或直接拦截管道时，您可以使用ApplicationCall获得上下文。该调用包含一个名为request的属性，该属性包含有关请求的信息。
+此外，调用本身具有一些有用的便利属性和方法，这些属性和方法依赖于请求。</p>
+</blockquote>
+<h3 id="介绍">
+  <a class="Heading-link u-clickable" href="/post/kotlin_ktor_study_applicationcall/#%e4%bb%8b%e7%bb%8d">介绍</a>
+</h3>
+<blockquote>
+<p>当使用路由功能或拦截请求时，可以访问 <code>call</code> 内部的调用属性。该调用包括一个带有 <code>request</code> 相关信息的请求属性：</p>
+</blockquote>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Kotlin" data-lang="Kotlin"><span style="display:flex;"><span>routing {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">get</span>(<span style="color:#e6db74">&#34;/&#34;</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">val</span> uri = call.request.uri
+</span></span><span style="display:flex;"><span>        call.respondText(<span style="color:#e6db74">&#34;Request uri: </span><span style="color:#e6db74">$uri</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    } 
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>intercept(<span style="color:#a6e22e">ApplicationCallPipeline</span>.Call) { 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (call.request.uri <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;/&#34;</span>) {
+</span></span><span style="display:flex;"><span>        call.respondText(<span style="color:#e6db74">&#34;Test String&#34;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<h3 id="request-信息">
+  <a class="Heading-link u-clickable" href="/post/kotlin_ktor_study_applicationcall/#request-%e4%bf%a1%e6%81%af">Request 信息</a>
+</h3>
+<blockquote>
+<p>作为<code>request</code>的一部分，您可以访问其内部上下文：</p>
+</blockquote>
+<h3 id="url-method-scheme-protocol-host-path-httpversion-remotehost-clientip">
+  <a class="Heading-link u-clickable" href="/post/kotlin_ktor_study_applicationcall/#url-method-scheme-protocol-host-path-httpversion-remotehost-clientip">URL, method, scheme, protocol, host, path, httpVersion, remoteHost, clientIp</a>
+</h3>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Kotlin" data-lang="Kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> version: String = request.httpVersion <span style="color:#75715e">// &#34;HTTP/1.1&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">val</span> httpMethod: HttpMethod = request.httpMethod <span style="color:#75715e">// GET, POST... 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">val</span> uri: String = request.uri <span style="color:#75715e">// Short cut for `origin.uri`
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">val</span> scheme: String = request.origin.scheme <span style="color:#75715e">// &#34;http&#34; or &#34;https&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">val</span> host: String? = request.host() <span style="color:#75715e">// The host part without the port 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">val</span> port: Int = request.port() <span style="color:#75715e">// Port of request
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">val</span> path: String = request.path() <span style="color:#75715e">// The uri without the query string
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">val</span> document: String = request.document() <span style="color:#75715e">// The last component after &#39;/&#39; of the uri
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">val</span> remoteHost: String = request.origin.remoteHost <span style="color:#75715e">// The IP address of the client doing the request</span></span></span></code></pre></div>
+<h3 id="反向代理支持源和本地origin-and-local">
+  <a class="Heading-link u-clickable" href="/post/kotlin_ktor_study_applicationcall/#%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86%e6%94%af%e6%8c%81%e6%ba%90%e5%92%8c%e6%9c%ac%e5%9c%b0origin-and-local">反向代理支持：源和本地(origin and local)</a>
+</h3>
+<blockquote>
+<p>当在反向代理（例如nginx或负载均衡器）后面时，接收到的请求不是由最终用户执行的，而是由该反向代理执行的。
+这意味着连接的客户端IP地址将是代理的IP地址，而不是客户端的IP地址。
+此外，反向代理可能通过HTTPS提供服务，并通过HTTP向服务器请求。流行的反向代理发送X-Forwarded-头，
+以便能够访问这些信息。</p>
+</blockquote>
+<blockquote>
+<p>请注意，为了在反向代理下工作，您必须安装<a href="https://ktor.kotlincn.net/servers/features/forward-headers.html">XForwardedHeaderSupport</a>功能。</p>
+</blockquote>
+<h3 id="处理-get--query-parameters">
+  <a class="Heading-link u-clickable" href="/post/kotlin_ktor_study_applicationcall/#%e5%a4%84%e7%90%86-get--query-parameters">处理 GET / Query parameters</a>
+</h3>
+<blockquote>
+<p>如果需要访问查询参数<code>?param1=value&amp;param2=value</code>作为一个集合，您可以使用<code>queryParameters</code>。
+它实现了<code>StringValues</code>接口，其中每个键都可以有一个与其关联的字符串列表。</p>
+</blockquote>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Kotlin" data-lang="Kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> queryParameters: Parameters = request.queryParameters
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> param1: String? = request.queryParameters[<span style="color:#e6db74">&#34;param1&#34;</span>] <span style="color:#75715e">// To access a single parameter (first one if repeated)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">val</span> repeatedParam: List&lt;String&gt;? = request.queryParameters.getAll(<span style="color:#e6db74">&#34;repeatedParam&#34;</span>) <span style="color:#75715e">// Multiple values</span></span></span></code></pre></div>
+<blockquote>
+<p>您还可以访问原始<code>queryString</code> (param1=value&amp;param2=value)</p>
+</blockquote>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Kotlin" data-lang="Kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> queryString: String = request.queryString()</span></span></code></pre></div>
+<h3 id="处理-post-put-patch">
+  <a class="Heading-link u-clickable" href="/post/kotlin_ktor_study_applicationcall/#%e5%a4%84%e7%90%86-post-put-patch">处理 POST PUT PATCH</a>
+</h3>
+<blockquote>
+<p>所有的接收方法都会消耗客户端发送的全部有效负载，因此尝试两次接收请求正文将导致<code>RequestAlreadyConsumedException</code>错误，
+除非您安装了<code>DoubleReceive</code>功能。<code>install(DoubleReceive)</code></p>
+</blockquote>
+<h4 id="接收类型化对象内容类型和json">
+  <a class="Heading-link u-clickable" href="/post/kotlin_ktor_study_applicationcall/#%e6%8e%a5%e6%94%b6%e7%b1%bb%e5%9e%8b%e5%8c%96%e5%af%b9%e8%b1%a1%e5%86%85%e5%ae%b9%e7%b1%bb%e5%9e%8b%e5%92%8cjson">接收类型化对象、内容类型和JSON</a>
+</h4>
+<p>该调用还支持接收通用对象：</p>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Kotlin" data-lang="Kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> obj: T = call.receive&lt;T&gt;()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> obj: T? = call.receiveOrNull&lt;T&gt;()</span></span></code></pre></div>
+<p>为了从负载中接收自定义对象，您必须使用ContentNegotiation功能。例如，这对于在RESTAPI中接收和发送JSON有效载荷非常有用。</p>
+<blockquote>
+<p>这里需要注意导入gson时要注意ktor版本大于2.0和之前的不同，这里是<a href="https://ktor.io/docs/migrating-2.html#serialization">迁移注意事项</a></p>
+</blockquote>
+<ol>
+<li>使用gson</li>
+</ol>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Kotlin" data-lang="Kotlin"><span style="display:flex;"><span>implementation(<span style="color:#e6db74">&#34;io.ktor:ktor-server-content-negotiation:</span><span style="color:#e6db74">$ktor</span><span style="color:#e6db74">_version&#34;</span>)
+</span></span><span style="display:flex;"><span>implementation(<span style="color:#e6db74">&#34;io.ktor:ktor-serialization-gson:</span><span style="color:#e6db74">$ktor</span><span style="color:#e6db74">_version&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> io.ktor.server.plugins.contentnegotiation.*
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> io.ktor.serialization.gson.*
+</span></span><span style="display:flex;"><span>install(ContentNegotiation) {
+</span></span><span style="display:flex;"><span>    gson {
+</span></span><span style="display:flex;"><span>        setDateFormat(<span style="color:#a6e22e">DateFormat</span>.LONG)
+</span></span><span style="display:flex;"><span>        setPrettyPrinting()
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<ol start="2">
+<li>使用json</li>
+</ol>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Kotlin" data-lang="Kotlin"><span style="display:flex;"><span>implementation(<span style="color:#e6db74">&#34;io.ktor:ktor-server-content-negotiation:</span><span style="color:#e6db74">$ktor</span><span style="color:#e6db74">_version&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> io.ktor.serialization.kotlinx.json.*
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> io.ktor.server.plugins.contentnegotiation.*
+</span></span><span style="display:flex;"><span>install(ContentNegotiation) {
+</span></span><span style="display:flex;"><span>    json()
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/pod_install_error1/" rel="bookmark">记一次pod install 错误解决方案</a>
+  </h2>
+  
+    <time datetime="2023-11-24T09:47:55&#43;08:00">24 November, 2023</time>
+  
+</header>
+
+      
+        <h2 id="错误展示">
+  <a class="Heading-link u-clickable" href="/post/pod_install_error1/#%e9%94%99%e8%af%af%e5%b1%95%e7%a4%ba">错误展示</a>
+</h2>
+<p>执行完pod install 后的报错信息</p>
+
+<pre tabindex="0"><code>[//]: # (pod install)
+
+[//]: # (Analyzing dependencies)
+
+[//]: # ()
+[//]: # (――― MARKDOWN TEMPLATE ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――)
+
+[//]: # ()
+[//]: # (### Command)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/bin/pod install)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Report)
+
+[//]: # ()
+[//]: # (* What did you do?)
+
+[//]: # ()
+[//]: # (* What did you expect to happen?)
+
+[//]: # ()
+[//]: # (* What happened instead?)
+
+[//]: # ()
+[//]: # ()
+[//]: # (### Stack)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (   CocoaPods : 1.14.3)
+
+[//]: # (        Ruby : ruby 3.2.2 &amp;#40;2023-03-30 revision e51014f9c0&amp;#41; [arm64-darwin22])
+
+[//]: # (    RubyGems : 3.4.10)
+
+[//]: # (        Host : macOS 13.6 &amp;#40;22G120&amp;#41;)
+
+[//]: # (       Xcode : 14.3.1 &amp;#40;14E300c&amp;#41;)
+
+[//]: # (         Git : git version 2.39.2 &amp;#40;Apple Git-143&amp;#41;)
+
+[//]: # (Ruby lib dir : /opt/homebrew/Cellar/ruby/3.2.2_1/lib)
+
+[//]: # (Repositories : trunk - CDN - https://cdn.cocoapods.org/)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Plugins)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (cocoapods-deintegrate : 1.0.5)
+
+[//]: # (cocoapods-plugins     : 1.0.0)
+
+[//]: # (cocoapods-search      : 1.0.1)
+
+[//]: # (cocoapods-trunk       : 1.6.0)
+
+[//]: # (cocoapods-try         : 1.2.0)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Podfile)
+
+[//]: # ()
+[//]: # (```ruby)
+
+[//]: # (target &#39;iosApp&#39; do)
+
+[//]: # (  use_frameworks!)
+
+[//]: # (  platform :ios, &#39;12.0&#39;)
+
+[//]: # (  pod &#39;shared&#39;, :path =&gt; &#39;../shared&#39;)
+
+[//]: # (end)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Error)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (NoMethodError - undefined method `[]&#39; for nil:NilClass)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/xcodeproj-1.23.0/lib/xcodeproj/project.rb:232:in `initialize_from_file&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/xcodeproj-1.23.0/lib/xcodeproj/project.rb:113:in `open&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1194:in `block &amp;#40;2 levels&amp;#41; in inspect_targets_to_integrate&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1193:in `each&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1193:in `block in inspect_targets_to_integrate&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/user_interface.rb:64:in `section&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1188:in `inspect_targets_to_integrate&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:107:in `analyze&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:422:in `analyze&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:244:in `block in resolve_dependencies&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/user_interface.rb:64:in `section&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:243:in `resolve_dependencies&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:162:in `install!&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/command/install.rb:52:in `run&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/claide-1.1.0/lib/claide/command.rb:334:in `run&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/command.rb:52:in `run&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/bin/pod:55:in `&lt;top &amp;#40;required&amp;#41;&gt;&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/bin/pod:25:in `load&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/bin/pod:25:in `&lt;main&gt;&#39;)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (――― TEMPLATE END ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――)
+
+[//]: # ()
+[//]: # ([!] Oh no, an error occurred.)
+
+[//]: # ()
+[//]: # (Search for existing GitHub issues similar to yours:)
+
+[//]: # (https://github.com/CocoaPods/CocoaPods/search?q=undefined+method+%60%5B%5D%27+for+nil%3ANilClass&amp;type=Issues)
+
+[//]: # ()
+[//]: # (If none exists, create a ticket, with the template displayed above, on:)
+
+[//]: # (https://github.com/CocoaPods/CocoaPods/issues/new)
+
+[//]: # ()
+[//]: # (Be sure to first read the contributing guide for details on how to properly submit a ticket:)
+
+[//]: # (https://github.com/CocoaPods/CocoaPods/blob/master/CONTRIBUTING.md)
+
+[//]: # ()
+[//]: # (Don&#39;t forget to anonymize any private data!)
+
+[//]: # ()
+[//]: # (Looking for related issues on cocoapods/cocoapods...)
+
+[//]: # (- pod list throw NoMethodError - undefined method `version&#39; for nil:NilClass)
+
+[//]: # (  https://github.com/CocoaPods/CocoaPods/issues/11780 [open] [1 comment])
+
+[//]: # (  10 May 2023)
+
+[//]: # ()
+[//]: # (- Searching for inspections failed: undefined method `map&#39; for nil:NilClass)
+
+[//]: # (  https://github.com/CocoaPods/CocoaPods/issues/11584 [open] [4 comments])
+
+[//]: # (  14 Nov 2022)
+
+[//]: # ()
+[//]: # (- Intel cpu  undefined method `map&#39; for nil:NilClass)
+
+[//]: # (  https://github.com/CocoaPods/CocoaPods/issues/11366 [open] [3 comments])
+
+[//]: # (  18 May 2022)
+
+[//]: # ()
+[//]: # (and 345 more at:)
+
+[//]: # (https://github.com/cocoapods/cocoapods/search?q=undefined%20method%20%60%5B%5D%27%20for%20nil&amp;type=Issues&amp;utf8=✓)
+
+[//]: # (tong@tongMacBook-Pro &amp;#40;master&amp;#41; [1] % pod update                                                                                                                                                      ~/work/code/weeder-app/iosApp)
+
+[//]: # (Update all pods)
+
+[//]: # (Updating local specs repositories)
+
+[//]: # (Analyzing dependencies)
+
+[//]: # ()
+[//]: # (――― MARKDOWN TEMPLATE ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――)
+
+[//]: # ()
+[//]: # (### Command)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/bin/pod update)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Report)
+
+[//]: # ()
+[//]: # (* What did you do?)
+
+[//]: # ()
+[//]: # (* What did you expect to happen?)
+
+[//]: # ()
+[//]: # (* What happened instead?)
+
+[//]: # ()
+[//]: # ()
+[//]: # (### Stack)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (   CocoaPods : 1.14.3)
+
+[//]: # (        Ruby : ruby 3.2.2 &amp;#40;2023-03-30 revision e51014f9c0&amp;#41; [arm64-darwin22])
+
+[//]: # (    RubyGems : 3.4.10)
+
+[//]: # (        Host : macOS 13.6 &amp;#40;22G120&amp;#41;)
+
+[//]: # (       Xcode : 14.3.1 &amp;#40;14E300c&amp;#41;)
+
+[//]: # (         Git : git version 2.39.2 &amp;#40;Apple Git-143&amp;#41;)
+
+[//]: # (Ruby lib dir : /opt/homebrew/Cellar/ruby/3.2.2_1/lib)
+
+[//]: # (Repositories : trunk - CDN - https://cdn.cocoapods.org/)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Plugins)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (cocoapods-deintegrate : 1.0.5)
+
+[//]: # (cocoapods-plugins     : 1.0.0)
+
+[//]: # (cocoapods-search      : 1.0.1)
+
+[//]: # (cocoapods-trunk       : 1.6.0)
+
+[//]: # (cocoapods-try         : 1.2.0)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Podfile)
+
+[//]: # ()
+[//]: # (```ruby)
+
+[//]: # (target &#39;iosApp&#39; do)
+
+[//]: # (  use_frameworks!)
+
+[//]: # (  platform :ios, &#39;12.0&#39;)
+
+[//]: # (  pod &#39;shared&#39;, :path =&gt; &#39;../shared&#39;)
+
+[//]: # (end)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (### Error)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (NoMethodError - undefined method `[]&#39; for nil:NilClass)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/xcodeproj-1.23.0/lib/xcodeproj/project.rb:232:in `initialize_from_file&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/xcodeproj-1.23.0/lib/xcodeproj/project.rb:113:in `open&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1194:in `block &amp;#40;2 levels&amp;#41; in inspect_targets_to_integrate&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1193:in `each&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1193:in `block in inspect_targets_to_integrate&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/user_interface.rb:64:in `section&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:1188:in `inspect_targets_to_integrate&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer/analyzer.rb:107:in `analyze&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:422:in `analyze&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:244:in `block in resolve_dependencies&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/user_interface.rb:64:in `section&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:243:in `resolve_dependencies&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/installer.rb:162:in `install!&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/command/update.rb:63:in `run&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/claide-1.1.0/lib/claide/command.rb:334:in `run&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/lib/cocoapods/command.rb:52:in `run&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/gems/cocoapods-1.14.3/bin/pod:55:in `&lt;top &amp;#40;required&amp;#41;&gt;&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/bin/pod:25:in `load&#39;)
+
+[//]: # (/opt/homebrew/Cellar/cocoapods/1.14.3/libexec/bin/pod:25:in `&lt;main&gt;&#39;)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (――― TEMPLATE END ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――)
+
+[//]: # ()
+[//]: # ([!] Oh no, an error occurred.)
+
+[//]: # ()
+[//]: # (Search for existing GitHub issues similar to yours:)
+
+[//]: # (https://github.com/CocoaPods/CocoaPods/search?q=undefined+method+%60%5B%5D%27+for+nil%3ANilClass&amp;type=Issues)
+
+[//]: # ()
+[//]: # (If none exists, create a ticket, with the template displayed above, on:)
+
+[//]: # (https://github.com/CocoaPods/CocoaPods/issues/new)
+
+[//]: # ()
+[//]: # (Be sure to first read the contributing guide for details on how to properly submit a ticket:)
+
+[//]: # (https://github.com/CocoaPods/CocoaPods/blob/master/CONTRIBUTING.md)
+
+[//]: # ()
+[//]: # (Don&#39;t forget to anonymize any private data!)
+
+[//]: # ()
+[//]: # (Looking for related issues on cocoapods/cocoapods...)
+
+[//]: # (- pod list throw NoMethodError - undefined method `version&#39; for nil:NilClass)
+
+[//]: # (  https://github.com/CocoaPods/CocoaPods/issues/11780 [open] [1 comment])
+
+[//]: # (  10 May 2023)
+
+[//]: # ()
+[//]: # (- Searching for inspections failed: undefined method `map&#39; for nil:NilClass)
+
+[//]: # (  https://github.com/CocoaPods/CocoaPods/issues/11584 [open] [4 comments])
+
+[//]: # (  14 Nov 2022)
+
+[//]: # ()
+[//]: # (- Intel cpu  undefined method `map&#39; for nil:NilClass)
+
+[//]: # (  https://github.com/CocoaPods/CocoaPods/issues/11366 [open] [3 comments])
+
+[//]: # (  18 May 2022)
+
+[//]: # ()
+[//]: # (and 345 more at:)
+
+[//]: # (https://github.com/cocoapods/cocoapods/search?q=undefined%20method%20%60%5B%5D%27%20for%20nil&amp;type=Issues&amp;utf8=✓)</code></pre>
+<h2 id="最终解决方法">
+  <a class="Heading-link u-clickable" href="/post/pod_install_error1/#%e6%9c%80%e7%bb%88%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95">最终解决方法</a>
+</h2>
+<p>前几天修改了下面两个文件，把这两个文件修改回来就可以正常了，具体原因不清楚</p>
+<p>iosApp/iosApp.xcodeproj/xcshareddata/xcschemes/iosApp.xcscheme
+iosApp/iosApp.xcodeproj/project.pbxproj</p>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    </article>
+    
+      <div class="Divider"></div>
+    
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/nginx_front_back/" rel="bookmark">Nginx部署前后端项目配置</a>
+  </h2>
+  
+    <time datetime="2023-11-23T14:15:51&#43;08:00">23 November, 2023</time>
   
 </header>
 
       
         
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Post</span>(<span style="color:#a6e22e">url</span>, <span style="color:#e6db74">&#34;application/json&#34;</span>, <span style="color:#66d9ef">nil</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">defer</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">body</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">ReadCloser</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">body</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">Close</span>()
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}(<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">Body</span>)</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">listen</span>  <span style="color:#ae81ff">8000</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">server_name</span> <span style="color:#e6db74">localhost</span>;
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># ssl配置
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#f92672">ssl</span> <span style="color:#66d9ef">on</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ssl_certificate</span>     <span style="color:#e6db74">/opt/ssl/xxxx.pem</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ssl_certificate_key</span> <span style="color:#e6db74">/opt/ssl/xxxx.key</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ssl_protocols</span> <span style="color:#e6db74">TLSv1</span> <span style="color:#e6db74">TLSv1.1</span> <span style="color:#e6db74">TLSv1.2</span> <span style="color:#e6db74">TLSv1.3</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ssl_ciphers</span> <span style="color:#e6db74">&#34;ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-SHA384:DHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA256&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ssl_prefer_server_ciphers</span> <span style="color:#66d9ef">on</span>;
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">root</span> <span style="color:#e6db74">/opt/html</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">index</span> <span style="color:#e6db74">index.html</span> <span style="color:#e6db74">index.htm</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">try_files</span> $uri $uri/ <span style="color:#e6db74">@router</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">location</span> <span style="color:#e6db74">@router</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">rewrite</span> <span style="color:#e6db74">^.*</span>$ <span style="color:#e6db74">/index.html</span> <span style="color:#e6db74">last</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">location</span> <span style="color:#e6db74">/api</span> {	
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://127.0.0.1:8085</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proxy_connect_timeout</span>	<span style="color:#ae81ff">3</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proxy_send_timeout</span>		<span style="color:#ae81ff">30</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proxy_read_timeout</span>		<span style="color:#ae81ff">30</span>;			
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $proxy_host;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-Host</span> $host;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-Server</span> $host;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for; 
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">client_max_body_size</span>	<span style="color:#ae81ff">100m</span>;		
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>wget <a href="https://daxingfire.htcxcloud.com/">https://daxingfire.htcxcloud.com/</a> &ndash;user-agent=&ldquo;Mozilla/5.0 (X11;U;Linux i686;en-US;rv:1.9.0.3) Geco/2008092416 Firefox/3.0.3&rdquo; &ndash;no-check-certificate</p>
 
       
       
@@ -707,36 +1187,6 @@ INCLUDEPATH += /opt/homebrew/Cellar/openssl@1.1/1.1.1s/include</code></pre>
 
 
 
-
-  <footer>
-    
-      
-    
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/go/" rel="tag">go</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/http/" rel="tag">http</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/body/" rel="tag">body</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/%E5%85%B3%E9%97%AD/" rel="tag">关闭</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
 
     </article>
     
@@ -746,276 +1196,27 @@ INCLUDEPATH += /opt/homebrew/Cellar/openssl@1.1/1.1.1s/include</code></pre>
     <article>
       <header class="Heading">
   <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/mac_book_use_routes/" rel="bookmark">MacBook当做无线或有线路由器使用</a>
+    <a class="Heading-link u-clickable" href="/post/linux_lvm/" rel="bookmark">Linux_lvm挂在磁盘</a>
   </h2>
   
-    <time datetime="2023-04-14T22:44:55&#43;08:00">14 April, 2023</time>
+    <time datetime="2023-11-20T15:01:03&#43;08:00">20 November, 2023</time>
   
 </header>
 
       
-        <p><strong>需求问题</strong></p>
-<p>客户服务器需要安装软件，但是服务器无法连接互联网，怎么搞。</p>
-<ol>
-<li>买一台无线随身热点，需要有带网线接口，无线5G WiFi路由器</li>
-<li>手里有一台MacBook电脑和有网口的扩展坞，是否可以搞一个无线的WiFi路由器</li>
-</ol>
-<p>先决调节：Mac笔记本作为无线路由器（需要一个带网口的扩展坞）</p>
-<h4 id="macbook通过wifi连接互联网">
-  <a class="Heading-link u-clickable" href="/post/mac_book_use_routes/#macbook%e9%80%9a%e8%bf%87wifi%e8%bf%9e%e6%8e%a5%e4%ba%92%e8%81%94%e7%bd%91">MacBook通过WiFi连接互联网</a>
-</h4>
-<p>配置互联网共享（系统设置-&gt;通用-&gt;共享）其中AX88179A是扩展坞的网口，配置好后点击完成，再开启互联网共享</p>
-<p><img src="/images/MacBook_shareNetwork.png" alt="Pasted Graphic.png"></p>
-<p>完成以上配置后，将待联网机器通过网线和扩展坞连接，设备就可以访问互联网了</p>
-<h4 id="mac笔记本作为有线路由器通过网线接入互联网">
-  <a class="Heading-link u-clickable" href="/post/mac_book_use_routes/#mac%e7%ac%94%e8%ae%b0%e6%9c%ac%e4%bd%9c%e4%b8%ba%e6%9c%89%e7%ba%bf%e8%b7%af%e7%94%b1%e5%99%a8%e9%80%9a%e8%bf%87%e7%bd%91%e7%ba%bf%e6%8e%a5%e5%85%a5%e4%ba%92%e8%81%94%e7%bd%91">Mac笔记本作为有线路由器通过网线接入互联网</a>
-</h4>
-<p>该方式和上面的相反，电脑以有线方式接入互联网</p>
-<p>配置项如图所示，最后面会出现一个Wi-Fi选项，点击后，可以设置WiFi名称和密码，以供WiFi设备连接该热点，点击完成后，开启互联网共享</p>
-<p><img src="/images/mac_book_use_routes/image-20230414225641422.png" alt="image-20230414225641422"></p>
-
-      
-      
-
-
-  
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-    
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/macbook/" rel="tag">MacBook</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/%E9%80%9A%E8%BF%87wifi%E8%BF%9E%E6%8E%A5%E4%BA%92%E8%81%94%E7%BD%91/" rel="tag">通过WiFi连接互联网</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/mac%E7%AC%94%E8%AE%B0%E6%9C%AC%E4%BD%9C%E4%B8%BA%E6%9C%89%E7%BA%BF%E8%B7%AF%E7%94%B1%E5%99%A8%E9%80%9A%E8%BF%87%E7%BD%91%E7%BA%BF%E6%8E%A5%E5%85%A5%E4%BA%92%E8%81%94%E7%BD%91/" rel="tag">Mac笔记本作为有线路由器通过网线接入互联网</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/go_vs_mysql_type/" rel="bookmark">GO vs MySQL类型对应关系</a>
-  </h2>
-  
-    <time datetime="2023-04-14T15:30:01&#43;08:00">14 April, 2023</time>
-  
-</header>
-
-      
-        <table>
-<thead>
-<tr>
-<th>golang</th>
-<th>MySQL</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>int,int32 添加auto或名称为Id时</td>
-<td>integer AUTO_INCREMENT</td>
-</tr>
-<tr>
-<td>int64</td>
-<td>bigint AUTO_INCREMENT</td>
-</tr>
-<tr>
-<td>uint,uint32</td>
-<td>integer unsigned AUTO_INCREMENT</td>
-</tr>
-<tr>
-<td>uint64</td>
-<td>bigint unsigned AUTO_INCREMENT</td>
-</tr>
-<tr>
-<td>bool</td>
-<td>bool</td>
-</tr>
-<tr>
-<td>string size 255</td>
-<td>varchar(255)</td>
-</tr>
-<tr>
-<td>string type(text)</td>
-<td>longtext</td>
-</tr>
-<tr>
-<td>time.Time type(data)</td>
-<td>date</td>
-</tr>
-<tr>
-<td>time.Time</td>
-<td>datetime</td>
-</tr>
-<tr>
-<td>byte</td>
-<td>tinyint unsigned</td>
-</tr>
-<tr>
-<td>rune</td>
-<td>integer</td>
-</tr>
-<tr>
-<td>int</td>
-<td>integer</td>
-</tr>
-<tr>
-<td>int8</td>
-<td>tinyint</td>
-</tr>
-<tr>
-<td>int16</td>
-<td>smallint</td>
-</tr>
-<tr>
-<td>int32</td>
-<td>integer</td>
-</tr>
-<tr>
-<td>int64</td>
-<td>bigint</td>
-</tr>
-<tr>
-<td>uint</td>
-<td>integer unsigned</td>
-</tr>
-<tr>
-<td>uint8</td>
-<td>tinyint unsigned</td>
-</tr>
-<tr>
-<td>uint16</td>
-<td>smallint unsigned</td>
-</tr>
-<tr>
-<td>uint32</td>
-<td>integer unsigned</td>
-</tr>
-<tr>
-<td>uint64</td>
-<td>bigint unsigned</td>
-</tr>
-<tr>
-<td>float32</td>
-<td>double precision</td>
-</tr>
-<tr>
-<td>float64</td>
-<td>double precision</td>
-</tr>
-<tr>
-<td>float64  digits,decimals</td>
-<td>numeric(digits,decimals)</td>
-</tr>
-</tbody>
-</table>
-
-      
-      
-
-
-  
-
-  
-
-  
-
-
-
-
-
-  <footer>
-    
-      
-    
-      
-    
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/go/" rel="tag">go</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/mysql/" rel="tag">MySQL</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/%E7%B1%BB%E5%9E%8B/" rel="tag">类型</a>
-            </li>
-          
-        </ul>
-      
-    
-  </footer>
-
-    </article>
-    
-      <div class="Divider"></div>
-    
-  
-    <article>
-      <header class="Heading">
-  <h2 class="Heading-title">
-    <a class="Heading-link u-clickable" href="/post/android_ndk_missing_and_no_known_rule/" rel="bookmark">Android NDK 引入外部动态库.so报错 missing and no known rule</a>
-  </h2>
-  
-    <time datetime="2023-04-01T07:08:32&#43;08:00">1 April, 2023</time>
-  
-</header>
-
-      
-        <h3 id="正确的配置项-cmake">
-  <a class="Heading-link u-clickable" href="/post/android_ndk_missing_and_no_known_rule/#%e6%ad%a3%e7%a1%ae%e7%9a%84%e9%85%8d%e7%bd%ae%e9%a1%b9-cmake">正确的配置项-cmake</a>
-</h3>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span>add_library( <span style="color:#e6db74">qtcore</span>
-</span></span><span style="display:flex;"><span>              <span style="color:#e6db74">SHARED</span>
-</span></span><span style="display:flex;"><span>              <span style="color:#e6db74">IMPORTED</span> )<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>set_target_properties( <span style="color:#75715e"># Specifies the target library.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>              <span style="color:#e6db74">qtcore</span>
-</span></span><span style="display:flex;"><span>              <span style="color:#75715e"># Specifies the parameter you want to define.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>              <span style="color:#e6db74">PROPERTIES</span> <span style="color:#e6db74">IMPORTED_LOCATION</span>
-</span></span><span style="display:flex;"><span>              <span style="color:#75715e"># 关键点在这里，这个路径必须为绝对路径，报错原因是因为使用了相对路径
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>              <span style="color:#f92672">${</span>PROJECT_SOURCE_DIR<span style="color:#f92672">}</span><span style="color:#e6db74">/../libs/</span><span style="color:#f92672">${</span>ANDROID_ABI<span style="color:#f92672">}</span><span style="color:#e6db74">/libQt6Core.so</span> )<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>target_link_libraries( <span style="color:#75715e"># Specifies the target library.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>              <span style="color:#e6db74">shared</span>
-</span></span><span style="display:flex;"><span>              <span style="color:#e6db74">qtcore</span>
-</span></span><span style="display:flex;"><span>              <span style="color:#75715e"># Links the target library to the log library
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>              <span style="color:#75715e"># included in the NDK.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>              <span style="color:#f92672">${</span>log-lib<span style="color:#f92672">}</span>)</span></span></code></pre></div>
-<ul>
-<li>关键点在这里，这个路径必须为绝对路径，报错原因是因为使用了相对路径</li>
+        <ul>
+<li>磁盘格式化（创建分区）</li>
+<li>转换类型为 LinuxLVM</li>
+<li>创建物理卷</li>
+<li>扩展卷组</li>
+<li>扩展逻辑卷</li>
+<li>查看磁盘卷组信息</li>
+<li>调整文件系统大小</li>
+<li>创建卷组</li>
 </ul>
+<p>fdisk -l</p>
+<p>fdisk /dev/vdb</p>
+<p>操作：n（添加新分区）→→p（打印分区表）→→1（选择分区号1）→→回车（起始扇区默认最小）→→回车（终止扇区默认最大）→→t（更改分区类型）→→8e（分区“Linux”的类型更改为“Linux LVM”）→→p（打印分区表）→→w（将分区表写入磁盘并退出）</p>
 
       
       
@@ -1031,35 +1232,143 @@ INCLUDEPATH += /opt/homebrew/Cellar/openssl@1.1/1.1.1s/include</code></pre>
 
 
 
-  <footer>
+    </article>
     
-      
+      <div class="Divider"></div>
     
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/install-mysql/" rel="bookmark">Kylin Server 10 SP2 安装MySql</a>
+  </h2>
+  
+    <time datetime="2023-11-20T10:01:42&#43;08:00">20 November, 2023</time>
+  
+</header>
+
       
+        <h1 id="系统基于什么版本开发">
+  <a class="Heading-link u-clickable" href="/post/install-mysql/#%e7%b3%bb%e7%bb%9f%e5%9f%ba%e4%ba%8e%e4%bb%80%e4%b9%88%e7%89%88%e6%9c%ac%e5%bc%80%e5%8f%91">系统基于什么版本开发</a>
+</h1>
+<p>麒麟系统KylinV10SP系列内核版本与主流的redhat/centos内核版本有以下映射关系：</p>
+<ul>
+<li>麒麟系统KylinV10SP1的内核版本对应的是Red Hat Enterprise Linux 7.6的内核版本。</li>
+<li>麒麟系统KylinV10SP2的内核版本对应的是Red Hat Enterprise Linux 7.7的内核版本。</li>
+<li>麒麟系统KylinV10SP3的内核版本对应的是Red Hat Enterprise Linux 7.8的内核版本。</li>
+</ul>
+<p>需要注意的是，虽然麒麟系统是基于Red Hat Enterprise Linux开发的，但是麒麟系统并不是纯粹的Red Hat Enterprise Linux，因此在使用过程中可能会存在一些差异。此外，国产操作系统和麒麟操作系统在保险行业中的应用也需要根据具体的业务场景和需求进行评估和选择。</p>
+<h1 id="下载mysql安装包使用red-hat">
+  <a class="Heading-link u-clickable" href="/post/install-mysql/#%e4%b8%8b%e8%bd%bdmysql%e5%ae%89%e8%a3%85%e5%8c%85%e4%bd%bf%e7%94%a8red-hat">下载MySql安装包，使用red hat</a>
+</h1>
+<h2 id="安装顺序">
+  <a class="Heading-link u-clickable" href="/post/install-mysql/#%e5%ae%89%e8%a3%85%e9%a1%ba%e5%ba%8f">安装顺序</a>
+</h2>
+
+<pre tabindex="0"><code>rpm -ivh mysql-community-common-8.0.35-1.el7.x86_64.rpm
+rpm -ivh mysql-community-client-plugins-8.0.35-1.el7.x86_64.rpm
+rpm -ivh mysql-community-libs-8.0.35-1.el7.x86_64.rpm
+rpm -ivh mysql-community-libs-compat-8.0.35-1.el7.x86_64.rpm
+rpm -ivh mysql-community-client-8.0.35-1.el7.x86_64.rpm
+rpm -ivh mysql-community-icu-data-files-8.0.35-1.el7.x86_64.rpm
+rpm -ivh mysql-community-server-8.0.35-1.el7.x86_64.rpm</code></pre>
+<h2 id="启动mysql">
+  <a class="Heading-link u-clickable" href="/post/install-mysql/#%e5%90%af%e5%8a%a8mysql">启动mysql</a>
+</h2>
+
+<pre tabindex="0"><code>service mysqld start</code></pre>
+<h2 id="查看默认数据库密码">
+  <a class="Heading-link u-clickable" href="/post/install-mysql/#%e6%9f%a5%e7%9c%8b%e9%bb%98%e8%ae%a4%e6%95%b0%e6%8d%ae%e5%ba%93%e5%af%86%e7%a0%81">查看默认数据库密码</a>
+</h2>
+
+<pre tabindex="0"><code>cat /var/log/mysqld.log | grep password</code></pre>
+<h2 id="rpm-包的安装">
+  <a class="Heading-link u-clickable" href="/post/install-mysql/#rpm-%e5%8c%85%e7%9a%84%e5%ae%89%e8%a3%85">RPM 包的安装</a>
+</h2>
+
+<pre tabindex="0"><code>rpm -ivh 包全名</code></pre>
+<p>此命令中各选项参数的含义为：</p>
+<ul>
+<li>-i：安装（install）;</li>
+<li>-v：显示更详细的信息（verbose）;</li>
+<li>-h：打印 #，显示安装进度（hash）;</li>
+</ul>
+<h2 id="rpm包的升级">
+  <a class="Heading-link u-clickable" href="/post/install-mysql/#rpm%e5%8c%85%e7%9a%84%e5%8d%87%e7%ba%a7">RPM包的升级</a>
+</h2>
+
+<pre tabindex="0"><code>rpm -Uvh 包全名</code></pre>
+<h3 id="linux解压tar文件的命令">
+  <a class="Heading-link u-clickable" href="/post/install-mysql/#linux%e8%a7%a3%e5%8e%8btar%e6%96%87%e4%bb%b6%e7%9a%84%e5%91%bd%e4%bb%a4">linux解压tar文件的命令</a>
+</h3>
+<p>tar  <code>tar -xvf xxx.tag -C 指定目录</code></p>
+<p>tar.gz  <code> tar -zxvf xxx.tar.gz -C 指定目录</code>
+tar.bz2 <code>tar -jxvf xxxx.tar.bz2 -C 指定目录</code></p>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    </article>
     
-      
-        <ul class="Tags">
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/android/" rel="tag">Android</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/ndk/" rel="tag">NDK</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/qt/" rel="tag">Qt</a>
-            </li>
-          
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="/tags/cmake/" rel="tag">cmake</a>
-            </li>
-          
-        </ul>
-      
+      <div class="Divider"></div>
     
-  </footer>
+  
+    <article>
+      <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/docker-mysql-used/" rel="bookmark">Docker使用 Mysql5.6</a>
+  </h2>
+  
+    <time datetime="2023-11-13T10:32:57&#43;08:00">13 November, 2023</time>
+  
+</header>
+
+      
+        <p>操作失败</p>
+<p>x-S+*dri0+ZhcT6</p>
+<h1 id="拉去镜像">
+  <a class="Heading-link u-clickable" href="/post/docker-mysql-used/#%e6%8b%89%e5%8e%bb%e9%95%9c%e5%83%8f">拉去镜像</a>
+</h1>
+
+<pre tabindex="0"><code>docker pull mysql:5.6</code></pre>
+<h1 id="启动操作">
+  <a class="Heading-link u-clickable" href="/post/docker-mysql-used/#%e5%90%af%e5%8a%a8%e6%93%8d%e4%bd%9c">启动操作</a>
+</h1>
+
+<pre tabindex="0"><code>docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=&#34;设置你的mysql的密码&#34;-d mysql:5.6</code></pre>
+<p>解析：</p>
+<pre><code>--name   给容器取名字为mysql
+-p   端口1:端口2     端口1是对外暴露的端口（即宿主机的端口），端口2 使我们的mysql端口
+-e MYSQL_ROOT_PASSWORD=密码   即root用户的密码
+-d mysql:5.6     代表后台运行我们的mysql
+</code></pre>
+
+<pre tabindex="0"><code>docker run  --privileged=true --name mysql -p 3306:3306 -v /mysql/data:/var/lib/mysql -v /mydata/mysql/conf:/etc/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.6  </code></pre>
+
+      
+      
+
+
+  
+
+  
+
+  
+
+
+
+
 
     </article>
     

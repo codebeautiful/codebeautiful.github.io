@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+    <meta name="description" content="crc8校验 #include &lt;stdint.h&gt; uint8_t crc8(uint8_t *p_buffer, uint16_t buf_size); uint8_t crc8(uint8_t *p_buffer, uint16_t buf_size) { uint8_t crc = 0; uint8_t i=0; if(buf_size &lt;= 0) { return crc; } while( buf_size-- ) { for ( i = 0x80; i != 0; i /= 2 ) { if ( (crc &amp; 0x80) != 0) { crc *= 2; crc ^= 0x07; } else { crc *= 2; } if ( (*p_buffer &amp; i) !">
+  
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.124.1">
+
+<meta content="" name="keywords">
+<meta content="小米xmodem协议crc32 crc16 crc8 使用 - 通通不同-博客" property="og:title">
+<meta content="开发的乐趣在于相通而不同 - " property="og:description">
+
+<meta name="msvalidate.01" content="F56ED94B7E86941E3DACEF208F07D329" />
+
+  <title>
+    
+    小米xmodem协议crc32 crc16 crc8 使用
+     - 通通不同-博客
+    
+</title>
+
+  <link rel="canonical" href="https://blog.ttbt.work/post/xiaomi_xmodem_crc32_crc16_crc8/">
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+  <link rel="stylesheet" href="/css/base.min.4f231885947d13c748c815d93da49f07ab89afb67629f9970b7c054610e88e0b.css" integrity="sha256-TyMYhZR9E8dIyBXZPaSfB6uJr7Z2KfmXC3wFRhDojgs=" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <h1 class="Banner-heading">
+          <a class="Banner-link u-clickable" href="/">通通不同-博客</a>
+        </h1>
+      </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">全部</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">分类</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">标签</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <article>
+    <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/xiaomi_xmodem_crc32_crc16_crc8/" rel="bookmark">小米xmodem协议crc32 crc16 crc8 使用</a>
+  </h2>
+  
+    <time datetime="2023-04-21T10:04:27&#43;08:00">21 April, 2023</time>
+  
+</header>
+
+    <h3 id="crc8校验">
+  <a class="Heading-link u-clickable" href="/post/xiaomi_xmodem_crc32_crc16_crc8/#crc8%e6%a0%a1%e9%aa%8c">crc8校验</a>
+</h3>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdint.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">uint8_t</span> <span style="color:#a6e22e">crc8</span>(<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span>p_buffer, <span style="color:#66d9ef">uint16_t</span> buf_size);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">uint8_t</span> <span style="color:#a6e22e">crc8</span>(<span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span>p_buffer, <span style="color:#66d9ef">uint16_t</span> buf_size)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">uint8_t</span> crc <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">uint8_t</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(buf_size <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> crc;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span>( buf_size<span style="color:#f92672">--</span> )
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (  i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x80</span>; i <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">/=</span> <span style="color:#ae81ff">2</span> )
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ( (crc <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x80</span>) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                crc <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>                crc <span style="color:#f92672">^=</span> <span style="color:#ae81ff">0x07</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                crc <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ( (<span style="color:#f92672">*</span>p_buffer <span style="color:#f92672">&amp;</span> i) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> )
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                crc <span style="color:#f92672">^=</span> <span style="color:#ae81ff">0x07</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        p_buffer<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> crc;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<h3 id="crc16">
+  <a class="Heading-link u-clickable" href="/post/xiaomi_xmodem_crc32_crc16_crc8/#crc16">crc16</a>
+</h3>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">/* CRC16 implementation acording to CCITT standards */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">short</span> <span style="color:#a6e22e">crc16_ccitt_check</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>buf, <span style="color:#66d9ef">int</span> len);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">short</span> crc16tab[<span style="color:#ae81ff">256</span>]<span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0x0000</span>,<span style="color:#ae81ff">0x1021</span>,<span style="color:#ae81ff">0x2042</span>,<span style="color:#ae81ff">0x3063</span>,<span style="color:#ae81ff">0x4084</span>,<span style="color:#ae81ff">0x50a5</span>,<span style="color:#ae81ff">0x60c6</span>,<span style="color:#ae81ff">0x70e7</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0x8108</span>,<span style="color:#ae81ff">0x9129</span>,<span style="color:#ae81ff">0xa14a</span>,<span style="color:#ae81ff">0xb16b</span>,<span style="color:#ae81ff">0xc18c</span>,<span style="color:#ae81ff">0xd1ad</span>,<span style="color:#ae81ff">0xe1ce</span>,<span style="color:#ae81ff">0xf1ef</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0x1231</span>,<span style="color:#ae81ff">0x0210</span>,<span style="color:#ae81ff">0x3273</span>,<span style="color:#ae81ff">0x2252</span>,<span style="color:#ae81ff">0x52b5</span>,<span style="color:#ae81ff">0x4294</span>,<span style="color:#ae81ff">0x72f7</span>,<span style="color:#ae81ff">0x62d6</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0x9339</span>,<span style="color:#ae81ff">0x8318</span>,<span style="color:#ae81ff">0xb37b</span>,<span style="color:#ae81ff">0xa35a</span>,<span style="color:#ae81ff">0xd3bd</span>,<span style="color:#ae81ff">0xc39c</span>,<span style="color:#ae81ff">0xf3ff</span>,<span style="color:#ae81ff">0xe3de</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0x2462</span>,<span style="color:#ae81ff">0x3443</span>,<span style="color:#ae81ff">0x0420</span>,<span style="color:#ae81ff">0x1401</span>,<span style="color:#ae81ff">0x64e6</span>,<span style="color:#ae81ff">0x74c7</span>,<span style="color:#ae81ff">0x44a4</span>,<span style="color:#ae81ff">0x5485</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0xa56a</span>,<span style="color:#ae81ff">0xb54b</span>,<span style="color:#ae81ff">0x8528</span>,<span style="color:#ae81ff">0x9509</span>,<span style="color:#ae81ff">0xe5ee</span>,<span style="color:#ae81ff">0xf5cf</span>,<span style="color:#ae81ff">0xc5ac</span>,<span style="color:#ae81ff">0xd58d</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0x3653</span>,<span style="color:#ae81ff">0x2672</span>,<span style="color:#ae81ff">0x1611</span>,<span style="color:#ae81ff">0x0630</span>,<span style="color:#ae81ff">0x76d7</span>,<span style="color:#ae81ff">0x66f6</span>,<span style="color:#ae81ff">0x5695</span>,<span style="color:#ae81ff">0x46b4</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0xb75b</span>,<span style="color:#ae81ff">0xa77a</span>,<span style="color:#ae81ff">0x9719</span>,<span style="color:#ae81ff">0x8738</span>,<span style="color:#ae81ff">0xf7df</span>,<span style="color:#ae81ff">0xe7fe</span>,<span style="color:#ae81ff">0xd79d</span>,<span style="color:#ae81ff">0xc7bc</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0x48c4</span>,<span style="color:#ae81ff">0x58e5</span>,<span style="color:#ae81ff">0x6886</span>,<span style="color:#ae81ff">0x78a7</span>,<span style="color:#ae81ff">0x0840</span>,<span style="color:#ae81ff">0x1861</span>,<span style="color:#ae81ff">0x2802</span>,<span style="color:#ae81ff">0x3823</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0xc9cc</span>,<span style="color:#ae81ff">0xd9ed</span>,<span style="color:#ae81ff">0xe98e</span>,<span style="color:#ae81ff">0xf9af</span>,<span style="color:#ae81ff">0x8948</span>,<span style="color:#ae81ff">0x9969</span>,<span style="color:#ae81ff">0xa90a</span>,<span style="color:#ae81ff">0xb92b</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0x5af5</span>,<span style="color:#ae81ff">0x4ad4</span>,<span style="color:#ae81ff">0x7ab7</span>,<span style="color:#ae81ff">0x6a96</span>,<span style="color:#ae81ff">0x1a71</span>,<span style="color:#ae81ff">0x0a50</span>,<span style="color:#ae81ff">0x3a33</span>,<span style="color:#ae81ff">0x2a12</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0xdbfd</span>,<span style="color:#ae81ff">0xcbdc</span>,<span style="color:#ae81ff">0xfbbf</span>,<span style="color:#ae81ff">0xeb9e</span>,<span style="color:#ae81ff">0x9b79</span>,<span style="color:#ae81ff">0x8b58</span>,<span style="color:#ae81ff">0xbb3b</span>,<span style="color:#ae81ff">0xab1a</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0x6ca6</span>,<span style="color:#ae81ff">0x7c87</span>,<span style="color:#ae81ff">0x4ce4</span>,<span style="color:#ae81ff">0x5cc5</span>,<span style="color:#ae81ff">0x2c22</span>,<span style="color:#ae81ff">0x3c03</span>,<span style="color:#ae81ff">0x0c60</span>,<span style="color:#ae81ff">0x1c41</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0xedae</span>,<span style="color:#ae81ff">0xfd8f</span>,<span style="color:#ae81ff">0xcdec</span>,<span style="color:#ae81ff">0xddcd</span>,<span style="color:#ae81ff">0xad2a</span>,<span style="color:#ae81ff">0xbd0b</span>,<span style="color:#ae81ff">0x8d68</span>,<span style="color:#ae81ff">0x9d49</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0x7e97</span>,<span style="color:#ae81ff">0x6eb6</span>,<span style="color:#ae81ff">0x5ed5</span>,<span style="color:#ae81ff">0x4ef4</span>,<span style="color:#ae81ff">0x3e13</span>,<span style="color:#ae81ff">0x2e32</span>,<span style="color:#ae81ff">0x1e51</span>,<span style="color:#ae81ff">0x0e70</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0xff9f</span>,<span style="color:#ae81ff">0xefbe</span>,<span style="color:#ae81ff">0xdfdd</span>,<span style="color:#ae81ff">0xcffc</span>,<span style="color:#ae81ff">0xbf1b</span>,<span style="color:#ae81ff">0xaf3a</span>,<span style="color:#ae81ff">0x9f59</span>,<span style="color:#ae81ff">0x8f78</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0x9188</span>,<span style="color:#ae81ff">0x81a9</span>,<span style="color:#ae81ff">0xb1ca</span>,<span style="color:#ae81ff">0xa1eb</span>,<span style="color:#ae81ff">0xd10c</span>,<span style="color:#ae81ff">0xc12d</span>,<span style="color:#ae81ff">0xf14e</span>,<span style="color:#ae81ff">0xe16f</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0x1080</span>,<span style="color:#ae81ff">0x00a1</span>,<span style="color:#ae81ff">0x30c2</span>,<span style="color:#ae81ff">0x20e3</span>,<span style="color:#ae81ff">0x5004</span>,<span style="color:#ae81ff">0x4025</span>,<span style="color:#ae81ff">0x7046</span>,<span style="color:#ae81ff">0x6067</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0x83b9</span>,<span style="color:#ae81ff">0x9398</span>,<span style="color:#ae81ff">0xa3fb</span>,<span style="color:#ae81ff">0xb3da</span>,<span style="color:#ae81ff">0xc33d</span>,<span style="color:#ae81ff">0xd31c</span>,<span style="color:#ae81ff">0xe37f</span>,<span style="color:#ae81ff">0xf35e</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0x02b1</span>,<span style="color:#ae81ff">0x1290</span>,<span style="color:#ae81ff">0x22f3</span>,<span style="color:#ae81ff">0x32d2</span>,<span style="color:#ae81ff">0x4235</span>,<span style="color:#ae81ff">0x5214</span>,<span style="color:#ae81ff">0x6277</span>,<span style="color:#ae81ff">0x7256</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0xb5ea</span>,<span style="color:#ae81ff">0xa5cb</span>,<span style="color:#ae81ff">0x95a8</span>,<span style="color:#ae81ff">0x8589</span>,<span style="color:#ae81ff">0xf56e</span>,<span style="color:#ae81ff">0xe54f</span>,<span style="color:#ae81ff">0xd52c</span>,<span style="color:#ae81ff">0xc50d</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0x34e2</span>,<span style="color:#ae81ff">0x24c3</span>,<span style="color:#ae81ff">0x14a0</span>,<span style="color:#ae81ff">0x0481</span>,<span style="color:#ae81ff">0x7466</span>,<span style="color:#ae81ff">0x6447</span>,<span style="color:#ae81ff">0x5424</span>,<span style="color:#ae81ff">0x4405</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0xa7db</span>,<span style="color:#ae81ff">0xb7fa</span>,<span style="color:#ae81ff">0x8799</span>,<span style="color:#ae81ff">0x97b8</span>,<span style="color:#ae81ff">0xe75f</span>,<span style="color:#ae81ff">0xf77e</span>,<span style="color:#ae81ff">0xc71d</span>,<span style="color:#ae81ff">0xd73c</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0x26d3</span>,<span style="color:#ae81ff">0x36f2</span>,<span style="color:#ae81ff">0x0691</span>,<span style="color:#ae81ff">0x16b0</span>,<span style="color:#ae81ff">0x6657</span>,<span style="color:#ae81ff">0x7676</span>,<span style="color:#ae81ff">0x4615</span>,<span style="color:#ae81ff">0x5634</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0xd94c</span>,<span style="color:#ae81ff">0xc96d</span>,<span style="color:#ae81ff">0xf90e</span>,<span style="color:#ae81ff">0xe92f</span>,<span style="color:#ae81ff">0x99c8</span>,<span style="color:#ae81ff">0x89e9</span>,<span style="color:#ae81ff">0xb98a</span>,<span style="color:#ae81ff">0xa9ab</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0x5844</span>,<span style="color:#ae81ff">0x4865</span>,<span style="color:#ae81ff">0x7806</span>,<span style="color:#ae81ff">0x6827</span>,<span style="color:#ae81ff">0x18c0</span>,<span style="color:#ae81ff">0x08e1</span>,<span style="color:#ae81ff">0x3882</span>,<span style="color:#ae81ff">0x28a3</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0xcb7d</span>,<span style="color:#ae81ff">0xdb5c</span>,<span style="color:#ae81ff">0xeb3f</span>,<span style="color:#ae81ff">0xfb1e</span>,<span style="color:#ae81ff">0x8bf9</span>,<span style="color:#ae81ff">0x9bd8</span>,<span style="color:#ae81ff">0xabbb</span>,<span style="color:#ae81ff">0xbb9a</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0x4a75</span>,<span style="color:#ae81ff">0x5a54</span>,<span style="color:#ae81ff">0x6a37</span>,<span style="color:#ae81ff">0x7a16</span>,<span style="color:#ae81ff">0x0af1</span>,<span style="color:#ae81ff">0x1ad0</span>,<span style="color:#ae81ff">0x2ab3</span>,<span style="color:#ae81ff">0x3a92</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0xfd2e</span>,<span style="color:#ae81ff">0xed0f</span>,<span style="color:#ae81ff">0xdd6c</span>,<span style="color:#ae81ff">0xcd4d</span>,<span style="color:#ae81ff">0xbdaa</span>,<span style="color:#ae81ff">0xad8b</span>,<span style="color:#ae81ff">0x9de8</span>,<span style="color:#ae81ff">0x8dc9</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0x7c26</span>,<span style="color:#ae81ff">0x6c07</span>,<span style="color:#ae81ff">0x5c64</span>,<span style="color:#ae81ff">0x4c45</span>,<span style="color:#ae81ff">0x3ca2</span>,<span style="color:#ae81ff">0x2c83</span>,<span style="color:#ae81ff">0x1ce0</span>,<span style="color:#ae81ff">0x0cc1</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0xef1f</span>,<span style="color:#ae81ff">0xff3e</span>,<span style="color:#ae81ff">0xcf5d</span>,<span style="color:#ae81ff">0xdf7c</span>,<span style="color:#ae81ff">0xaf9b</span>,<span style="color:#ae81ff">0xbfba</span>,<span style="color:#ae81ff">0x8fd9</span>,<span style="color:#ae81ff">0x9ff8</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">0x6e17</span>,<span style="color:#ae81ff">0x7e36</span>,<span style="color:#ae81ff">0x4e55</span>,<span style="color:#ae81ff">0x5e74</span>,<span style="color:#ae81ff">0x2e93</span>,<span style="color:#ae81ff">0x3eb2</span>,<span style="color:#ae81ff">0x0ed1</span>,<span style="color:#ae81ff">0x1ef0</span>
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">short</span> <span style="color:#a6e22e">crc16_ccitt_check</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>buf, <span style="color:#66d9ef">int</span> len)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">register</span> <span style="color:#66d9ef">int</span> counter;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">register</span> <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">short</span> crc <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> data <span style="color:#f92672">=</span> (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)buf;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>( counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; counter <span style="color:#f92672">&lt;</span> len; counter<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		crc <span style="color:#f92672">=</span> (crc<span style="color:#f92672">&lt;&lt;</span><span style="color:#ae81ff">8</span>) <span style="color:#f92672">^</span> crc16tab[((crc<span style="color:#f92672">&gt;&gt;</span><span style="color:#ae81ff">8</span>) <span style="color:#f92672">^</span> <span style="color:#f92672">*</span>data<span style="color:#f92672">++</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x00FF</span>];
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> crc;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<h3 id="crc32">
+  <a class="Heading-link u-clickable" href="/post/xiaomi_xmodem_crc32_crc16_crc8/#crc32">crc32</a>
+</h3>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdint.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">uint32_t</span> <span style="color:#a6e22e">soft_crc32</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>__data, <span style="color:#66d9ef">int</span> data_size, <span style="color:#66d9ef">uint32_t</span> crc);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">soft_crc32_init</span>(<span style="color:#66d9ef">void</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define TABLE_SIZE 256
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">uint32_t</span> crc_table[TABLE_SIZE];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> rcrc32 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xEDB88320</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">soft_crc32_init</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> crc <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> i;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> j;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> TABLE_SIZE; j<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>		crc <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x01</span>; i <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0x00</span>; i <span style="color:#f92672">&lt;&lt;=</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> ((crc <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x00000001</span>) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>				crc <span style="color:#f92672">&gt;&gt;=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>				crc <span style="color:#f92672">^=</span> rcrc32;
+</span></span><span style="display:flex;"><span>			} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>				crc <span style="color:#f92672">&gt;&gt;=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> ((j <span style="color:#f92672">&amp;</span> i) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>				crc <span style="color:#f92672">^=</span> rcrc32;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		crc_table[j] <span style="color:#f92672">=</span> crc;
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">//printf(&#34;%08x\r\n&#34;, crc);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">uint32_t</span> <span style="color:#a6e22e">soft_crc32</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>__data, <span style="color:#66d9ef">int</span> data_size, <span style="color:#66d9ef">uint32_t</span> crc)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span>data <span style="color:#f92672">=</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">uint8_t</span> <span style="color:#f92672">*</span>) __data;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> crc;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> crc_H8;
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">soft_crc32_init</span>();
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//printf(&#34;soft_crc32 data_size= %d\r\n&#34;, data_size);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">while</span> (data_size<span style="color:#f92672">--</span>) {
+</span></span><span style="display:flex;"><span>		crc_H8 <span style="color:#f92672">=</span> (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span>)(result <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0x000000FF</span>);
+</span></span><span style="display:flex;"><span>		result <span style="color:#f92672">&gt;&gt;=</span> <span style="color:#ae81ff">8</span>;
+</span></span><span style="display:flex;"><span>		result <span style="color:#f92672">^=</span> crc_table[crc_H8 <span style="color:#f92672">^</span> (<span style="color:#f92672">*</span>data)];
+</span></span><span style="display:flex;"><span>		data<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> result;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+
+    
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    
+  
+
+  </article>
+
+
+      </div>
+    </div>
+  </main>
+  
+  <footer class="Footer">
+    <div class="u-wrapper">
+      <div class="u-padding">
+        开发的乐趣在于相通而不同
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d08a2ad355cb7a065a41be081b43297e";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>

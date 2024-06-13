@@ -2,6 +2,87 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://blog.ttbt.work/post/</loc>
+    <lastmod>2023-12-22T10:45:53+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/vim-skill/</loc>
+    <lastmod>2023-12-22T10:45:53+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/</loc>
+    <lastmod>2023-12-22T10:45:53+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/protothreads/</loc>
+    <lastmod>2023-12-19T12:27:51+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/linux-nohup/</loc>
+    <lastmod>2023-12-15T12:10:03+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/springboot-sbscan-test/</loc>
+    <lastmod>2023-12-11T16:05:04+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/kotlin_ktor_study_applicationcall/</loc>
+    <lastmod>2023-11-26T12:16:05+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/pod_install_error1/</loc>
+    <lastmod>2023-11-24T09:47:55+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/nginx_front_back/</loc>
+    <lastmod>2023-11-23T14:15:51+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/linux_lvm/</loc>
+    <lastmod>2023-11-20T15:01:03+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/install-mysql/</loc>
+    <lastmod>2023-11-20T10:01:42+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/docker-mysql-used/</loc>
+    <lastmod>2023-11-13T10:32:57+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/mac_os_dev_env/</loc>
+    <lastmod>2023-10-06T19:18:30+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/esp32c3_flash_partition_table/</loc>
+    <lastmod>2023-07-11T17:28:51+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/golang_platform_name/</loc>
+    <lastmod>2023-07-10T16:02:33+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/esp32c3_fresh/</loc>
+    <lastmod>2023-06-21T09:41:09+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/linux_udp/</loc>
+    <lastmod>2023-06-20T13:09:51+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/golang_gorm_set_fk_null/</loc>
+    <lastmod>2023-06-01T18:04:48+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/spring_boot_example_used/</loc>
+    <lastmod>2023-05-30T17:30:10+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/gin_swagger_used/</loc>
+    <lastmod>2023-05-25T09:32:55+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/springboot3.0_security_use/</loc>
+    <lastmod>2023-05-16T09:26:46+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/android_gradle_could_not_resolve/</loc>
+    <lastmod>2023-05-07T15:12:30+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/spring_boot_scheduled/</loc>
+    <lastmod>2023-05-06T11:57:47+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/tags/springboot/</loc>
+    <lastmod>2023-05-06T11:57:47+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/tags/</loc>
+    <lastmod>2023-05-06T11:57:47+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</loc>
+    <lastmod>2023-05-06T11:57:47+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/golang_parse_sitemap_submit_baidu/</loc>
+    <lastmod>2023-05-06T11:00:10+08:00</lastmod>
+  </url><url>
     <loc>https://blog.ttbt.work/tags/brew/</loc>
     <lastmod>2023-05-06T09:36:26+08:00</lastmod>
   </url><url>
@@ -14,9 +95,6 @@
     <loc>https://blog.ttbt.work/tags/openssl/</loc>
     <lastmod>2023-05-06T09:36:26+08:00</lastmod>
   </url><url>
-    <loc>https://blog.ttbt.work/post/</loc>
-    <lastmod>2023-05-06T09:36:26+08:00</lastmod>
-  </url><url>
     <loc>https://blog.ttbt.work/tags/qt/</loc>
     <lastmod>2023-05-06T09:36:26+08:00</lastmod>
   </url><url>
@@ -24,12 +102,6 @@
     <lastmod>2023-05-06T09:36:26+08:00</lastmod>
   </url><url>
     <loc>https://blog.ttbt.work/tags/ssl/</loc>
-    <lastmod>2023-05-06T09:36:26+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.ttbt.work/tags/</loc>
-    <lastmod>2023-05-06T09:36:26+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.ttbt.work/</loc>
     <lastmod>2023-05-06T09:36:26+08:00</lastmod>
   </url><url>
     <loc>https://blog.ttbt.work/tags/notification/</loc>
@@ -40,6 +112,21 @@
   </url><url>
     <loc>https://blog.ttbt.work/post/swift_notification_usage/</loc>
     <lastmod>2023-05-05T15:46:32+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/tags/annotation/</loc>
+    <lastmod>2023-05-05T10:14:10+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/tags/jpa/</loc>
+    <lastmod>2023-05-05T10:14:10+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/tags/spring/</loc>
+    <lastmod>2023-05-05T10:14:10+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/spring_boot_jpa_annotation/</loc>
+    <lastmod>2023-05-05T10:14:10+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/tags/%E6%B3%A8%E8%A7%A3/</loc>
+    <lastmod>2023-05-05T10:14:10+08:00</lastmod>
   </url><url>
     <loc>https://blog.ttbt.work/tags/ios/</loc>
     <lastmod>2023-04-25T21:01:58+08:00</lastmod>
@@ -67,6 +154,12 @@
   </url><url>
     <loc>https://blog.ttbt.work/tags/%E5%AF%B9%E8%B1%A1%E9%94%80%E6%AF%81/</loc>
     <lastmod>2023-04-21T11:49:45+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/xiaomi_xmodem_crc32_crc16_crc8/</loc>
+    <lastmod>2023-04-21T10:04:27+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/swift_for_and_foreach_map/</loc>
+    <lastmod>2023-04-20T16:19:01+08:00</lastmod>
   </url><url>
     <loc>https://blog.ttbt.work/tags/bytearray/</loc>
     <lastmod>2023-04-20T13:02:36+08:00</lastmod>
@@ -140,6 +233,15 @@
     <loc>https://blog.ttbt.work/tags/%E7%B1%BB%E5%9E%8B/</loc>
     <lastmod>2023-04-14T15:30:01+08:00</lastmod>
   </url><url>
+    <loc>https://blog.ttbt.work/post/mac_essay_recording/</loc>
+    <lastmod>2023-04-13T23:16:50+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/next_software_developer/</loc>
+    <lastmod>2023-04-13T23:10:30+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/swift_main_thread/</loc>
+    <lastmod>2023-04-13T22:45:26+08:00</lastmod>
+  </url><url>
     <loc>https://blog.ttbt.work/tags/android/</loc>
     <lastmod>2023-04-01T07:08:32+08:00</lastmod>
   </url><url>
@@ -151,6 +253,9 @@
   </url><url>
     <loc>https://blog.ttbt.work/tags/ndk/</loc>
     <lastmod>2023-04-01T07:08:32+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/post/uiview_cornerradius_setting/</loc>
+    <lastmod>2023-03-31T16:08:53+08:00</lastmod>
   </url><url>
     <loc>https://blog.ttbt.work/post/uinavigationcontroller_scrollview_whiten/</loc>
     <lastmod>2023-03-31T15:18:50+08:00</lastmod>
@@ -229,6 +334,9 @@
   </url><url>
     <loc>https://blog.ttbt.work/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/</loc>
     <lastmod>2023-03-11T23:16:37+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.ttbt.work/about/</loc>
+    <lastmod>2023-03-11T22:41:52+08:00</lastmod>
   </url><url>
     <loc>https://blog.ttbt.work/categories/</loc>
   </url><url>

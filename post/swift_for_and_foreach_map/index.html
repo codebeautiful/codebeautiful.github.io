@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+  
+  <meta charset="utf-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  
+    <meta name="description" content="区间用法 区间运算符 (&hellip; 和 ..&lt;) ，分别表示
+0 &hellip; 3	表示 [0,1,2,3]，数学表达式[0,3]
+0 ..&lt; 3 表示[0,1,2],数学表达式[0,3)
+代码如下 for i in 0 ... 3 { print(i)// 0,1,2,3 } for i in 0 ..&lt; 3 { print(i)// 0,1,2 } // 倒序遍历 for i in (0...3).reversed() { print(i)// 3,2,1,0 } // 条件遍历 for i in 0...3 where i % 2 == 0 { print(i)// 0,2 } 数组遍历方法 let arr = [1,2,3] // 元素遍历 for a in arr { print(a) } // 索引遍历 for i in 0.">
+  
+
+
+<meta name="color-scheme" content="light dark">
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.124.1">
+
+<meta content="" name="keywords">
+<meta content="Switch使用for forEach map - 通通不同-博客" property="og:title">
+<meta content="开发的乐趣在于相通而不同 - " property="og:description">
+
+<meta name="msvalidate.01" content="F56ED94B7E86941E3DACEF208F07D329" />
+
+  <title>
+    
+    Switch使用for forEach map
+     - 通通不同-博客
+    
+</title>
+
+  <link rel="canonical" href="https://blog.ttbt.work/post/swift_for_and_foreach_map/">
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+  
+  <link rel="stylesheet" href="/css/base.min.4f231885947d13c748c815d93da49f07ab89afb67629f9970b7c054610e88e0b.css" integrity="sha256-TyMYhZR9E8dIyBXZPaSfB6uJr7Z2KfmXC3wFRhDojgs=" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+  <nav class="u-background">
+  <div class="u-wrapper">
+    <ul class="Banner">
+      <li class="Banner-item Banner-item--title">
+        <h1 class="Banner-heading">
+          <a class="Banner-link u-clickable" href="/">通通不同-博客</a>
+        </h1>
+      </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/post/">全部</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/categories/">分类</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/tags/">标签</a>
+        </li>
+      
+        <li class="Banner-item">
+          <a class="Banner-link u-clickable" href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main>
+    <div class="u-wrapper">
+      <div class="u-padding">
+        
+
+  <article>
+    <header class="Heading">
+  <h2 class="Heading-title">
+    <a class="Heading-link u-clickable" href="/post/swift_for_and_foreach_map/" rel="bookmark">Switch使用for forEach map</a>
+  </h2>
+  
+    <time datetime="2023-04-20T16:19:01&#43;08:00">20 April, 2023</time>
+  
+</header>
+
+    <h3 id="区间用法">
+  <a class="Heading-link u-clickable" href="/post/swift_for_and_foreach_map/#%e5%8c%ba%e9%97%b4%e7%94%a8%e6%b3%95">区间用法</a>
+</h3>
+<p>区间运算符 (&hellip; 和 ..&lt;) ，分别表示</p>
+<p>0 &hellip; 3	表示 [0,1,2,3]，数学表达式[0,3]</p>
+<p>0 ..&lt; 3   表示[0,1,2],数学表达式[0,3)</p>
+<h3 id="代码如下">
+  <a class="Heading-link u-clickable" href="/post/swift_for_and_foreach_map/#%e4%bb%a3%e7%a0%81%e5%a6%82%e4%b8%8b">代码如下</a>
+</h3>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">0</span> ... <span style="color:#ae81ff">3</span> {
+</span></span><span style="display:flex;"><span>  print(i)<span style="color:#75715e">// 0,1,2,3</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">0</span> ..<span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span> {
+</span></span><span style="display:flex;"><span>  print(i)<span style="color:#75715e">// 0,1,2</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 倒序遍历</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#66d9ef">in</span> (<span style="color:#ae81ff">0.</span>..<span style="color:#ae81ff">3</span>).reversed() {
+</span></span><span style="display:flex;"><span>  print(i)<span style="color:#75715e">// 3,2,1,0</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 条件遍历</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">0.</span>..<span style="color:#ae81ff">3</span> <span style="color:#66d9ef">where</span> i <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> == <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>  print(i)<span style="color:#75715e">// 0,2</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<h3 id="数组遍历方法">
+  <a class="Heading-link u-clickable" href="/post/swift_for_and_foreach_map/#%e6%95%b0%e7%bb%84%e9%81%8d%e5%8e%86%e6%96%b9%e6%b3%95">数组遍历方法</a>
+</h3>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> arr = [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>]
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 元素遍历</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> a <span style="color:#66d9ef">in</span> arr {
+</span></span><span style="display:flex;"><span>    print(a)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 索引遍历</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">0.</span>.&lt;arr.count {
+</span></span><span style="display:flex;"><span>    print(arr[i])
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// forEach</span>
+</span></span><span style="display:flex;"><span>arr.forEach { a <span style="color:#66d9ef">in</span>
+</span></span><span style="display:flex;"><span>    print(a)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 迭代器遍历</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (index, element) <span style="color:#66d9ef">in</span> arr.enumerated() {
+</span></span><span style="display:flex;"><span>    print(index, element)<span style="color:#75715e">// 0 1, 1 2, 2 3</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+
+    
+
+
+  
+
+  
+
+  
+
+
+
+
+
+    
+  
+
+  </article>
+
+
+      </div>
+    </div>
+  </main>
+  
+  <footer class="Footer">
+    <div class="u-wrapper">
+      <div class="u-padding">
+        开发的乐趣在于相通而不同
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d08a2ad355cb7a065a41be081b43297e";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+
+</html>
